@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warhammer 40,000 - El Siniestro Futuro</title>
+    <title>Warhammer 40,000 - Registro Táctico Galáctico</title>
     <style>
         :root {
-            --bg-dark: #06080a;
-            --panel-bg: #101419;
+            --bg-dark: #050709;
+            --panel-bg: #0d1116;
             --gold: #cda851;
-            --gold-glow: rgba(205, 168, 81, 0.3);
+            --gold-glow: rgba(205, 168, 81, 0.25);
             --text-light: #e2e8f0;
-            --text-muted: #8492a6;
-            --blood: #991b1b;
+            --text-muted: #8b9bb4;
+            --blood-red: #881337;
+            --chaos-crimson: #dc2626;
+            --xenos-green: #16a34a;
         }
 
         * { box-sizing: border-box; }
@@ -26,7 +28,8 @@
             scroll-behavior: smooth;
         }
 
-        .intro-hero {
+        /* 1. SECCIÓN DE BIENVENIDA MILITAR INTERACTIVA */
+        .hero-banner {
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -34,219 +37,256 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            background: radial-gradient(circle, rgba(21,28,37,1) 0%, rgba(6,8,10,1) 100%);
-            border-bottom: 2px solid var(--gold);
+            background: linear-gradient(rgba(5, 7, 9, 0.7), rgba(5, 7, 9, 0.95)), 
+                        url('https://unsplash.com') no-repeat center center/cover;
+            border-bottom: 3px solid var(--gold);
         }
 
-        .logo-warhammer {
-            font-size: 3.5rem;
+        .hero-banner h1 {
+            font-size: 3.8rem;
             font-weight: 900;
-            letter-spacing: 8px;
+            letter-spacing: 10px;
             color: var(--gold);
-            text-shadow: 0 0 20px var(--gold-glow);
-            margin: 0 0 20px 0;
+            text-shadow: 0 0 25px var(--gold-glow);
+            margin: 0 0 15px 0;
             text-transform: uppercase;
         }
 
-        .motto {
+        .motto-grimdark {
             font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
-            color: #ef4444;
-            letter-spacing: 3px;
+            font-size: 1.3rem;
+            color: #f43f5e;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            max-width: 600px;
-            margin-bottom: 40px;
+            max-width: 750px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.6);
         }
 
-        .btn-scroll {
+        .btn-imperial {
             background: transparent;
-            border: 1px solid var(--gold);
+            border: 2px solid var(--gold);
             color: var(--gold);
-            padding: 12px 30px;
-            font-size: 1rem;
+            padding: 14px 35px;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
+            box-shadow: 0 0 10px var(--gold-glow);
         }
 
-        .btn-scroll:hover {
+        .btn-imperial:hover {
             background-color: var(--gold);
             color: var(--bg-dark);
-            box-shadow: 0 0 15px var(--gold);
+            box-shadow: 0 0 25px var(--gold);
         }
 
-        .history-section {
-            max-width: 800px;
+        /* 2. HISTORIA CENTRAL */
+        .lore-summary {
+            max-width: 850px;
             margin: 0 auto;
             padding: 100px 20px;
             text-align: justify;
         }
 
-        .history-section h2 {
-            font-size: 2.2rem;
+        .lore-summary h2 {
+            font-size: 2.4rem;
             color: var(--gold);
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             letter-spacing: 2px;
             border-bottom: 1px solid rgba(205, 168, 81, 0.2);
-            padding-bottom: 15px;
+            padding-bottom: 25px;
         }
 
-        .history-section p {
-            font-size: 1.1rem;
-            line-height: 1.9;
+        .lore-summary p {
+            font-size: 1.15rem;
+            line-height: 2;
             color: #cbd5e1;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .exploration-section {
+        /* 3. SECCIÓN DE CUADRÍCULA DE FACCIONES CON FOTOS */
+        .factions-hub {
             background-color: var(--panel-bg);
-            padding: 80px 20px;
+            padding: 90px 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .exploration-section h2 {
+        .factions-hub h2 {
             text-align: center;
             color: var(--gold);
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .exploration-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 50px auto;
-            line-height: 1.6;
+            font-size: 2.2rem;
+            margin-bottom: 45px;
         }
 
         .factions-grid {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 35px;
         }
 
         .faction-card {
             background-color: var(--bg-dark);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .faction-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Contenedor de la foto de la facción */
+        .card-img {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            border-bottom: 4px solid transparent;
+        }
+        
+        /* Fotos asignadas con estética Grimdark */
+        .img-humanas { 
+            background-image: url('https://unsplash.com'); 
+            border-color: var(--gold); 
+        }
+        .img-caos { 
+            background-image: url('https://unsplash.com'); 
+            border-color: var(--chaos-crimson); 
+        }
+        .img-xenos { 
+            background-image: url('https://unsplash.com'); 
+            border-color: var(--xenos-green); 
+        }
+
+        .card-body {
             padding: 30px;
             text-align: center;
-            transition: transform 0.3s;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .faction-card:hover { transform: translateY(-5px); }
-        .card-humanas { border-bottom: 4px solid var(--gold); }
-        .card-caos { border-bottom: 4px solid var(--blood); }
-        .card-xenos { border-bottom: 4px solid #16a34a; }
+        .card-body h3 {
+            font-size: 1.6rem;
+            margin: 0 0 15px 0;
+            letter-spacing: 1px;
+        }
 
-        .faction-card h3 { font-size: 1.5rem; margin-top: 0; letter-spacing: 1px; }
-        .card-humanas h3 { color: var(--gold); }
-        .card-caos h3 { color: #ef4444; }
-        .card-xenos h3 { color: #22c55e; }
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
 
-        .faction-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; }
-
-        .btn-more {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .btn-extract {
+            background-color: rgba(255, 255, 255, 0.02);
             color: var(--text-light);
-            padding: 10px 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 12px 24px;
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
             transition: all 0.2s ease;
+            width: 100%;
         }
 
-        .btn-more:hover { background-color: var(--text-light); color: var(--bg-dark); }
+        .card-humanas:hover .btn-extract { border-color: var(--gold); color: var(--gold); }
+        .card-caos:hover .btn-extract { border-color: var(--chaos-crimson); color: var(--chaos-crimson); }
+        .card-xenos:hover .btn-extract { border-color: var(--xenos-green); color: var(--xenos-green); }
 
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.3s ease; z-index: 1000; padding: 20px;
+        /* 4. SECCIÓN QUE SE ACTUALIZA DIRECTAMENTE EN LA PÁGINA */
+        .lore-display-container {
+            max-width: 900px;
+            margin: 60px auto 100px auto;
+            padding: 40px;
+            background-color: rgba(5, 7, 9, 0.8);
+            border: 1px solid rgba(205, 168, 81, 0.2);
+            border-radius: 4px;
+            display: none; 
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
         }
 
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-
-        .modal-content {
-            background-color: var(--panel-bg);
-            border: 2px solid var(--gold);
-            max-width: 600px; width: 100%; padding: 35px; border-radius: 6px;
-            position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            transform: scale(0.9); transition: transform 0.3s ease;
+        .lore-display-container.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
         }
 
-        .modal-overlay.active .modal-content { transform: scale(1); }
-
-        .btn-close-modal {
-            position: absolute; top: 15px; right: 20px;
-            background: transparent; border: none; color: var(--text-muted);
-            font-size: 1.5rem; cursor: pointer;
+        .display-title {
+            font-size: 2.2rem;
+            color: var(--gold);
+            border-bottom: 2px solid rgba(205, 168, 81, 0.3);
+            padding-bottom: 15px;
+            margin-top: 0;
+            letter-spacing: 2px;
+            text-align: center;
         }
 
-        .btn-close-modal:hover { color: #ef4444; }
-        .modal-content h3 { margin-top: 0; font-size: 1.8rem; color: var(--gold); border-bottom: 1px solid rgba(205, 168, 81, 0.2); padding-bottom: 10px; }
-        .modal-content h4 { color: var(--text-light); margin: 20px 0 5px 0; text-transform: uppercase; font-size: 0.9rem; }
-        .modal-content p { font-size: 0.95rem; line-height: 1.7; color: #cbd5e1; text-align: justify; }
+        .lore-block h4 {
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 30px 0 10px 0;
+            font-size: 1.1rem;
+            border-left: 3px solid var(--gold);
+            padding-left: 10px;
+        }
+
+        .lore-block p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #cbd5e1;
+            text-align: justify;
+            margin: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
-    <section class="intro-hero">
-        <h1 class="logo-warhammer">Warhammer 40,000</h1>
-        <div class="motto">"En el siniestro descontrol del futuro lejano, solo hay guerra."</div>
-        <a href="#historia" class="btn-scroll">Adentrarse en el Archivo</a>
+    <!-- 1. PANTALLA DE BIENVENIDA -->
+    <header class="hero-banner">
+        <h1>Warhammer 40,000</h1>
+        <div class="motto-grimdark">"En el siniestro descontrol del futuro lejano, solo hay guerra."</div>
+        <a href="#archivo-central" class="btn-imperial">Iniciar Protocolo de Lectura</a>
+    </header>
+
+    <!-- 2. TRASFONDO HISTÓRICO GLOBAL -->
+    <section id="archivo-central" class="lore-summary">
+        <h2>Transmisión del Códice de la Historia</h2>
+        <p><strong>Warhammer 40,000</strong> es un bastión de ciencia ficción militar y fantasía oscura apocalíptica conocido como el género <em>Grimdark</em>. La galaxia se sitúa en el cuadragésimo primer milenio. Es una era oscura, donde los avances científicos han sido devorados por la superstición, los imperios se marchitan y la guerra perpetua consume miles de planetas al día.</p>
+        <p>La humanidad pende de un hilo militar bajo el mandato teocrático del <strong>Imperio del Hombre</strong>. Paralelamente, horrores inimaginables emergen desde las rasgaduras de la realidad misma y los confines del vacío sideral, obligando a cada civilización a combatir ferozmente para evitar la aniquilación total.</p>
     </section>
 
-    <section id="historia" class="history-section">
-        <h2>¿Qué es Warhammer 40k?</h2>
-        <p><strong>Warhammer 40,000</strong> es un vasto universo de ciencia ficción distópica y fantasía oscura (conocido mundialmente como el género <em>Grimdark</em>). La historia nos sitúa en el cuadragésimo primer milenio, una época donde la tecnología se ha estancado, la razón ha sido sustituida por el fanatismo y la galaxia entera se desangra en batallas espaciales infinitas.</p>
-        <p>La humanidad lucha desesperadamente por evitar su extinción absoluta bajo el control del opresivo <strong>Imperio del Hombre</strong>. Paralelamente, horrores inimaginables acechan desde las sombras del espacio y de dimensiones corruptas, destruyendo mundos enteros y forzando a cada ser vivo a elegir un bando en una guerra que no tiene un final a la vista.</p>
-    </section>
-
-    <section class="exploration-section">
-        <h2>Expansión del Conocimiento</h2>
-        <div class="exploration-subtitle">¿Deseas profundizar más en los registros? Selecciona una de las super-facciones galácticas para desglosar sus filas e historia detallada.</div>
-
+    <!-- 3. SECCIÓN DE CUADRÍCULA DE FACCIONES -->
+    <section class="factions-hub">
+        <h2>Terminal de Datos de Facciones</h2>
+        
         <div class="factions-grid">
-            <div class="faction-card card-humanas">
-                <h3>Facciones Humanas</h3>
-                <p>Las fuerzas unificadas que defienden los dominios del Emperador de la Humanidad a lo largo del cosmos.</p>
-                <button class="btn-more" onclick="openModal('humanas')">Ver Detalles</button>
-            </div>
-            <div class="faction-card card-caos">
-                <h3>El Caos</h3>
-                <p>Traidores corruptos y entidades demoníacas nacidas de los peores impulsos de la Disformidad.</p>
-                <button class="btn-more" onclick="openModal('caos')">Ver Detalles</button>
-            </div>
-            <div class="faction-card card-xenos">
-                <h3>Razas Xenos</h3>
-                <p>Civilizaciones alienígenas no humanas, con tecnologías y motivos únicos que buscan reclamar la galaxia.</p>
-                <button class="btn-more" onclick="openModal('xenos')">Ver Detalles</button>
-            </div>
-        </div>
-    </section>
+            <!-- Facción Humana -->
+            <article class="faction-card card-humanas">
+                <div class="card-img img-humanas"></div>
+                <div class="card-body">
+                    <h3>Facciones Humanas</h3>
+                    <p>Las fuerzas unificadas y los ejércitos masivos que defienden con sangre los dominios del Emperador de la Humanidad.</p>
+                    <button class="btn-extract" onclick="updatePageContent('humanas')">Extraer Registro</button>
+                </div>
+            </article>
 
-    <div id="factionModal" class="modal-overlay" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="btn-close-modal" onclick="closeModal()">&times;</button>
-            <h3 id="modalTitle">Título</h3>
-            <h4>¿Quiénes son?</h4>
-            <p id="modalDesc">Descripción.</p>
-            <h4>¿Cómo se conforman?</h4>
-            <p id="modalComposition">Composición.</p>
-        </div>
-    </div>
-
-    <script>
-        const factionData = {
-            humanas: {
-                title: "Las Facciones Humanas",
-                desc: "Representan el grueso de la supervivencia humana bajo el yugo del Imperio del Hombre. Es un estado teocrático y autoritario que adora al Emperador como su único Dios y Salvador, gobernando millones de mundos bajo una disciplina marcial absoluta.",
+            <!-- El Caos -->
