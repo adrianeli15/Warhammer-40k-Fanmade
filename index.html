@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warhammer 40,000 - Registro Táctico Galáctico</title>
+    <title>Warhammer 40,000 - Registro Códice Galáctico</title>
     <style>
         :root {
-            --bg-dark: #050709;
-            --panel-bg: #0d1116;
+            --bg-dark: #040608;
+            --panel-bg: #090d12;
+            --panel-border: #1a2332;
             --gold: #cda851;
-            --gold-glow: rgba(205, 168, 81, 0.25);
+            --gold-glow: rgba(205, 168, 81, 0.3);
             --text-light: #e2e8f0;
-            --text-muted: #8b9bb4;
-            --blood-red: #881337;
-            --chaos-crimson: #dc2626;
-            --xenos-green: #16a34a;
+            --text-muted: #718096;
+            
+            /* Variables dinámicas para el cambio de facciones */
+            --faction-accent: #cda851;
+            --faction-glow: rgba(205, 168, 81, 0.2);
         }
 
         * { box-sizing: border-box; }
@@ -25,268 +27,236 @@
             background-color: var(--bg-dark);
             color: var(--text-light);
             font-family: 'Cinzel', 'Georgia', serif;
-            scroll-behavior: smooth;
+            line-height: 1.8;
         }
 
-        /* 1. SECCIÓN DE BIENVENIDA MILITAR INTERACTIVA */
-        .hero-banner {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        /* CABECERA INMERSIVA PERMANENTE */
+        .header-brand {
             text-align: center;
-            padding: 20px;
-            background: linear-gradient(rgba(5, 7, 9, 0.7), rgba(5, 7, 9, 0.95)), 
-                        url('https://unsplash.com') no-repeat center center/cover;
-            border-bottom: 3px solid var(--gold);
+            padding: 50px 20px;
+            background: linear-gradient(to bottom, #000000, var(--bg-dark));
+            border-bottom: 2px solid var(--gold);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.8);
         }
 
-        .hero-banner h1 {
-            font-size: 3.8rem;
+        .header-brand h1 {
+            font-size: 3.5rem;
             font-weight: 900;
-            letter-spacing: 10px;
+            letter-spacing: 8px;
             color: var(--gold);
-            text-shadow: 0 0 25px var(--gold-glow);
-            margin: 0 0 15px 0;
+            text-shadow: 0 0 20px var(--gold-glow);
+            margin: 0 0 10px 0;
             text-transform: uppercase;
         }
 
         .motto-grimdark {
             font-family: 'Courier New', monospace;
-            font-size: 1.3rem;
-            color: #f43f5e;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            max-width: 750px;
-            margin-bottom: 50px;
-            border: 1px solid rgba(244, 63, 94, 0.3);
-            padding: 10px 20px;
-            background: rgba(0,0,0,0.6);
-        }
-
-        .btn-imperial {
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            padding: 14px 35px;
             font-size: 1.1rem;
-            text-transform: uppercase;
+            color: #ef4444;
             letter-spacing: 3px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 0 10px var(--gold-glow);
-        }
-
-        .btn-imperial:hover {
-            background-color: var(--gold);
-            color: var(--bg-dark);
-            box-shadow: 0 0 25px var(--gold);
-        }
-
-        /* 2. HISTORIA CENTRAL */
-        .lore-summary {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 100px 20px;
-            text-align: justify;
-        }
-
-        .lore-summary h2 {
-            font-size: 2.4rem;
-            color: var(--gold);
-            text-align: center;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
-            border-bottom: 1px solid rgba(205, 168, 81, 0.2);
-            padding-bottom: 25px;
-        }
-
-        .lore-summary p {
-            font-size: 1.15rem;
-            line-height: 2;
-            color: #cbd5e1;
-            margin-bottom: 25px;
-        }
-
-        /* 3. SECCIÓN DE CUADRÍCULA DE FACCIONES CON FOTOS */
-        .factions-hub {
-            background-color: var(--panel-bg);
-            padding: 90px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .factions-hub h2 {
-            text-align: center;
-            color: var(--gold);
-            font-size: 2.2rem;
-            margin-bottom: 45px;
-        }
-
-        .factions-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 35px;
-        }
-
-        .faction-card {
-            background-color: var(--bg-dark);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .faction-card:hover {
-            transform: translateY(-8px);
-        }
-
-        /* Contenedor de la foto de la facción */
-        .card-img {
-            height: 240px;
-            background-size: cover;
-            background-position: center;
-            border-bottom: 4px solid transparent;
-        }
-        
-        /* Fotos asignadas con estética Grimdark */
-        .img-humanas { 
-            background-image: url('https://unsplash.com'); 
-            border-color: var(--gold); 
-        }
-        .img-caos { 
-            background-image: url('https://unsplash.com'); 
-            border-color: var(--chaos-crimson); 
-        }
-        .img-xenos { 
-            background-image: url('https://unsplash.com'); 
-            border-color: var(--xenos-green); 
-        }
-
-        .card-body {
-            padding: 30px;
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-body h3 {
-            font-size: 1.6rem;
-            margin: 0 0 15px 0;
-            letter-spacing: 1px;
-        }
-
-        .card-body p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .btn-extract {
-            background-color: rgba(255, 255, 255, 0.02);
-            color: var(--text-light);
-            border: 1px solid rgba(255,255,255,0.15);
-            padding: 12px 24px;
-            cursor: pointer;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1.5px;
-            transition: all 0.2s ease;
-            width: 100%;
-        }
-
-        .card-humanas:hover .btn-extract { border-color: var(--gold); color: var(--gold); }
-        .card-caos:hover .btn-extract { border-color: var(--chaos-crimson); color: var(--chaos-crimson); }
-        .card-xenos:hover .btn-extract { border-color: var(--xenos-green); color: var(--xenos-green); }
-
-        /* 4. SECCIÓN QUE SE ACTUALIZA DIRECTAMENTE EN LA PÁGINA */
-        .lore-display-container {
-            max-width: 900px;
-            margin: 60px auto 100px auto;
-            padding: 40px;
-            background-color: rgba(5, 7, 9, 0.8);
-            border: 1px solid rgba(205, 168, 81, 0.2);
-            border-radius: 4px;
-            display: none; 
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-        }
-
-        .lore-display-container.active {
-            display: block;
-            animation: fadeIn 0.6s ease;
-        }
-
-        .display-title {
-            font-size: 2.2rem;
-            color: var(--gold);
-            border-bottom: 2px solid rgba(205, 168, 81, 0.3);
-            padding-bottom: 15px;
-            margin-top: 0;
-            letter-spacing: 2px;
-            text-align: center;
-        }
-
-        .lore-block h4 {
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 30px 0 10px 0;
-            font-size: 1.1rem;
-            border-left: 3px solid var(--gold);
-            padding-left: 10px;
-        }
-
-        .lore-block p {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: #cbd5e1;
-            text-align: justify;
             margin: 0;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        /* CONTENEDOR FLUIDO DEL PERFIL / MURO PRINCIPAL */
+        .main-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* SECCIÓN 1: INTRODUCCIÓN GENERAL DENSA */
+        .lore-core {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            padding: 40px;
+            border-radius: 4px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .lore-core h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-top: 0;
+            border-bottom: 1px solid rgba(205, 168, 81, 0.2);
+            padding-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .lore-core p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* REPRODUCTOR DE YOUTUBE INTEGRADO */
+        .media-box {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 1px solid var(--gold);
+            margin: 30px 0;
+            box-shadow: 0 0 20px rgba(0,0,0,0.9);
+        }
+
+        .media-box iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* SECCIÓN 2: TERMINAL DE FACCIONES */
+        .terminal-selector {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            padding: 40px;
+            border-radius: 4px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .terminal-selector h2 {
+            font-size: 2rem;
+            color: var(--gold);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .terminal-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* FILA DE BOTONES DE NAVEGACIÓN DIRECTA */
+        .navigation-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .tab-button {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            padding: 20px 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .btn-hum-tab:hover, .btn-hum-tab.active { border-color: #cda851; color: #cda851; background-color: rgba(205, 168, 81, 0.05); }
+        .btn-caos-tab:hover, .btn-caos-tab.active { border-color: #dc2626; color: #dc2626; background-color: rgba(220, 38, 38, 0.05); }
+        .btn-xen-tab:hover, .btn-xen-tab.active { border-color: #16a34a; color: #16a34a; background-color: rgba(22, 163, 74, 0.05); }
+
+        /* PESTAÑA DINÁMICA QUE MUESTRA LA ENCYCLOPEDIA MASIVA */
+        .encyclopedia-view {
+            background-color: rgba(4, 6, 8, 0.95);
+            border: 2px solid var(--faction-accent);
+            padding: 45px;
+            border-radius: 4px;
+            display: none; /* Se activa mediante JS */
+            box-shadow: 0 0 35px var(--faction-glow);
+            animation: slideDownView 0.5s ease forwards;
+        }
+
+        .encyclopedia-view.active {
+            display: block;
+        }
+
+        .encyclopedia-title {
+            font-size: 2.2rem;
+            color: var(--faction-accent);
+            border-bottom: 2px solid var(--faction-accent);
+            padding-bottom: 20px;
+            margin-top: 0;
+            text-shadow: 0 0 15px var(--faction-glow);
+            letter-spacing: 2px;
+        }
+
+        .encyclopedia-view h3 {
+            color: var(--text-light);
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 35px 0 15px 0;
+            border-left: 4px solid var(--faction-accent);
+            padding-left: 15px;
+        }
+
+        .encyclopedia-view p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .encyclopedia-view ul {
+            padding-left: 20px;
+            color: #cbd5e1;
+        }
+
+        .encyclopedia-view li {
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .encyclopedia-view li strong {
+            color: var(--faction-accent);
+        }
+
+        @keyframes slideDownView {
+            from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. PANTALLA DE BIENVENIDA -->
-    <header class="hero-banner">
+    <!-- CABECERA PRINCIPAL -->
+    <header class="header-brand">
         <h1>Warhammer 40,000</h1>
-        <div class="motto-grimdark">"En el siniestro descontrol del futuro lejano, solo hay guerra."</div>
-        <a href="#archivo-central" class="btn-imperial">Iniciar Protocolo de Lectura</a>
+        <p class="motto-grimdark">"En el siniestro descontrol del futuro lejano, solo hay guerra."</p>
     </header>
 
-    <!-- 2. TRASFONDO HISTÓRICO GLOBAL -->
-    <section id="archivo-central" class="lore-summary">
-        <h2>Transmisión del Códice de la Historia</h2>
-        <p><strong>Warhammer 40,000</strong> es un bastión de ciencia ficción militar y fantasía oscura apocalíptica conocido como el género <em>Grimdark</em>. La galaxia se sitúa en el cuadragésimo primer milenio. Es una era oscura, donde los avances científicos han sido devorados por la superstición, los imperios se marchitan y la guerra perpetua consume miles de planetas al día.</p>
-        <p>La humanidad pende de un hilo militar bajo el mandato teocrático del <strong>Imperio del Hombre</strong>. Paralelamente, horrores inimaginables emergen desde las rasgaduras de la realidad misma y los confines del vacío sideral, obligando a cada civilización a combatir ferozmente para evitar la aniquilación total.</p>
-    </section>
+    <div class="main-container">
 
-    <!-- 3. SECCIÓN DE CUADRÍCULA DE FACCIONES -->
-    <section class="factions-hub">
-        <h2>Terminal de Datos de Facciones</h2>
-        
-        <div class="factions-grid">
-            <!-- Facción Humana -->
-            <article class="faction-card card-humanas">
-                <div class="card-img img-humanas"></div>
-                <div class="card-body">
-                    <h3>Facciones Humanas</h3>
-                    <p>Las fuerzas unificadas y los ejércitos masivos que defienden con sangre los dominios del Emperador de la Humanidad.</p>
-                    <button class="btn-extract" onclick="updatePageContent('humanas')">Extraer Registro</button>
-                </div>
-            </article>
+        <!-- INTRODUCCIÓN GENERAL DENSA -->
+        <section class="lore-core">
+            <h2>Códice Primordial: El Universo Grimdark</h2>
+            <p>El universo de <strong>Warhammer 40,000</strong> describe un futuro apocalíptico situado dentro de cuarenta milenios, donde la galaxia conocida se encuentra en un estado de colapso absoluto, estancamiento cultural y conflicto perpetuo. El género que acuñó este universo, el <em>Grimdark</em>, define un entorno donde los ideals de progreso, ciencia y humanismo han sido erradicados y reemplazados por el fanatismo teocrático, el feudalismo espacial y la supervivencia militar desesperada frente a horrores indescriptibles.</p>
+            <p>La historia central gira en torno a la caída y lenta agonía del <strong>Imperio del Hombre</strong>, un régimen totalitario interestelar fundado hace diez mil años por el <strong>Emperador de la Humanidad</strong>, una entidad psíquica suprema que ahora yace atrapada en un estado vegetativo y eterno sobre el Trono Dorado de la Sagrada Terra. La infraestructura de la galaxia es azotada constantemente por la <strong>Disformidad</strong> (un universo paralelo de energía psíquica pura que rompe las leyes de la física) y por civilizaciones alienígenas ancestrales y biológicamente devastadoras.</p>
+            
+            <!-- VIDEO INTRODUCTORIO INTEGRADO -->
+            <div class="media-box">
+                <iframe src="https://youtube.com" title="Warhammer 40k Lore Complejo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <p>Para comprender el despliegue bélico de este milenio, es imperativo analizar los tres pilares de poder y conflicto que fracturan los sistemas estelares. Utiliza la terminal inferior para abrir las hojas de datos clasificadas.</p>
+        </section>
 
-            <!-- El Caos -->
+        <!-- TERMINAL DE FACCIONES ESTILO NAVEGACIÓN -->
+        <section class="terminal-selector">
+            <h2>Terminal Táctica de Registros Galácticos</h2>
+            <p class="terminal-subtitle">[ SELECCIONE UNA PESTAÑA PARA REEMPLAZAR LA HOJA DE NAVEGACIÓN ]</p>
+            
+            <div class="navigation-tabs">
+                <button id="btnHum" class="tab-button btn-hum-tab" onclick="cambiarHojaNavegacion('humanas')">🦅 Imperio Humano</button>
+                <button id="btnCaos" class="tab-button btn-caos-tab" onclick="cambiarHojaNavegacion('caos')">🔥 Fuerzas del Caos</button>
+                <button id="btnXen" class="tab-button btn-xen-tab" onclick="cambiarHojaNavegacion('xenos')">👽 Amenazas Xenos</button>
+            </div>
+
+            <!-- HOJA DINÁMICA CON TEXTOS ULTRA-DENSOS -->
+            <div id="encyclopediaView" class="encyclopedia-view">
+                <h3 id="viewTitle" class="encyclopedia-title">Título Dinámico</h3>
+                
