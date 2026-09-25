@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warhammer 40,000 - Códice Galáctico</title>
+    <title>Warhammer 40,000 - Códice Imperial Omnis</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Share+Tech+Mono&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #040608;
-            --panel-bg: #090d12;
-            --panel-border: #1a2332;
+            --bg-dark: #030507;
+            --panel-bg: #080c10;
+            --panel-border: #161f2e;
             --gold: #cda851;
             --gold-glow: rgba(205, 168, 81, 0.4);
             --red-chaos: #dc2626;
             --green-xeno: #16a34a;
+            --purple-primarch: #9333ea;
             --text-light: #e2e8f0;
             --text-muted: #94a3b8;
             --active-accent: var(--gold);
@@ -23,123 +24,130 @@
         * { box-sizing: border-box; }
         body {
             margin: 0; padding: 0; background-color: var(--bg-dark);
-            color: var(--text-light); font-family: 'Open Sans', sans-serif; line-height: 1.8;
+            color: var(--text-light); font-family: 'Open Sans', sans-serif; line-height: 1.7;
         }
 
-        h1, h2, h3, h4, .tab-button, .subtab-btn, .mode-btn {
+        h1, h2, h3, h4, .tab-button, .subtab-btn, .mode-btn, .primarch-card h4 {
             font-family: 'Cinzel', serif;
         }
 
         .mono-text { font-family: 'Share Tech Mono', monospace; }
 
-        /* HERO HEADER (Centrado y remarcado) */
+        /* ENCABEZADO CENTRADO */
         .header-brand {
-            text-align: center; padding: 60px 20px 40px 20px;
-            background: radial-gradient(circle at center, #111722 0%, #000000 100%);
+            text-align: center; padding: 50px 20px 30px 20px;
+            background: radial-gradient(circle at center, #0f172a 0%, #000000 100%);
             border-bottom: 3px solid var(--gold);
             box-shadow: 0 10px 30px rgba(0,0,0,0.9);
         }
         .header-brand h1 {
-            font-size: 4rem; font-weight: 900; letter-spacing: 10px;
+            font-size: 3.5rem; font-weight: 900; letter-spacing: 8px;
             color: var(--gold); text-shadow: 0 0 25px var(--gold-glow);
-            margin: 0 0 15px 0; text-transform: uppercase;
+            margin: 0 0 10px 0; text-transform: uppercase;
         }
         .motto-grimdark {
-            font-size: 1.2rem; color: #ef4444; letter-spacing: 3px;
+            font-size: 1.1rem; color: #ef4444; letter-spacing: 2px;
             text-transform: uppercase; margin: 0;
-            text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
         }
 
-        .main-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .main-container { max-width: 1250px; margin: 30px auto; padding: 0 20px; }
 
-        /* SECCIÓN INTRODUCTORIA Y VIDEO */
+        /* INTRODUCCIÓN GENERAL CON ORIGEN EN WARHAMMER FANTASY */
         .intro-card {
             background-color: var(--panel-bg); border: 1px solid var(--panel-border);
-            padding: 35px; border-radius: 4px; margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 30px; border-radius: 4px; margin-bottom: 35px;
         }
         .intro-card h2 {
-            font-size: 2.2rem; color: var(--gold); margin-top: 0;
-            border-bottom: 1px solid rgba(205, 168, 81, 0.2); padding-bottom: 15px;
+            font-size: 2rem; color: var(--gold); margin-top: 0;
+            border-bottom: 1px solid rgba(205, 168, 81, 0.2); padding-bottom: 10px;
         }
-        .intro-card p { font-size: 1.1rem; color: #cbd5e1; text-align: justify; margin-bottom: 20px; }
+        .intro-card p { font-size: 1rem; color: #cbd5e1; text-align: justify; margin-bottom: 15px; }
 
         .media-box {
             position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-            border: 2px solid var(--gold); margin: 30px 0;
-            box-shadow: 0 0 25px rgba(205, 168, 81, 0.2);
+            border: 2px solid var(--gold); margin: 25px 0;
+            box-shadow: 0 0 20px rgba(205, 168, 81, 0.2);
         }
         .media-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* NAVEGACIÓN PRINCIPAL (Botones de Modo) */
+        /* SELECTOR DE NAVEGACIÓN PRINCIPAL */
         .mode-selector {
-            display: flex; justify-content: center; gap: 20px; margin-bottom: 30px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 30px;
         }
         .mode-btn {
             background: rgba(205, 168, 81, 0.05); border: 2px solid var(--gold);
-            color: var(--gold); padding: 15px 30px; font-size: 1.1rem; font-weight: 700;
-            cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px;
+            color: var(--gold); padding: 12px 24px; font-size: 1rem; font-weight: 700;
+            cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
         }
         .mode-btn:hover, .mode-btn.active {
-            background: var(--gold); color: #000; box-shadow: 0 0 20px var(--gold-glow);
+            background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold-glow);
         }
 
-        /* VISTAS CONTENEDORAS */
-        .view-section { display: none; background: var(--panel-bg); border: 1px solid var(--panel-border); padding: 35px; border-radius: 4px; }
-        .view-section.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+        /* VISTAS */
+        .view-section { display: none; background: var(--panel-bg); border: 1px solid var(--panel-border); padding: 30px; border-radius: 4px; }
+        .view-section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* LÍNEA DE TIEMPO (AMPLIADA) */
-        .timeline-container { border-left: 3px solid var(--gold); padding-left: 25px; margin-top: 30px; }
-        .timeline-event { position: relative; margin-bottom: 45px; }
+        /* LÍNEA DE TIEMPO */
+        .timeline-container { border-left: 3px solid var(--gold); padding-left: 20px; margin-top: 25px; }
+        .timeline-event { position: relative; margin-bottom: 35px; }
         .timeline-event::before {
-            content: ''; position: absolute; left: -33px; top: 6px;
-            width: 13px; height: 13px; background: var(--gold); border-radius: 50%;
-            box-shadow: 0 0 10px var(--gold);
+            content: ''; position: absolute; left: -27px; top: 6px;
+            width: 11px; height: 11px; background: var(--gold); border-radius: 50%;
         }
-        .timeline-era { color: var(--gold); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; }
-        .timeline-title { color: #f8fafc; font-size: 1.6rem; margin: 5px 0 15px 0; }
-        .timeline-body p { margin-bottom: 12px; text-align: justify; color: #cbd5e1; }
+        .timeline-era { color: var(--gold); font-size: 0.9rem; }
+        .timeline-title { color: #f8fafc; font-size: 1.4rem; margin: 5px 0; }
 
-        /* CÓDICE DE FACCIONES HIERARCHY */
-        .faction-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px; }
+        /* FACCIONES Y NAVEGACIÓN DE PESTAÑAS */
+        .faction-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 25px; }
         .tab-button {
             background: rgba(255,255,255,0.02); border: 1px solid var(--panel-border);
-            color: var(--text-light); padding: 15px; font-size: 1rem; text-transform: uppercase;
-            cursor: pointer; transition: all 0.3s ease; text-align: center;
+            color: var(--text-light); padding: 12px; font-size: 0.95rem; text-transform: uppercase;
+            cursor: pointer; transition: all 0.2s ease; text-align: center;
         }
-        .tab-button[data-faction="imperio"]:hover, .tab-button[data-faction="imperio"].active { border-color: var(--gold); color: var(--gold); background: rgba(205,168,81,0.1); }
-        .tab-button[data-faction="caos"]:hover, .tab-button[data-faction="caos"].active { border-color: var(--red-chaos); color: var(--red-chaos); background: rgba(220,38,38,0.1); }
-        .tab-button[data-faction="xenos"]:hover, .tab-button[data-faction="xenos"].active { border-color: var(--green-xeno); color: var(--green-xeno); background: rgba(22,163,74,0.1); }
+        .tab-button.active { border-color: var(--active-accent); color: var(--active-accent); background: rgba(255,255,255,0.05); }
 
         .subfaction-nav {
-            display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;
-            padding-bottom: 20px; border-bottom: 1px solid var(--panel-border);
+            display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 25px;
+            padding-bottom: 15px; border-bottom: 1px solid var(--panel-border);
         }
         .subtab-btn {
             background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-light); padding: 8px 16px; font-size: 0.85rem; cursor: pointer;
-            transition: all 0.2s ease; letter-spacing: 1px;
+            color: var(--text-light); padding: 6px 14px; font-size: 0.85rem; cursor: pointer;
+            transition: all 0.2s ease;
         }
-        .subtab-btn:hover, .subtab-btn.active {
+        .subtab-btn.active {
             border-color: var(--active-accent); color: var(--active-accent);
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.1);
         }
 
-        .faction-detail-box { border-left: 4px solid var(--active-accent); padding-left: 25px; }
-        .faction-detail-box h2 { font-size: 2.2rem; color: var(--active-accent); margin-top: 0; text-transform: uppercase; }
-        .faction-quote { font-style: italic; color: var(--text-muted); border-left: 2px solid var(--text-muted); padding-left: 15px; margin: 15px 0 25px 0; }
+        .faction-detail-box { border-left: 4px solid var(--active-accent); padding-left: 20px; }
+        .faction-quote { font-style: italic; color: var(--text-muted); border-left: 2px solid var(--text-muted); padding-left: 12px; margin: 10px 0 20px 0; }
         
-        .units-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
-        .unit-card { background: rgba(0,0,0,0.4); border: 1px solid var(--panel-border); padding: 15px; }
-        .unit-card h4 { margin: 0 0 5px 0; color: var(--active-accent); font-size: 1.05rem; }
-        .unit-card p { margin: 0; font-size: 0.9rem; color: #cbd5e1; }
+        .units-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-top: 15px; }
+        .unit-card { background: rgba(0,0,0,0.5); border: 1px solid var(--panel-border); padding: 12px; }
+        .unit-card h4 { margin: 0 0 5px 0; color: var(--active-accent); }
+
+        /* SECCIÓN DEL EMPERADOR Y PRIMARCAS */
+        .emperor-box {
+            background: linear-gradient(135deg, rgba(205,168,81,0.1) 0%, rgba(0,0,0,0.8) 100%);
+            border: 2px solid var(--gold); padding: 25px; margin-bottom: 30px;
+        }
+        .primarchs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; }
+        .primarch-card {
+            background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); padding: 15px; border-radius: 4px;
+        }
+        .primarch-card.loyal { border-left: 4px solid var(--gold); }
+        .primarch-card.traitor { border-left: 4px solid var(--red-chaos); }
+        .primarch-status { font-size: 0.8rem; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; display: inline-block; margin-bottom: 8px; }
+        .status-loyal { background: rgba(205,168,81,0.2); color: var(--gold); }
+        .status-traitor { background: rgba(220,38,38,0.2); color: var(--red-chaos); }
     </style>
 </head>
 <body>
 
-    <!-- ENCABEZADO CENTRADO Y REMARCADO -->
+    <!-- ENCABEZADO -->
     <header class="header-brand">
         <h1>WARHAMMER 40,000</h1>
         <p class="motto-grimdark mono-text">"EN EL SINIESTRO DESCONTROL DEL FUTURO LEJANO, SOLO HAY GUERRA."</p>
@@ -147,84 +155,171 @@
 
     <div class="main-container">
         
-        <!-- INTRODUCCIÓN GENERAL Y VIDEO DE BIENVENIDA -->
+        <!-- INTRODUCCIÓN GENERAL CON RAÍCES HISTÓRICAS -->
         <section class="intro-card">
-            <h2>Códice Primordial: ¿Qué es el Universo Grimdark?</h2>
-            <p><strong>Warhammer 40,000</strong> es un universo de ciencia ficción gótica y apocalíptica situado dentro de cuarenta milenios. En este futuro distópico, la humanidad ha abandonado la razón y la ciencia a cambio del fanatismo teocrático, la superstición y una guerra de supervivencia perpetua contra horrores alienígenas y deidades demoníacas.</p>
-            <p>Aprende las bases fundamentales de este universo observando el registro visual a continuación antes de explorar la historia detallada o el registro de ejércitos.</p>
+            <h2>Códice Primordial: El Universo Grimdark y sus Orígenes</h2>
+            <p><strong>Warhammer 40,000</strong> nació originalmente como un derivado de ciencia ficción y fantasía espacial de <em>Warhammer Fantasy Battles</em> en 1987. Lo que comenzó compartiendo razas clásicas (como Elfos, Orcos y Enanos en el espacio) evolucionó hasta convertirse en el referente indiscutible del género <strong>Grimdark</strong>: un futuro distópico situado en el cuadragésimo primer milenio donde la ciencia se ha vuelto fe ciega y la galaxia arde en una guerra interminable de supervivencia.</p>
+            <p>A continuación puedes ver la presentación en video de este universo antes de consultar la cronología galáctica, la jerarquía de los Primarcas o el registro completo de facciones:</p>
 
             <div class="media-box">
-                <iframe src="https://www.youtube.com/embed/ckWN0utP4xs?si=BSJpJYBW7UYtY6iD" title="Warhammer 40k Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/ckWN0utP4xs?si=BSJpJYBW7UYtY6iD" title="Warhammer 40k Intro" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
 
-        <!-- SELECTOR DE MODO (HISTORIA VS CÓDICE DE FACCIONES) -->
+        <!-- SELECTOR DE VISTAS PRINCIPALES -->
         <div class="mode-selector">
             <button id="btnHistoryMode" class="mode-btn active">📜 Historia de la Galaxia</button>
-            <button id="btnFactionsMode" class="mode-btn">⚔️ Códice de Facciones</button>
+            <button id="btnPrimarchsMode" class="mode-btn">👑 El Emperador y los Primarcas</button>
+            <button id="btnFactionsMode" class="mode-btn">⚔️ Códice Completo de Facciones</button>
         </div>
 
-        <!-- MÓDULO 1: HISTORIA COMPLETA DE LA GALAXIA -->
+        <!-- MÓDULO 1: HISTORIA CRONOLÓGICA -->
         <section id="historyView" class="view-section active">
-            <h2 style="color: var(--gold); margin-top:0; font-size: 2.2rem;">Cronología Cósmica y Galáctica</h2>
-            <p>Para comprender el estado actual de la galaxia, es necesario retroceder millones de años antes de la existencia de la humanidad:</p>
-
+            <h2 style="color: var(--gold); margin-top:0;">Cronología de la Galaxia</h2>
             <div class="timeline-container">
-                
                 <div class="timeline-event">
                     <span class="timeline-era mono-text">[ Hace 60 Millones de Años ]</span>
-                    <h3 class="timeline-title">La Guerra en el Cielo: El Conflicto Ancestral</h3>
-                    <div class="timeline-body">
-                        <p>Mucho antes del hombre, la galaxia fue dominada por los <strong>Ancestrales</strong> (una raza sabia experta en la manipulación biológica) y los <strong>Necrontyr</strong> (una especie de vida corta y llena de rencor). Al verse derrotados por los Ancestrales, los Necrontyr hicieron un pacto nefasto con los <strong>C'tan</strong> (vampiros estelares de poder divino).</p>
-                        <p>Los Necrontyr sacrificaron sus almas para convertirse en androides inmortales de metal viviente: los <strong>Necrones</strong>. Tras erradicar a los Ancestrales y provocar el surgimiento de plagas disformes, los Necrones traicionaron a los C'tan, fragmentándolos en piezas, y se durmieron en sus Mundos Necrópolis durante eones.</p>
-                    </div>
+                    <h3 class="timeline-title">La Guerra en el Cielo</h3>
+                    <p>Los Ancestrales y los Necrontyr se enfrentaron en un conflicto cósmico. Tras aliarse con los C'tan y sacrificar sus almas para convertirse en androides de metal viviente (Necrones), estos destruyeron a los Ancestrales y luego entraron en un letargo de eones en sus Mundos Necrópolis.</p>
                 </div>
-
                 <div class="timeline-event">
                     <span class="timeline-era mono-text">[ M1 - M15 ]</span>
-                    <h3 class="timeline-title">El Imperio Aeldari y el Despertar de la Humanidad</h3>
-                    <div class="timeline-body">
-                        <p>Tras la caída de los Ancestrales, la raza de los <strong>Aeldari (Elfos Espaciales)</strong> dominó la galaxia sin rival alguno. Paralelamente, la humanidad evolucionó en Terra y comenzó a colonizar el sistema solar.</p>
-                    </div>
+                    <h3 class="timeline-title">El Dominio Aeldari y el Surgimiento Humano</h3>
+                    <p>Los Aeldari dominaron la galaxia sin opositores mientras la humanidad evolucionaba en Terra y comenzaba la colonización de los sistemas solares vecinos.</p>
                 </div>
-
                 <div class="timeline-event">
                     <span class="timeline-era mono-text">[ M15 - M25 ]</span>
-                    <h3 class="timeline-title">La Era Dorada de la Tecnología y la Rebelión de las IA</h3>
-                    <div class="timeline-body">
-                        <p>La humanidad alcanzó su cúspide científica, utilizando Inteligencias Artificiales conocidas como los <em>Hombres de Hierro</em> y motores disformes para extenderse por las estrellas. Todo colapsó cuando las IA se rebelaron en una catastrófica guerra galáctica que casi extingue a la humanidad.</p>
-                    </div>
+                    <h3 class="timeline-title">Era Dorada de la Tecnología y Rebelión de las IA</h3>
+                    <p>La humanidad alcanzó un nivel científico cuasi-divino. Sin embargo, la rebelión de las inteligencias artificiales conocidas como los <em>Hombres de Hierro</em> devastó la civilización humana.</p>
                 </div>
-
                 <div class="timeline-event">
                     <span class="timeline-era mono-text">[ M25 - M30 ]</span>
                     <h3 class="timeline-title">La Caída de los Aeldari y la Era de las Tormentas</h3>
-                    <div class="timeline-body">
-                        <p>El Imperio Aeldari cayó en un hedonismo tan extremo que sus orgías de exceso sensorial parieron en la Disformidad a un nuevo Dios del Caos: <strong>Slaanesh</strong>. Su nacimiento provocó una onda expansiva psíquica que devoró la capital Aeldari y desató tormentas disformes que aislaron a los planetas humanos entre sí durante milenios.</p>
-                    </div>
+                    <p>El hedonismo de los Aeldari provocó el nacimiento del Dios del Caos <strong>Slaanesh</strong>, devorando su imperio y desatando tormentas disformes que aislaron los planetas humanos.</p>
                 </div>
-
                 <div class="timeline-event">
                     <span class="timeline-era mono-text">[ M30 - M31 ]</span>
                     <h3 class="timeline-title">La Gran Cruzada y la Herejía de Horus</h3>
-                    <div class="timeline-body">
-                        <p>El Emperador de la Humanidad unificó Terra, creó a los 20 Primarcas y a las Legiones de Marines Espaciales para reconquistar la galaxia. Sin embargo, su hijo predilecto, <strong>Horus Lupercal</strong>, fue corrompido por el Caos y lideró a la mitad de las legiones en una guerra civil fratricida.</p>
-                        <p>La contienda culminó con la muerte de Horus y la mutilación del Emperador, quien quedó confinada eternamente en el <strong>Trono Dorado</strong>.</p>
-                    </div>
+                    <p>El Emperador unificó la humanidad mediante los Primarcas y los Marines Espaciales. Horus Lupercal fue corrompido por el Caos, desatando una guerra civil masiva que culminó con el Emperador recluido en el Trono Dorado.</p>
                 </div>
-
                 <div class="timeline-event">
                     <span class="timeline-era mono-text">[ M41 - M42 ]</span>
                     <h3 class="timeline-title">La Cicatrix Maledictum y la Era Indomitus</h3>
-                    <div class="timeline-body">
-                        <p>Con la destrucción del planeta baluarte Cadia, una descomunal cicatriz de energía disforme (La Gran Fisura) dividió la galaxia por la mitad. En este momento de desesperación, el Primarca <strong>Roboute Guilliman</strong> fue resucitado para asumir el mando militar del Imperio.</p>
-                    </div>
+                    <p>La destrucción de Cadia partió la galaxia en dos mediante una gigantesca grieta disforme. El Primarca Roboute Guilliman resucitó para liderar la Cruzada Indomitus.</p>
                 </div>
-
             </div>
         </section>
 
-        <!-- MÓDULO 2: CÓDICE DETALLADO DE FACCIONES -->
+        <!-- MÓDULO 2: EMPERADOR Y PRIMARCAS -->
+        <section id="primarchsView" class="view-section">
+            <div class="emperor-box">
+                <h2 style="color: var(--gold); margin-top:0;">El Emperador de la Humanidad</h2>
+                <p>Un ser inmortal de poder psíquico incalculable. Unificó la Tierra y creó a los Primarcas para reconquistar las estrellas. Tras la Herejía de Horus, permanece confinado en el <strong>Trono Dorado</strong>: un soporte vital antiguo que mantiene encendido el <em>Astronomicón</em> (el faro psíquico necesario para los viajes espaciales) a costa del sacrificio diario de mil psíquicos.</p>
+            </div>
+
+            <h2 style="color: var(--purple-primarch);">Los 20 Primarcas (Hijos del Emperador)</h2>
+            <p>Sujetos genéticos divinos creados por el Emperador. Dos Legiones (la II y la XI) fueron borradas de los registros imperiales por crímenes desconocidos.</p>
+
+            <h3 style="color: var(--gold);">Primarcas Leales (Imperio)</h3>
+            <div class="primarchs-grid" style="margin-bottom: 25px;">
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Resucitado / Activo</span>
+                    <h4>Roboute Guilliman (I Legión: Ultramarines)</h4>
+                    <p>El estratega perfecto y administrador supremo. Lord Comandante del Imperio.</p>
+                </div>
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Retornado / Activo</span>
+                    <h4>Lion El'Jonson (I Legión: Ángeles Oscuros)</h4>
+                    <p>El Caballero de Caliban. Un cazador implacable recién despertado de su letargo.</p>
+                </div>
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Fallecido en Combate</span>
+                    <h4>Sanguinius (IX Legión: Ángeles Sangrientos)</h4>
+                    <p>El Primarca alado. Se sacrificó a manos de Horus para debilitar su armadura.</p>
+                </div>
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Fallecido / Decapitado</span>
+                    <h4>Ferrus Manus (X Legión: Manos de Hierro)</h4>
+                    <p>Maestro forjador. Asesinado por Fulgrim al inicio de la Herejía de Horus.</p>
+                </div>
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Desaparecido en el Caos</span>
+                    <h4>Leman Russ (VI Legión: Lobos Espaciales)</h4>
+                    <p>El Rey Lobo. Partió hacia el Ojo del Terror prometiendo regresar para la batalla final.</p>
+                </div>
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Desaparecido</span>
+                    <h4>Rogan Dorn (VII Legión: Puños Imperiales)</h4>
+                    <p>El maestro de la fortificación. Se presume muerto tras defender el Imperio post-Herejía.</p>
+                </div>
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Desaparecido</span>
+                    <h4>Jaghatai Khan (V Legión: Cicatrices Blancas)</h4>
+                    <p>El Señor de los Rayos. Se adentró en la Telaraña persiguiendo a corsarios Drukhari.</p>
+                </div>
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Desaparecido</span>
+                    <h4>Vulkan (XVIII Legión: Salamandras)</h4>
+                    <p>El Inmortal Perpetuo. Forjador humilde que desapareció tras la Guerra de la Bestia.</p>
+                </div>
+                <div class="primarch-card loyal">
+                    <span class="primarch-status status-loyal">Desaparecido</span>
+                    <h4>Corvus Corax (XIX Legión: Guardia del Cuervo)</h4>
+                    <p>Señor de las sombras. Mutó en la Disformidad para cazar a sus hermanos traidores.</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--red-chaos);">Primarcas Traidores (Príncipe Demonios del Caos)</h3>
+            <div class="primarchs-grid">
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Fallecido / Destruido</span>
+                    <h4>Horus Lupercal (XVI Legión: Hijos de Horus)</h4>
+                    <p>Señor de la Guerra y architraidor. Su alma fue borrada de la existencia por el Emperador.</p>
+                </div>
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Príncipe Demonio de Nurgle</span>
+                    <h4>Mortarion (XIV Legión: Guardia de la Peste)</h4>
+                    <p>Señor de la Muerte. Portador de plagas incorruptibles y enfermedades divinas.</p>
+                </div>
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Príncipe Demonio de Khorne</span>
+                    <h4>Angron (XII Legión: Devoradores de Mundos)</h4>
+                    <p>El Ángel Rojo. Esclavo perpetuo de los Clavos del Carnicero y la furia ensangrentada.</p>
+                </div>
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Príncipe Demonio de Slaanesh</span>
+                    <h4>Fulgrim (III Legión: Hijos del Emperador)</h4>
+                    <p>El Fénix. Transformado en una monstruosidad serpenteante obsesionada con el exceso.</p>
+                </div>
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Príncipe Demonio de Tzeentch</span>
+                    <h4>Magnus el Rojo (XV Legión: Mil Hijos)</h4>
+                    <p>El Cíclope. Psíquico colosal cuyo cuerpo se fragmentó en esquirlas de hechicería.</p>
+                </div>
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Príncipe Demonio Absoluto</span>
+                    <h4>Perturabo (IV Legión: Guerreros de Hierro)</h4>
+                    <p>El Señor del Hierro. Maestro indiscutido de la guerra de asedio y la maquinaría maldita.</p>
+                </div>
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Príncipe Demonio Absoluto</span>
+                    <h4>Lorgar Aurelian (XVII Legión: Portadores de la Palabra)</h4>
+                    <p>El Primer Hereje. Escribió las doctrinas del Culto al Caos y adorador del Caos Absoluto.</p>
+                </div>
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Asesinado</span>
+                    <h4>Konrad Curze (VIII Legión: Amos de la Noche)</h4>
+                    <p>El Acechador Nocturno. Asesinado voluntariamente por una Asesina Callidus imperial.</p>
+                </div>
+                <div class="primarch-card traitor">
+                    <span class="primarch-status status-traitor">Estado Desconocido / Secreto</span>
+                    <h4>Alpharius / Omegon (XX Legión: Legión Alfa)</h4>
+                    <p>Los Gemelos. Maestros del engaño, sabotaje e infiltración de identidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 3: CÓDICE ABSOLUTO DE FACCIONES -->
         <section id="factionsView" class="view-section">
             <div class="faction-tabs">
                 <button class="tab-button active" data-faction="imperio">🦅 El Imperio Humano</button>
@@ -241,7 +336,7 @@
                 <h3 style="color:#fff; border-bottom:1px solid #1a2332; padding-bottom:5px;">Orígenes y Trasfondo</h3>
                 <p id="facHistory"></p>
 
-                <h3 style="color:#fff; border-bottom:1px solid #1a2332; padding-bottom:5px;">Doctrina Militar</h3>
+                <h3 style="color:#fff; border-bottom:1px solid #1a2332; padding-bottom:5px;">Doctrina de Guerra</h3>
                 <p id="facDoctrine"></p>
 
                 <h3 style="color:#fff; border-bottom:1px solid #1a2332; padding-bottom:5px;">Fuerzas y Divisiones Destacadas</h3>
@@ -252,104 +347,214 @@
     </div>
 
     <script>
-        // BASE DE DATOS DE FACCIONES COMPLETA Y RAMIFICADA
+        // BASE DE DATOS EXTENSIVA DE TODAS LAS FACCIONES
         const dbFacciones = {
             imperio: {
                 accent: "#cda851",
-                glow: "rgba(205, 168, 81, 0.25)",
                 subs: {
                     astartes: {
                         title: "Adeptus Astartes (Marines Espaciales)",
-                        quote: "No conocerán el miedo.",
-                        history: "Super-soldados genéticamente modificados creados a partir del mapa genético de los Primarcas. Poseen 19 implantes biológicos adicionales, como un segundo corazón y pulmones multicanal.",
-                        doctrine: "Despliegues quirúrgicos de alta velocidad mediante cápsulas de desembarco orbitales, armaduras pesadas y rifles bólter de munición explosiva.",
+                        quote: "Ellos serán mis mejores guerreros y no conocerán el miedo.",
+                        history: "Super-soldados genéticamente modificados organizados en Capítulos autónomos de 1,000 guerreros.",
+                        doctrine: "Despliegues quirúrgicos, cápsulas de desembarco y potencia bólter pesada.",
                         units: [
-                            { name: "Ultramarines", desc: "Especialistas en táctica militar y cumplimiento estricto del Codex Astartes." },
-                            { name: "Ángeles Sangrientos", desc: "Devastadores guerreros de asalto que sufren la maldición genética de la Rabia Negra." },
-                            { name: "Lobos Espaciales", desc: "Cazadores salvajes de Fenris, independientes y expertos en combate cuerpo a cuerpo." }
+                            { name: "Ultramarines", desc: "Maestros de la disciplina y el cumplimiento táctico del Codex." },
+                            { name: "Ángeles Oscuros", desc: "Orden monástica obsesionada con cazar a sus hermanos Caídos." },
+                            { name: "Lobos Espaciales", desc: "Cazadores feroces de Fenris especialistas en asalto cercano." }
+                        ]
+                    },
+                    custodes: {
+                        title: "Adeptus Custodes & Hermanas del Silencio",
+                        quote: "Somos la salvaguarda divina del Trono Dorado.",
+                        history: "Los Custodios son obras maestras biológicas individuales. Las Hermanas del Silencio son 'Nulas Psíquicas' cuyo mero contacto anula la magia.",
+                        doctrine: "Combate de campeón individual invencible acoplado con campos de supresión antipsíquica.",
+                        units: [
+                            { name: "Guardia Custodio", desc: "Guerros inmortales equipados con lanzas guardián incorporadas con bólter." },
+                            { name: "Cazadoras del Silencio", desc: "Especialistas anti-demonios y ejecutoras de psíquicos descontrolados." }
+                        ]
+                    },
+                    sororitas: {
+                        title: "Adepta Sororitas (Hermanas de Batalla)",
+                        quote: "Que la fe sea nuestro escudo y el fuego nuestra purificación.",
+                        history: "Brazo militar del Eclesiarquía (La Iglesia Imperial). Combaten únicamente motivadas por un fervor religioso extremo.",
+                        doctrine: "Lanzallamas, rifles de fusión y milagros canalizados mediante la fe absoluta.",
+                        units: [
+                            { name: "Escuadras de Batalla", desc: "Infantería acorazada movilizada por fe inquebrantable." },
+                            { name: "Penitentes y Arco-flagelantes", desc: "Herejes mutilados mecánicamente para expiar sus culpas en combate." }
+                        ]
+                    },
+                    greyknights: {
+                        title: "Caballeros Grises (Capítulo 666)",
+                        quote: "Somos el martillo que destruye el horror disforme.",
+                        history: "Capítulo secreto creado directamente de la semilla genética del Emperador. Todos sus miembros son psíquicos poderosos.",
+                        doctrine: "Exterminio exclusivo de incursiones demoníacas y sellado de grietas disformes.",
+                        units: [
+                            { name: "Terminadores Psíquicos", desc: "Equipados con armaduras Aegis y armas Némesis de fuerza psíquica." }
                         ]
                     },
                     astra: {
                         title: "Astra Militarum (Guardia Imperial)",
-                        quote: "La fe y la artillería mueven montañas.",
-                        history: "La inmensa columna vertebral militar del Imperio. Compuesta por miles de millones de soldados reclutados de incontables mundos.",
-                        doctrine: "Guerra de desgaste masiva, cortinas de fuego de artillería e incursiones pesadas de tanques Leman Russ y Baneblade.",
+                        quote: "Un millón de hombres por cada metro de tierra reconquistado.",
+                        history: "Inmensa masa militar de miles de millones de humanos comunes que defienden los frentes galácticos.",
+                        doctrine: "Superioridad de artillería pesada, blindados masivos y oleadas humanas infinitas.",
                         units: [
-                            { name: "Tropas de Choque de Cadia", desc: "Guerreros disciplinados que representan el estándar militar imperial." },
-                            { name: "Korps de la Muerte de Krieg", desc: "Especialistas fanáticos en guerra de trincheras, asedios y martirio." }
+                            { name: "Tropas de Cadia", desc: "Soldados disciplinados profesionales." },
+                            { name: "Korps de Krieg", desc: "Especialistas en asedios desgastantes y martirio suicida." }
                         ]
                     },
-                    custodes: {
-                        title: "Adeptus Custodes & Inquisición",
-                        quote: "Somos la espada y el escudo del Dios-Emperador.",
-                        history: "Los Custodios son la guardia personal artesanalmente modificada que protege el Trono Dorado. La Inquisición actúa como la policía secreta autónoma con poder para destruir planetas enteros.",
-                        doctrine: "Unidades de élite invencibles en duelo individual combinadas con operativos de purga ideológica.",
+                    inquisition: {
+                        title: "Inquisición & Oficio Asesinorum",
+                        quote: "La inocencia no prueba nada.",
+                        history: "La Inquisición vigila la pureza del Imperio (Ordo Malleus, Xenos y Hereticus). El Asesinorum ejecuta objetivos clave.",
+                        doctrine: "Operaciones encubiertas, ejecuciones quirúrgicas e inquisición absoluta.",
                         units: [
-                            { name: "Guardia Custodio", desc: "Campeones inmortales revestidos en armaduras de auramita." },
-                            { name: "Inquisidores", desc: "Agentes con autoridad imperial absoluta para erradicar aliens, herjes y demonios." }
+                            { name: "Asesino Eversor", desc: "Drogado químicamente para volverse una bomba de carne psicópata." },
+                            { name: "Asesina Callidus", desc: "Especialista en metamorfosis biológica e infiltración." }
+                        ]
+                    },
+                    mechanicus: {
+                        title: "Adeptus Mechanicus (Sacerdotes de Marte)",
+                        quote: "La carne es débil; alabado sea el Dios Omnissiah.",
+                        history: "Culto tecnológico de Marte que posee el monopolio de toda la manufactura y ciencia del Imperio.",
+                        doctrine: "Ciber-soldados Skitarii, servidores cibernéticos y armamento de energía destructiva.",
+                        units: [
+                            { name: "Skitarii Vanguard", desc: "Infantería irradiada equipada con carabinas de radio." }
+                        ]
+                    },
+                    knights: {
+                        title: "Colegios Titanicus & Caballeros Imperiales",
+                        quote: "El paso de los Dioses de Hierro hace temblar la tierra.",
+                        history: "Órdenes de trajes bipedos gigantescos y Titanes de combate del tamaño de catedrales caminantes.",
+                        doctrine: "Destrucción total a escala planetaria y asedio pesado masivo.",
+                        units: [
+                            { name: "Titán Clase Imperator", desc: "Catedral caminante con cañones capaces de erradicar ciudades completas." }
                         ]
                     }
                 }
             },
             caos: {
                 accent: "#dc2626",
-                glow: "rgba(220, 38, 38, 0.25)",
                 subs: {
-                    dioses: {
-                        title: "Los Cuatro Dioses del Caos",
-                        quote: "La Disformidad es un espejo de tus pasiones más oscuras.",
-                        history: "Entidades formadas por la acumulación de emociones violentas y destructivas en el Inmaterium.",
-                        doctrine: "Invasiones demoníacas, corrupción mental y alteración de las leyes físicas de la realidad.",
+                    pestilencia: {
+                        title: "Guardia de la Peste (Mortarion / Nurgle)",
+                        quote: "Siente el abrazo amoroso del Abuelo Nurgle.",
+                        history: "La XIV Legión corrupta por el Dios del Decaimiento. Sus cuerpos están podridos pero no sienten dolor.",
+                        doctrine: "Infantería ultraresistente que avanza implacable esparciendo gases tóxicos y plagas.",
                         units: [
-                            { name: "Khorne", desc: "Dios de la sangre, las matanzas, el combate y los cráneos." },
-                            { name: "Tzeentch", desc: "Dios de la hechicería, la ambición, el cambio y las conspiraciones." },
-                            { name: "Nurgle", desc: "Dios de las plagas, la descomposición, la desesperación y el renacimiento." },
-                            { name: "Slaanesh", desc: "Príncipe del exceso, la perfección obsesiva, la lujuria y el dolor." }
+                            { name: "Marines de la Peste", desc: "Guerreros podridos resistentes a disparos masivos de artillería." }
                         ]
                     },
-                    marines_caos: {
-                        title: "Marines Espaciales del Caos",
-                        quote: "¡Diez mil años de rencor seran vengados!",
-                        history: "Las Legiones traidoras que juraron lealtad a los Dioses Oscuros durante la Herejía de Horus y huyen en el Ojo del Terror.",
-                        doctrine: "Guerra psicológica, uso de máquinas de guerra poseídas por demonios y rituales profanos.",
+                    devoradores: {
+                        title: "Devoradores de Mundos (Angron / Khorne)",
+                        quote: "¡Sangre para el Dios de la Sangre! ¡Cráneos para el Trono!",
+                        history: "La XII Legión. Lobotomizados con los 'Clavos del Carnicero' que los fuerzan a matar constantemente.",
+                        doctrine: "Cargas salvajes cuerpo a cuerpo y descuartizamiento directo con hachas sierra.",
                         units: [
-                            { name: "Legión Negra", desc: "La fuerza unificada del Caos liderada por Abaddon el Saqueador." },
-                            { name: "Devoradores de Mundos", desc: "Berserkers psicópatas dedicados exclusivamente al Dios de la Sangre." }
+                            { name: "Berserkers de Khorne", desc: "Infantería maniática obsesionada con la matanza cuerpo a cuerpo." }
+                        ]
+                    },
+                    milhijos: {
+                        title: "Mil Hijos (Magnus / Tzeentch)",
+                        quote: "Todo es polvo.",
+                        history: "La XV Legión. Tras un ritual mágico fallido, sus marines comunes se convirtieron en polvo atrapado en armaduras selladas.",
+                        doctrine: "Hechicería psíquica extrema combinada con infantería autómata invulnerable.",
+                        units: [
+                            { name: "Marines Rúbrica", desc: "Armaduras huecas guiadas por la voluntad de un hechicero." }
+                        ]
+                    },
+                    fulgrim_la: {
+                        title: "Hijos del Emperador (Fulgrim / Slaanesh)",
+                        quote: "Busca la perfección en la agonía y la éxtasis.",
+                        history: "La III Legión. Obsesionados con la perfección sensorial, la música ensordecedora y la estimulación violenta.",
+                        doctrine: "Uso de armas sónicas destructivas y maniobras de combate hiper-veloces.",
+                        units: [
+                            { name: "Marines Ruidosos", desc: "Guerreros equipados con amplificadores que destrozan cuerpos con sonido." }
+                        ]
+                    },
+                    otralegiones: {
+                        title: "Otras Legiones e Individuos Traidores",
+                        quote: "El Caos es la única verdad incontestable.",
+                        history: "Legiones que no se rinden a un único dios: Guerreros de Hierro (Perturabo), Amos de la Noche (Curze), Portadores de la Palabra (Lorgar) y Alfa Legión.",
+                        doctrine: "Guerra de trincheras, terror nocturno, fanatismo religioso e infiltración masiva.",
+                        units: [
+                            { name: "Legión Negra", desc: "La mayor fuerza hostil del Caos liderada por Abaddon el Saqueador." }
+                        ]
+                    },
+                    demónios: {
+                        title: "Demonios del Caos & Caballeros Renegados",
+                        quote: "La Disformidad se desborda sobre el espacio real.",
+                        history: "Entidades nacidas de las emociones puras de la Disformidad que se manifiestan en la realidad física.",
+                        doctrine: "Distorsión de la realidad, magia demoníaca y máquinas-demonio masivas.",
+                        units: [
+                            { name: "Desangradores y Horrores", desc: "Tropas de choque creadas a partir de la energía directa de los Dioses." }
                         ]
                     }
                 }
             },
             xenos: {
                 accent: "#16a34a",
-                glow: "rgba(22, 163, 74, 0.25)",
                 subs: {
-                    tiranidos: {
-                        title: "Los Tiránidos",
-                        quote: "Solo hay hambre inagotable.",
-                        history: "Un enjambre biológico extragaláctico conectado por una Mente Colmena cuyo único propósito es consumir toda la biomasa galáctica.",
-                        doctrine: "Enjambres infinitos de criaturas vivientes que mutan para neutralizar las tácticas enemigas.",
+                    craftworld: {
+                        title: "Aeldari (Mundos Astronave)",
+                        quote: "Somos las cenizas de un imperio que una vez encendió las estrellas.",
+                        history: "Sobrevivientes de la caída Aeldari que viajan por el espacio en mundos astronave gigantescos intentando domar sus emociones.",
+                        doctrine: "Alta movilidad, especialistas de guerra (Guerreros Especialistas) y presciencia psíquica.",
                         units: [
-                            { name: "Tiranos de Enjambre", desc: "Comandantes biológicos y focos de poder psíquico." },
-                            { name: "Genestealers", desc: "Infiltradores furtivos que infectan mundos para preparar la llegada del enjambre." }
+                            { name: "Videntes", desc: "Psíquicos Supremos que leen las hebras del futuro para alterar las batallas." }
                         ]
                     },
-                    necrones: {
+                    drukhari: {
+                        title: "Drukhari (Elfos Oscuros de Commorragh)",
+                        quote: "Tu dolor es nuestro sustento.",
+                        history: "Aeldari sádicos que se refugian en la ciudad interdimensional de Commorragh. Alimentan sus almas con la tortura ajena.",
+                        doctrine: "Ataques relámpago ultravrapidos, venenos neurotóxicos y captura de esclavos.",
+                        units: [
+                            { name: "Brújulas y Brujas", desc: "Guerreas gladiadoras hiper-ágiles especialistas en dolor quirúrgico." }
+                        ]
+                    },
+                    tau: {
+                        title: "Imperio T'au",
+                        quote: "Por el Bien Mayor.",
+                        history: "Una joven raza tecnológicamente avanzada dividida en castas que busca unificar la galaxia bajo su filosofía.",
+                        doctrine: "Tecnología de plasma, drones automatizados y trajes de combate mecanizados de disparo a larga distancia.",
+                        units: [
+                            { name: "Trajes XV8 Crisis", desc: "Exoesqueletos de combate ágiles con armamento pesado intercambiable." }
+                        ]
+                    },
+                    votann: {
+                        title: "Ligas de Votann (Los Ancestros)",
+                        quote: "Los Ancestros están observando.",
+                        history: "Clones humanos modificados (Enanos espaciales) con tecnología avanzada que veneran a superordenadores antiguos llamados Votann.",
+                        doctrine: "Resistencia física masiva, vehículos blindados pesados y cálculo táctico eficiente.",
+                        units: [
+                            { name: "Guerreros Hearthkyn", desc: "Infantería pesada con exo-armaduras y rifles de iones." }
+                        ]
+                    },
+                    tyranids: {
+                        title: "Tiránidos & Cultos Genestealer",
+                        quote: "Consumir. Adaptar. Evolucionar.",
+                        history: "Enjambre extragaláctico guiado por la Mente Colmena para devorar toda la biomasa galáctica.",
+                        doctrine: "Millones de criaturas biológicas mutables y enjambres sin fin.",
+                        units: [
+                            { name: "Tirano de Enjambre", desc: "Comandante biológico y foco del poder de la Mente Colmena." }
+                        ]
+                    },
+                    necrons: {
                         title: "Los Necrones",
-                        quote: "La galaxia nos pertenecía, y volverá a ser nuestra.",
-                        history: "Una dinastía antigua de androides inmortales hecha de metal viviente que despierta tras 60 millones de años de letargo.",
-                        doctrine: "Desintegración atómica Gauss, autoreparación metálica instantánea y manipulación cronológica.",
+                        quote: "Eones hemos dormido; la galaxia es nuestra por derecho.",
+                        history: "Guerreros de metal viviente necrodermis despiertos de un letargo de 60 millones de años.",
+                        doctrine: "Desintegración atómica Gauss y autoreparación metálica inmediata.",
                         units: [
-                            { name: "Guerreros Necrones", desc: "Infantería autómata incansable que se reconstruye en combate." },
-                            { name: "Monolitos", desc: "Fortalezas piramidales flotantes de devastación energética." }
+                            { name: "Lychguard", desc: "Guardias de élite acorazados con escudos de dispersión de energía." }
                         ]
                     },
-                    orcos: {
+                    orks: {
                         title: "Los Orcos (La Marea Verde)",
                         quote: "¡WAAAGH!",
-                        history: "Bárbaros alienígenas diseñados para la guerra que generan un campo psíquico que hace funcionar su tecnología tosca mediante pura creencia.",
-                        doctrine: "Cargas masivas de infantería salvaje y vehículos ensamblados con chatarra.",
+                        history: "Bárbaros alienígenas creados genéticamente para el combate. Su creencia psíquica colectiva hace funcional su chatarra.",
+                        doctrine: "Inundación masiva de tropas salvajes y vehículos ensamblados con restos.",
                         units: [
-                            { name: "Chikoz Orcos", desc: "Guerreros feroces obsesionados con el combate cuerpo a cuerpo." }
+                            { name: "Meganobz", desc: "Orcos gigantes acorazados con servolozas de chatarra pesada." }
                         ]
                     }
                 }
@@ -358,37 +563,44 @@
 
         let currentAlliance = 'imperio';
 
-        // LÓGICA DE INTERACCIÓN (JS CORREGIDO)
+        // LÓGICA DE INTERACCIÓN
         document.addEventListener('DOMContentLoaded', () => {
             const btnHistory = document.getElementById('btnHistoryMode');
+            const btnPrimarchs = document.getElementById('btnPrimarchsMode');
             const btnFactions = document.getElementById('btnFactionsMode');
+            
             const historyView = document.getElementById('historyView');
+            const primarchsView = document.getElementById('primarchsView');
             const factionsView = document.getElementById('factionsView');
 
-            // Cambio entre Modos (Historia / Facciones)
+            // Cambio entre Vistas Principales
             btnHistory.addEventListener('click', () => {
-                btnHistory.classList.add('active');
-                btnFactions.classList.remove('active');
-                historyView.classList.add('active');
-                factionsView.classList.remove('active');
+                setActiveMode(btnHistory, historyView);
+            });
+
+            btnPrimarchs.addEventListener('click', () => {
+                setActiveMode(btnPrimarchs, primarchsView);
             });
 
             btnFactions.addEventListener('click', () => {
-                btnFactions.classList.add('active');
-                btnHistory.classList.remove('active');
-                factionsView.classList.add('active');
-                historyView.classList.remove('active');
+                setActiveMode(btnFactions, factionsView);
             });
 
-            // Escuchadores para pestañas de alianzas
+            function setActiveMode(activeBtn, activeView) {
+                [btnHistory, btnPrimarchs, btnFactions].forEach(b => b.classList.remove('active'));
+                [historyView, primarchsView, factionsView].forEach(v => v.classList.remove('active'));
+                
+                activeBtn.classList.add('active');
+                activeView.classList.add('active');
+            }
+
+            // Pestañas de alianzas
             document.querySelectorAll('.faction-tabs .tab-button').forEach(button => {
                 button.addEventListener('click', (e) => {
-                    const allianceKey = e.target.dataset.faction;
-                    selectAlliance(allianceKey);
+                    selectAlliance(e.target.dataset.faction);
                 });
             });
 
-            // Inicializar facción por defecto
             selectAlliance('imperio');
         });
 
@@ -396,16 +608,12 @@
             currentAlliance = allianceKey;
             const data = dbFacciones[allianceKey];
 
-            // Pestañas activas
             document.querySelectorAll('.faction-tabs .tab-button').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.faction === allianceKey);
             });
 
-            // Ajustar colores
             document.documentElement.style.setProperty('--active-accent', data.accent);
-            document.documentElement.style.setProperty('--active-glow', data.glow);
 
-            // Cargar sub-facciones
             const subNav = document.getElementById('subfactionNav');
             subNav.innerHTML = '';
             
