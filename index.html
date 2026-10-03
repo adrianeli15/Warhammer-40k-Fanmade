@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warhammer 40,000 - Códice de la Galaxia</title>
+    <title>Warhammer 40,000 - Códice de Facciones</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Share+Tech+Mono&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,7 +14,8 @@
             --gold-glow: rgba(205, 168, 81, 0.4);
             --red-chaos: #dc2626;
             --green-xeno: #16a34a;
-            --purple-renegade: #8b5cf6;
+            --purple-eldar: #a855f7;
+            --blue-tau: #06b6d4;
             --text-light: #e2e8f0;
             --text-muted: #94a3b8;
         }
@@ -31,7 +32,7 @@
 
         .mono-text { font-family: 'Share Tech Mono', monospace; }
 
-        /* BARRA SUPERIOR DE NAVEGACIÓN */
+        /* NAV SUPERIOR */
         .top-navbar {
             background: #000000; border-bottom: 2px solid var(--gold);
             position: sticky; top: 0; z-index: 1000;
@@ -51,20 +52,19 @@
             padding: 0 16px; height: 100%; font-size: 0.82rem; font-weight: 700;
             cursor: pointer; transition: all 0.2s ease; text-transform: uppercase;
             letter-spacing: 0.5px; border-bottom: 3px solid transparent;
-            display: flex; align-items: center;
         }
 
         .nav-btn:hover, .nav-btn.active {
             color: var(--gold); border-bottom-color: var(--gold); background: rgba(205, 168, 81, 0.05);
         }
 
-        .main-container { max-width: 1350px; margin: 30px auto; padding: 0 20px; }
+        .main-container { max-width: 1400px; margin: 30px auto; padding: 0 20px; }
 
         .view-section { display: none; }
         .view-section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* HERO Y VÍDEO */
+        /* HERO & VIDEO */
         .hero-banner {
             position: relative; width: 100%; background: #000;
             border: 1px solid var(--panel-border); border-radius: 6px; overflow: hidden;
@@ -84,20 +84,15 @@
             border-top: 1px solid var(--panel-border);
         }
 
-        .hero-overlay-text h1 {
-            color: var(--gold); margin: 0 0 10px 0; font-size: 2.3rem;
-            text-shadow: 0 0 15px var(--gold-glow); text-transform: uppercase;
-        }
-
-        /* SELECCIÓN HORIZONTAL DE FACCIONES */
+        /* BARRA HORIZONTAL DE SELECCIÓN DE CATEGORÍAS */
         .faction-selector-bar {
-            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 25px;
+            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 30px;
             border-bottom: 1px solid var(--panel-border);
         }
 
         .faction-tab-btn {
             background: var(--panel-bg); border: 1px solid var(--panel-border);
-            color: var(--text-muted); padding: 14px 24px; font-size: 0.9rem; font-weight: 700;
+            color: var(--text-muted); padding: 12px 20px; font-size: 0.85rem; font-weight: 700;
             cursor: pointer; transition: all 0.25s ease; white-space: nowrap; border-top: 3px solid transparent;
             text-transform: uppercase; letter-spacing: 1px;
         }
@@ -109,94 +104,76 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* CONTENIDO DE FACCIONES EN FORMATO RECTÁNGULO GRANDE ANCHO COMPLETO */
-        .faction-detail-panel {
-            display: none; background: var(--panel-bg); border: 1px solid var(--panel-border);
-            padding: 25px; border-radius: 6px; box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-        }
+        /* VISTAS DE FACCIONES */
+        .faction-detail-panel { display: none; }
         .faction-detail-panel.active { display: block; animation: fadeIn 0.3s ease-in-out; }
 
-        .faction-banner-wide {
-            position: relative; width: 100%; min-height: 280px;
-            background-size: cover; background-position: center;
-            border-radius: 6px; overflow: hidden; margin-bottom: 25px;
-            display: flex; align-items: flex-end; border: 1px solid var(--gold);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.7);
-        }
-
-        .faction-banner-overlay {
-            background: linear-gradient(180deg, rgba(2,4,6,0.2) 0%, rgba(2,4,6,0.95) 85%);
-            width: 100%; padding: 30px;
-        }
-
-        .faction-banner-overlay h2 { color: var(--gold); margin: 0 0 10px 0; font-size: 2.2rem; }
-        .faction-banner-overlay p { margin: 0; font-size: 1rem; color: #e2e8f0; max-width: 1100px; }
-
-        /* RECTÁNGULOS GRANDES DE LADO A LADO PARA LAS SUBFACCIONES */
-        .full-width-list {
-            display: flex; flex-direction: column; gap: 20px; width: 100%; margin-top: 20px;
-        }
-
-        .faction-row-card {
+        /* TARJETA RECTANGULAR HORIZONTAL ANCHO COMPLETO */
+        .faction-wide-card {
             display: flex; flex-direction: row; width: 100%;
-            background: rgba(2, 4, 6, 0.85); border: 1px solid var(--panel-border);
+            background: var(--panel-bg); border: 1px solid var(--panel-border);
             border-left: 6px solid var(--gold); border-radius: 6px; overflow: hidden;
-            min-height: 200px;
+            margin-bottom: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.6);
         }
 
-        .faction-row-img {
-            width: 38%; min-width: 280px; background-size: cover; background-position: center;
-            border-right: 1px solid var(--panel-border);
+        .faction-card-img {
+            width: 40%; min-width: 340px; background-size: cover; background-position: center;
+            border-right: 1px solid var(--panel-border); position: relative;
         }
 
-        .faction-row-content {
-            width: 62%; padding: 25px; display: flex; flex-direction: column; justify-content: center;
+        .faction-card-content {
+            width: 60%; padding: 30px; display: flex; flex-direction: column; justify-content: space-between;
         }
 
-        .faction-row-content h4 {
-            color: #fff; margin: 0 0 10px 0; font-size: 1.3rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;
+        .faction-card-header h3 {
+            color: var(--gold); margin: 0 0 10px 0; font-size: 1.8rem; text-transform: uppercase;
         }
 
-        .faction-row-content p {
-            font-size: 0.98rem; color: #cbd5e1; margin: 0; line-height: 1.8;
+        .faction-card-desc {
+            font-size: 0.95rem; color: #cbd5e1; margin-bottom: 20px; line-height: 1.7;
         }
 
-        @media (max-width: 850px) {
-            .faction-row-card { flex-direction: column; }
-            .faction-row-img { width: 100%; height: 200px; border-right: none; border-bottom: 1px solid var(--panel-border); }
-            .faction-row-content { width: 100%; }
+        /* GRID DE FICHAS TÉCNICAS (DÓNDE, CUÁNTOS, FORMA DE PELEAR, ARMAMENTO) */
+        .faction-specs-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;
+            background: rgba(2, 4, 6, 0.7); padding: 18px; border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* CRONOLOGÍA Y PRIMARCAS */
-        .primarchs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; margin-top: 20px; }
-        .primarch-card {
-            background: rgba(7, 11, 16, 0.9); border: 1px solid var(--panel-border);
-            padding: 22px; border-radius: 4px;
+        .spec-item { font-size: 0.88rem; color: #94a3b8; }
+        .spec-item strong { color: #fff; display: block; font-family: 'Share Tech Mono', monospace; font-size: 0.82rem; text-transform: uppercase; margin-bottom: 2px; }
+
+        @media (max-width: 900px) {
+            .faction-wide-card { flex-direction: column; }
+            .faction-card-img { width: 100%; height: 260px; border-right: none; border-bottom: 1px solid var(--panel-border); }
+            .faction-card-content { width: 100%; }
+            .faction-specs-grid { grid-template-columns: 1fr; }
         }
+
+        /* PRIMARCAS Y CRONOLOGÍA */
+        .primarchs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .primarch-card { background: var(--panel-bg); border: 1px solid var(--panel-border); padding: 20px; border-radius: 4px; }
         .primarch-card.loyal { border-top: 4px solid var(--gold); }
         .primarch-card.traitor { border-top: 4px solid var(--red-chaos); }
 
-        .timeline-container { border-left: 3px solid var(--gold); padding-left: 25px; margin-top: 25px; }
-        .timeline-event { position: relative; margin-bottom: 35px; }
+        .timeline-container { border-left: 3px solid var(--gold); padding-left: 25px; }
+        .timeline-event { position: relative; margin-bottom: 30px; }
         .timeline-event::before {
             content: ''; position: absolute; left: -32px; top: 6px;
             width: 13px; height: 13px; background: var(--gold); border-radius: 50%;
         }
-        .timeline-era { color: var(--gold); font-size: 0.88rem; font-weight: bold; }
-        .timeline-title { color: #f8fafc; font-size: 1.25rem; margin: 5px 0 10px 0; border-bottom: 1px solid var(--panel-border); padding-bottom: 5px; }
     </style>
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR -->
+    <!-- BARRA NAVEGACIÓN SUPERIOR -->
     <header class="top-navbar">
         <div class="brand-logo" onclick="switchNav('homeView', document.querySelectorAll('.nav-btn')[0])">
             ⚒️ WARHAMMER 40,000
         </div>
         <nav class="nav-menu">
             <button class="nav-btn active" onclick="switchNav('homeView', this)">Inicio</button>
-            <button class="nav-btn" onclick="switchNav('factionsView', this)">Las Facciones Galácticas</button>
+            <button class="nav-btn" onclick="switchNav('factionsView', this)">Facciones Galácticas</button>
             <button class="nav-btn" onclick="switchNav('emperorView', this)">El Emperador</button>
             <button class="nav-btn" onclick="switchNav('primarchsView', this)">Los Primarcas</button>
             <button class="nav-btn" onclick="switchNav('historyView', this)">Cronología</button>
@@ -205,174 +182,250 @@
 
     <div class="main-container">
 
-        <!-- VISTA INICIO / VÍDEO -->
+        <!-- INICIO / INCRUSTACIÓN DE VÍDEO CORRECTA DE YOUTUBE -->
         <section id="homeView" class="view-section active">
             <div class="hero-banner">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/ckWN0utP4xs" title="Warhammer 40,000 Cinematic" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/ckWN0utP4xs" title="Warhammer 40k Cinematic" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="hero-overlay-text">
-                    <h1>WARHAMMER 40,000</h1>
-                    <p class="mono-text" style="color: #ef4444; margin: 0 0 12px 0; font-size:1.1rem;">
-                        "EN EL PAVOROSO SILENCIO DEL FUTURO LEJANO, SOLO HAY GUERRA..."
-                    </p>
-                    <p style="margin: 0; color: #cbd5e1; font-size: 1.05rem; line-height: 1.8;">
-                        Ambientado en el 41º y 42º Milenio, Warhammer 40,000 narra la caída y constante lucha por la supervivencia de la humanidad dentro de una galaxia hostil. Gobernados por un régimen teocrático y militarizado centrado en la figura del Emperador, los humanos combaten incesantemente contra imperios alienígenas, rebeldes heréticos y los señores demoníacos de la Disformidad.
-                    </p>
+                    <h1 style="color:var(--gold); margin:0 0 10px 0;">WARHAMMER 40,000</h1>
+                    <p class="mono-text" style="color: #ef4444; margin: 0 0 12px 0;">"EN EL PAVOROSO SILENCIO DEL FUTURO LEJANO, SOLO HAY GUERRA..."</p>
+                    <p style="margin: 0; color: #cbd5e1;">Base de datos estratégica de las fuerzas militares, imperios alienígenas y potencias disformes en el 41º Milenio.</p>
                 </div>
             </div>
         </section>
 
-        <!-- FACCIONES GALÁCTICAS (RECTÁNGULOS GRANDES DE LADO A LADO CON IMAGEN) -->
+        <!-- SECCIÓN DE FACCIONES DESGLOSADAS -->
         <section id="factionsView" class="view-section">
-            <h2 style="color: var(--gold); margin-top:0;">Enciclopedia de Facciones Galácticas</h2>
-            <p style="color: #cbd5e1; margin-bottom: 20px;">Selecciona cualquiera de las pestañas superiores para cargar los rectángulos descriptivos de cada ejército:</p>
+            <h2 style="color: var(--gold); margin-top:0;">Códice Militar de Facciones</h2>
+            <p style="color: #94a3b8; margin-bottom: 25px;">Selecciona una categoría para examinar las fichas técnicas rectangulares de cada fuerza bélica:</p>
 
-            <!-- BARRA HORIZONTAL DE PESTAÑAS -->
+            <!-- PESTAÑAS SELECCIONADORAS DE CATEGORÍA -->
             <div class="faction-selector-bar">
                 <button class="faction-tab-btn active" onclick="switchFactionTab('facImperio', this)">🏛️ Imperio del Hombre</button>
                 <button class="faction-tab-btn" onclick="switchFactionTab('facCaos', this)">🔥 Fuerzas del Caos</button>
-                <button class="faction-tab-btn" onclick="switchFactionTab('facAeldari', this)">🧝 Aeldari & Drukhari</button>
-                <button class="faction-tab-btn" onclick="switchFactionTab('facNecrones', this)">💀 Necrones</button>
-                <button class="faction-tab-btn" onclick="switchFactionTab('facTiranidos', this)">🦟 Tiránidos</button>
-                <button class="faction-tab-btn" onclick="switchFactionTab('facTau', this)">🛡️ Imperio T'au</button>
-                <button class="faction-tab-btn" onclick="switchFactionTab('facOrkos', this)">🟢 Orkos</button>
+
+                <button class="faction-tab-btn" onclick="switchFactionTab('facXenos', this)">👽 Imperios Xenos</button>
             </div>
 
-            <!-- 1. IMPERIO DEL HOMBRE -->
+            <!-- ================= 1. IMPERIO DEL HOMBRE ================= -->
             <div id="facImperio" class="faction-detail-panel active">
-                <!-- RECTÁNGULO PRINCIPAL BANNER -->
-                <div class="faction-banner-wide" style="background-image: url('https://images.alphacoders.com/131/1318287.jpeg'); border-color: var(--gold);">
-                    <div class="faction-banner-overlay">
-                        <h2>El Imperio del Hombre</h2>
-                        <p>El Imperio es un dominio colosal formado por más de un millón de mundos repartidos por toda la galaxia. Fundado por el Emperador hace más de diez milenios, actualmente subsiste como un régimen teocrático, represivo y militarizado donde la libertad individual es sacrificada en favor de la supervivencia de la especie humana.</p>
-                    </div>
-                </div>
-
-                <!-- RECTÁNGULOS GRANDES DE LADO A LADO CON FOTO Y DETALLE COMPLETO -->
-                <div class="full-width-list">
-                    <div class="faction-row-card" style="border-left-color: var(--gold);">
-                        <div class="faction-row-img" style="background-image: url('https://images.alphacoders.com/517/517316.jpg');"></div>
-                        <div class="faction-row-content">
-                            <h4>Adeptus Astartes (Marines Espaciales)</h4>
-                            <p>Super-soldados modificados genéticamente con implantes multiorgánicos, armadura de energía y rifles bólter. Organizados en Capítulos independientes de 1,000 guerreros, actúan como la vanguardia de élite encargada de misiones donde la infantería convencional es insuficiente.</p>
+                
+                <!-- ASTRA MILITARUM -->
+                <div class="faction-wide-card" style="border-left-color: var(--gold);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/131/1318288.jpeg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3>Astra Militarum (Guardia Imperial)</h3>
                         </div>
-                    </div>
-
-                    <div class="faction-row-card" style="border-left-color: var(--gold);">
-                        <div class="faction-row-img" style="background-image: url('https://images.alphacoders.com/131/1318288.jpeg');"></div>
-                        <div class="faction-row-content">
-                            <h4>Astra Militarum (Guardia Imperial)</h4>
-                            <p>La columna vertebral del ejército imperial. Trillones de hombres y mujeres reclutados de miles de mundos. Confían en la disciplina masiva, la artillería pesada y brigadas de blindados (como los tanques Leman Russ y Baneblade) para abrumar a las fuerzas enemigas.</p>
-                        </div>
-                    </div>
-
-                    <div class="faction-row-card" style="border-left-color: var(--gold);">
-                        <div class="faction-row-img" style="background-image: url('https://images.alphacoders.com/832/832049.jpg');"></div>
-                        <div class="faction-row-content">
-                            <h4>Adeptus Mechanicus (Sacerdocio de Marte)</h4>
-                            <p>Poseedores del monopolio de la tecnología en el Imperio. Veneran al Dios Máquina y buscan reliquias del pasado. Aportan a la guerra las legiones de Skitarii, los guerreros Kataphron y los destructivos Titanes de las Legiones Technicus.</p>
+                        <p class="faction-card-desc">Es la mayor fuerza militar de la galaxia. Formada por hombres y mujeres ordinarios que sostienen el Imperio mediante disciplina estricta, número abrumador y un fuego de artillería implacable.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Miles de Mundos Fortaleza y frentes de guerra por toda la galaxia.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Trillones de soldados reclutados activamente.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Despliegue masivo de infantería, bombardeo de artillería pesada y brigadas de blindados.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Rifles Láser (Lasgun), tanques Leman Russ, Baneblade y Sentinel.</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- ADEPTUS ASTARTES -->
+                <div class="faction-wide-card" style="border-left-color: var(--gold);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/517/517316.jpg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3>Adeptus Astartes (Marines Espaciales)</h3>
+                        </div>
+                        <p class="faction-card-desc">Super-soldados genéticamente modificados, bio-mejorados con 19 órganos implantes y entrenados para ser la vanguardia suprema de la humanidad.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Monasterios Fortaleza planetarios y Naves de Forja.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Aprox. 1,000 Capítulos de 1,000 guerreros cada uno.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Asaltos quirúrgicos de alta precisión, inserción por Cápsulas de Desembarco y combate cuerpo a cuerpo.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Rifles Bólter, Servarmaduras de Energía, Espadas Sierra y tanques Land Raider.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADEPTUS MECHANICUS -->
+                <div class="faction-wide-card" style="border-left-color: var(--gold);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/832/832049.jpg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3>Adeptus Mechanicus (Sacerdocio de Marte)</h3>
+                        </div>
+                        <p class="faction-card-desc">Culto cibernético que venera al Dios Máquina. Monopolizan el conocimiento tecnológico del Imperio y reemplazan sus cuerpos biológicos con implantes biónicos.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Marte y Mundos Forja distribuidos en la galaxia.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Billones de cíborgs Skitarii y Magos cibernéticos.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Avance metódico respaldado por armas de energía galvánica, radiónica y Titanes gigantes.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Mosquetes Galvánicos, Titanes Clase Imperator y Automáticas Kastelan.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADEPTA SORORITAS -->
+                <div class="faction-wide-card" style="border-left-color: var(--gold);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/131/1318287.jpeg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3>Adepta Sororitas (Hermanas de Batalla)</h3>
+                        </div>
+                        <p class="faction-card-desc">El brazo militar fanático de la iglesia imperial (Ecclesiarchia). Su fe inquebrantable en el Emperador canaliza auténticos milagros en el campo de batalla.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Conventos Prioratos en Santuarios Imperiales.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Cientos de miles de guerreras sagradas.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Purga purificadora a corta distancia acompañada de fuego santo y plegarias.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> La Santísima Trinidad: Bólter, Lanzallamas (Flamer) y Fusion (Melta).</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- 2. FUERZAS DEL CAOS -->
+            <!-- ================= 2. FUERZAS DEL CAOS ================= -->
             <div id="facCaos" class="faction-detail-panel">
-                <div class="faction-banner-wide" style="background-image: url('https://images.alphacoders.com/111/1110823.jpg'); border-color: var(--red-chaos);">
-                    <div class="faction-banner-overlay">
-                        <h2 style="color: var(--red-chaos);">Las Fuerzas del Caos</h2>
-                        <p>El Caos representa la manifestación corrupta de las emociones de las razas mortales dentro de la Disformidad. Está gobernado por las cuatro Potencias Ruinosas: Khorne, Nurgle, Tzeentch y Slaanesh, cuyo objetivo principal es la colapso del universo físico para subsumirlo en el Inmaterium.</p>
-                    </div>
-                </div>
 
-                <div class="full-width-list">
-                    <div class="faction-row-card" style="border-left-color: var(--red-chaos);">
-                        <div class="faction-row-img" style="background-image: url('https://images.alphacoders.com/131/1318289.jpeg');"></div>
-                        <div class="faction-row-content">
-                            <h4 style="color: var(--red-chaos);">Marines Espaciales del Caos</h4>
-                            <p>Veteranos de la Herejía de Horus y renegados modernos que han jurado lealtad a los Dioses Oscuros. Imbuidos con mutaciones disformes, poderes hechiceros y milenios de experiencia en combate, operan desde el Ojo del Terror dirigidos por Abaddon el Saqueador.</p>
+                <!-- MARINES DEL CAOS -->
+                <div class="faction-wide-card" style="border-left-color: var(--red-chaos);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/131/1318289.jpeg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3 style="color:var(--red-chaos);">Marines Espaciales del Caos</h3>
                         </div>
-                    </div>
-
-                    <div class="faction-row-card" style="border-left-color: var(--red-chaos);">
-                        <div class="faction-row-img" style="background-image: url('https://images.alphacoders.com/109/1093121.jpg');"></div>
-                        <div class="faction-row-content">
-                            <h4 style="color: var(--red-chaos);">Legiones Demoníacas e Invocaciones</h4>
-                            <p>Entidades nativas del Inmaterium manifestadas en el espacio real gracias a brechas psíquicas o rituales sangrientos. Desde Desangradores de Khorne hasta Grandes Inmundicias de Nurgle, son la encarnación viviente de los tormentos emocionales de la galaxia.</p>
+                        <p class="faction-card-desc">Antiguos Astartes leales que traicionaron al Emperador durante la Herejía de Horus. Ahora combaten empujados por el odio y mutados por el Inmaterium.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Ojo del Terror y la Gran Fisura (Cicatrix Maledictum).</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Las 9 Legiones Traidoras y cientos de bandas renegadas.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Guerra psicológica, terror, invocación demoníaca y violencia brutal.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Armas Bólter corruptas, Arcanos Disformes y Motores Forjados con Demonios.</div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- 3. AELDARI Y DRUKHARI -->
-            <div id="facAeldari" class="faction-detail-panel">
-                <div class="faction-banner-wide" style="background-image: url('https://images.alphacoders.com/936/936832.jpg'); border-color: #a855f7;">
-                    <div class="faction-banner-overlay">
-                        <h2 style="color: #a855f7;">Los Aeldari y Drukhari</h2>
-                        <p>Una raza anciana y psíquica que una vez gobernó las estrellas. Su caída producto del exceso creó a Slaanesh y destruyó su imperio. Actualmente sobreviven divididos entre los ascéticos Mundos Astronave y los sanguinarios Drukhari de Commorragh.</p>
-                    </div>
-                </div>
-
-                <div class="full-width-list">
-                    <div class="faction-row-card" style="border-left-color: #a855f7;">
-                        <div class="faction-row-img" style="background-image: url('https://images.alphacoders.com/112/1128790.jpg');"></div>
-                        <div class="faction-row-content">
-                            <h4 style="color: #a855f7;">Aeldari de los Mundos Astronave (Craftworlds)</h4>
-                            <p>Viven a bordo de naves del tamaño de continentes. Siguen estrictas disciplinas llamadas "Senda Aeldari" para controlar sus emociones y evitar devorar sus almas. Utilizan guerreros especialistas (Especialistas de Aspecto) y constructos de hueso espectral.</p>
+                <!-- DIOSES DEL CAOS -->
+                <div class="faction-wide-card" style="border-left-color: var(--red-chaos);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/109/1093121.jpg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3 style="color:var(--red-chaos);">Los Cuatro Dioses Oscuros y sus Legiones</h3>
+                        </div>
+                        <p class="faction-card-desc">Entidades disformes primordiales nacidas de las emociones de los mortales:</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>🔴 Khorne:</strong> Dios de la Sangre y la Ira. Busca la masacre y el combate cuerpo a cuerpo.</div>
+                            <div class="spec-item"><strong>🟢 Nurgle:</strong> Dios de la Peste y la Decadencia. Otorga resistencia sobrenatural y enfermedades a sus devotos.</div>
+                            <div class="spec-item"><strong>🔵 Tzeentch:</strong> Dios del Cambio y la Magia. Maestro de la hechicería y conspiraciones galácticas.</div>
+                            <div class="spec-item"><strong>🟣 Slaanesh:</strong> Dios del Exceso y Placer. Obsesionado con la perfección y la estimulación extrema.</div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- 4. NECRONES -->
-            <div id="facNecrones" class="faction-detail-panel">
-                <div class="faction-banner-wide" style="background-image: url('https://images.alphacoders.com/111/1113068.jpg'); border-color: #38bdf8;">
-                    <div class="faction-banner-overlay">
-                        <h2 style="color: #38bdf8;">Imperio Necrón</h2>
-                        <p>Antiguos señores de la galaxia convertidos en autómatas inmortales de metal viviente mediante la biotransferencia. Tras 60 millones de años en sus Mundos Necrópolis, están despertando para erradicar a las razas jóvenes.</p>
-                    </div>
-                </div>
+            <!-- ================= 3. IMPERIOS XENOS ================= -->
+            <div id="facXenos" class="faction-detail-panel">
 
-                <div class="full-width-list">
-                    <div class="faction-row-card" style="border-left-color: #38bdf8;">
-                        <div class="faction-row-img" style="background-image: url('https://images.alphacoders.com/111/1113068.jpg');"></div>
-                        <div class="faction-row-content">
-                            <h4 style="color: #38bdf8;">Dinastías e Infantería de Gauss</h4>
-                            <p>Legiones autorreparables armadas con proyectores gauss capaces de desintegrar la materia a nivel molecular, lideradas por Phaerons y Cronomantes de sabiduría milenaria.</p>
+                <!-- AELDARI -->
+                <div class="faction-wide-card" style="border-left-color: var(--purple-eldar);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/112/1128790.jpg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3 style="color:var(--purple-eldar);">Aeldari (Eldars de los Mundos Astronave)</h3>
+                        </div>
+                        <p class="faction-card-desc">Raza anciana en decadencia. Viven en naves gigantescas errantes y se disciplinan bajo "Sendas" para evitar que Slaanesh consuma sus almas.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Mundos Astronave (Craftworlds) como Ulthwé o Saim-Hann.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Especie al borde de la extinción.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Agilidad extrema, predicción del futuro mediante Videntes y unidades altamente especializadas.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Catapultas Shuriken, Gladiadores de Hueso Espectral y Señores del Enjambre Titánicos.</div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- 5. TIRÁNIDOS -->
-            <div id="facTiranidos" class="faction-detail-panel">
-                <div class="faction-banner-wide" style="background-image: url('https://images.alphacoders.com/131/1318290.jpeg'); border-color: #f59e0b;">
-                    <div class="faction-banner-overlay">
-                        <h2 style="color: #f59e0b;">Mentes Colmena Tiránidas</h2>
-                        <p>Enjambres bio-orgánicos procedentes de otra galaxia guiados por la Mente Colmena. Todo en su arquitectura militar es puramente biológico, diseñado exclusivamente para digerir la biomasa planetaria.</p>
+                <!-- DRUKHARI -->
+                <div class="faction-wide-card" style="border-left-color: #7e22ce;">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/936/936832.jpg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3 style="color:#a855f7;">Drukhari (Eldars Oscuros)</h3>
+                        </div>
+                        <p class="faction-card-desc">Prientes sádicos de los Aeldari. Torturan y cosechan el dolor de otras especies para rejuvenecer sus almas y evitar ser devorados por el Caos.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Commorragh, la Ciudad Oscura oculta dentro de la Telaraña.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Millones de corsarios y brujas en las sombras.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Incursiones relámpago, venenos neurotóxicos y captura de esclavos.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Cañones Cristalinos, Vehículos Voladores Ponzoña y Azotes.</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- 6. IMPERIO T'AU -->
-            <div id="facTau" class="faction-detail-panel">
-                <div class="faction-banner-wide" style="background-image: url('https://images.alphacoders.com/832/832050.jpg'); border-color: #06b6d4;">
-                    <div class="faction-banner-overlay">
-                        <h2 style="color: #06b6d4;">El Imperio T'au</h2>
-                        <p>Una imperio joven centrado en la doctrina del Bien Supremo (Tau'va). Destacan por su tecnología balística de vanguardia, inteligencia artificial y exotrajes tácticos de combate.</p>
+                <!-- NECRONES -->
+                <div class="faction-wide-card" style="border-left-color: #38bdf8;">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/111/1113068.jpg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3 style="color:#38bdf8;">Imperio Necrón</h3>
+                        </div>
+                        <p class="faction-card-desc">Guerreros inmortales de metal viviente (necrodermis) que dominaron la galaxia hace 60 millones de años y despiertan ahora de su gran letargo.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Mundos Necrópolis subterráneos.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Legiones incalculables bajo el Rey Silencioso.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Reanimación instantánea de bajas, avance implacable y manipulación de la física.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Armas de Inducción Gauss, Desintegradores de Partículas y Fragmentos de C'tan.</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- 7. ORKOS -->
-            <div id="facOrkos" class="faction-detail-panel">
-                <div class="faction-banner-wide" style="background-image: url('https://images.alphacoders.com/264/264023.jpg'); border-color: var(--green-xeno);">
-                    <div class="faction-banner-overlay">
-                        <h2 style="color: var(--green-xeno);">Los Orkos (Pielesverdes)</h2>
-                        <p>Una plaga biológica amante de la guerra cuya fuerza colectiva genera un campo psíquico (el WAAAGH!) capaz de alterar sutilmente la realidad física a favor de sus rudimentarias armas.</p>
+                <!-- TIRÁNIDOS -->
+                <div class="faction-wide-card" style="border-left-color: #f59e0b;">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/131/1318290.jpeg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3 style="color:#f59e0b;">Mentes Colmena Tiránidas</h3>
+                        </div>
+                        <p class="faction-card-desc">Depredadores bio-orgánicos procedentes del espacio intergaláctico. Todo en su ejército es material biológico diseñado para devorar toda la biomasa galáctica.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Flotas Enjambre en el espacio sideral.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Trillones de organismos hiper-evolutivos.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Enjambre instintivo abrumador coordinado por la Mente Colmena.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> garras simbióticas, Ácido Biológico, Tiranos del Enjambre y Élitros.</div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- IMPERIO T'AU -->
+                <div class="faction-wide-card" style="border-left-color: var(--blue-tau);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/832/832050.jpg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3 style="color:var(--blue-tau);">El Imperio T'au</h3>
+                        </div>
+                        <p class="faction-card-desc">Especie joven en rápida expansión tecnológica guiada por la doctrina del Bien Supremo ('Tau'va'). Integran a otras especies exóticas como los Kroot.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Borde Oriental de la Galaxia.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> Imperio en veloz crecimiento de varios cientos de mundos.</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Fuego a larga distancia, movilidad táctica y evitación del combate cuerpo a cuerpo.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Rifles de Pulso, Exotrajes de Combate XV8 Crisis y Aceleradores Lineales.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ORKOS -->
+                <div class="faction-wide-card" style="border-left-color: var(--green-xeno);">
+                    <div class="faction-card-img" style="background-image: url('https://images.alphacoders.com/264/264023.jpg');"></div>
+                    <div class="faction-card-content">
+                        <div class="faction-card-header">
+                            <h3 style="color:var(--green-xeno);">Los Orkos (Pielesverdes)</h3>
+                        </div>
+                        <p class="faction-card-desc">Bárbaros fúngicos genéticamente diseñados para la guerra. Generan un campo psíquico colectivo (el WAAAGH!) que altera levemente las leyes físicas.</p>
+                        <div class="faction-specs-grid">
+                            <div class="spec-item"><strong>📍 ¿Dónde habitan?</strong> Prácticamente en todos los rincones de la galaxia.</div>
+                            <div class="spec-item"><strong>👥 ¿Cuántos son?</strong> La especie más numerosa de la galaxia (exceptuando quizás a los Tiránidos).</div>
+                            <div class="spec-item"><strong>⚔️ Forma de Pelear</strong> Carga salvaje masiva, volumen de fuego descontrolado y vehículos improvisados.</div>
+                            <div class="spec-item"><strong>🔫 Armamento Clave</strong> Pipa-Akribilladoras, Rebanadoras, Kampantes y Garrapatos de Guerra.</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </section>
@@ -380,55 +433,46 @@
         <!-- EL EMPERADOR -->
         <section id="emperorView" class="view-section">
             <h2 style="color: var(--gold); margin-top:0;">El Emperador de la Humanidad</h2>
-            <div class="faction-row-card" style="border-left-color: var(--gold);">
-                <div class="faction-row-content" style="width: 100%;">
-                    <h3>Nacimiento, Propósito y el Trono Dorado</h3>
-                    <p>Nacido en la prehistoria humana tras el sacrificio de miles de chamanes, el Emperador es el psíquico definitivo. Tras liderar las Guerras de Unificación y la Gran Cruzada, su sueño de erradicar la superstición y conectar la humanidad mediante la Telaraña fue truncado por la Herejía de Horus. Hoy permanece entronizado en el Trono Dorado, un mecanismo tecno-psíquico que requiere el sacrificio diario de mil psíquicos para sostener el faro del Astronomicón y salvar al Imperio de la Disformidad.</p>
+            <div class="faction-wide-card" style="border-left-color: var(--gold);">
+                <div class="faction-card-content" style="width: 100%;">
+                    <h3>El Señor del Trono Dorado</h3>
+                    <p class="faction-card-desc">Psíquico supremo y creador del Imperio. Permanece en soporte vital inmóvil en Terra desde la Herejía de Horus. Requiere el sacrificio diario de 1,000 psíquicos para proyectar la luz del Astronomicón que permite el viaje espacial en la galaxia.</p>
                 </div>
             </div>
         </section>
 
         <!-- PRIMARCAS -->
         <section id="primarchsView" class="view-section">
-            <h2 style="color: var(--gold); margin-top:0;">Registro de los Primarcas</h2>
+            <h2 style="color: var(--gold); margin-top:0;">Los Primarcas</h2>
             <div class="primarchs-grid">
                 <div class="primarch-card loyal">
-                    <h4 style="color: var(--gold); margin:0 0 10px 0;">I. Lion El'Jonson</h4>
-                    <p style="font-size:0.88rem; color:#cbd5e1;"><strong>Ángeles Oscuros</strong> • Señor de Caliban. Retornado recientemente en la Era Indomitus.</p>
+                    <h4 style="color: var(--gold); margin:0 0 10px 0;">XIII. Roboute Guilliman</h4>
+                    <p style="font-size:0.88rem; color:#cbd5e1;">Primarca de los Ultramarines • Lord Comandante y Regente del Imperio.</p>
                 </div>
                 <div class="primarch-card loyal">
-                    <h4 style="color: var(--gold); margin:0 0 10px 0;">XIII. Roboute Guilliman</h4>
-                    <p style="font-size:0.88rem; color:#cbd5e1;"><strong>Ultramarines</strong> • Lord Comandante del Imperio, autor del Codex Astartes y líder de la Cruzada Indomitus.</p>
+                    <h4 style="color: var(--gold); margin:0 0 10px 0;">I. Lion El'Jonson</h4>
+                    <p style="font-size:0.88rem; color:#cbd5e1;">Primarca de los Ángeles Oscuros • El Caballero Despertado.</p>
                 </div>
                 <div class="primarch-card traitor">
                     <h4 style="color: var(--red-chaos); margin:0 0 10px 0;">XVI. Horus Lupercal</h4>
-                    <p style="font-size:0.88rem; color:#cbd5e1;"><strong>Hijos de Horus</strong> • Señor de la Guerra traidor. Destruido por el Emperador en el Asedio a Terra.</p>
-                </div>
-                <div class="primarch-card traitor">
-                    <h4 style="color: var(--red-chaos); margin:0 0 10px 0;">XII. Angron</h4>
-                    <p style="font-size:0.88rem; color:#cbd5e1;"><strong>Devoradores de Mundos</strong> • Portador de los Clavos del Carnicero. Ascendido a Príncipe Demonio de Khorne.</p>
+                    <p style="font-size:0.88rem; color:#cbd5e1;">Señor de la Guerra • Architraidor destruido en el Asedio a Terra.</p>
                 </div>
             </div>
         </section>
 
-        <!-- CRONOLOGÍA HISTÓRICA -->
+        <!-- CRONOLOGÍA -->
         <section id="historyView" class="view-section">
-            <h2 style="color: var(--gold); margin-top:0;">Línea de Tiempo Galáctica</h2>
+            <h2 style="color: var(--gold); margin-top:0;">Cronología Galáctica</h2>
             <div class="timeline-container">
                 <div class="timeline-event">
-                    <div class="timeline-era">M15 - M25</div>
-                    <div class="timeline-title">Era Dorada de la Tecnología</div>
-                    <p style="color:#cbd5e1;">Cima del avance humano, invención de los Navegantes y expansión por las estrellas.</p>
+                    <div style="color:var(--gold); font-size:0.85rem; font-weight:bold;">M30 - M31</div>
+                    <h4 style="color:#fff; margin:5px 0;">La Herejía de Horus</h4>
+                    <p style="color:#cbd5e1; margin:0;">Guerra civil galáctica que dividió a las Legiones de Marines Espaciales.</p>
                 </div>
                 <div class="timeline-event">
-                    <div class="timeline-era">M30 - M31</div>
-                    <div class="timeline-title">La Gran Cruzada y la Herejía de Horus</div>
-                    <p style="color:#cbd5e1;">Unificación de la humanidad seguida por la traición del Señor de la Guerra y el encierro del Emperador.</p>
-                </div>
-                <div class="timeline-event">
-                    <div class="timeline-era">M42 (ACTUAL)</div>
-                    <div class="timeline-title">La Era Indomitus</div>
-                    <p style="color:#cbd5e1;">Apertura de la Gran Fisura (Cicatrix Maledictum) y regreso de los Primarcas leales.</p>
+                    <div style="color:var(--gold); font-size:0.85rem; font-weight:bold;">M42 (ACTUAL)</div>
+                    <h4 style="color:#fff; margin:5px 0;">Era Indomitus</h4>
+                    <p style="color:#cbd5e1; margin:0;">Apertura de la Gran Fisura y la Cruzada de Reconquista de Guilliman.</p>
                 </div>
             </div>
         </section>
