@@ -1158,167 +1158,162 @@
     }
 };
 
-// =====================================================================================
-// CONTROLADOR DE NAVEGACIÓN E INTERFAZ DINÁMICA DE INFOGRAFÍAS (VERSIÓN AUTO-REPARABLE)
-// =====================================================================================
-let currentAlliance = 'imperio';
-const mapaPestañasOrdenadas = ['imperio', 'caos', 'xenos'];
+        // =====================================================================================
+        // CONTROLADOR DE NAVEGACIÓN E INTERFAZ DINÁMICA DE INFOGRAFÍAS (VERSIÓN DEFINITIVA)
+        // =====================================================================================
+        let currentAlliance = 'imperio';
+        const mapaPestañasOrdenadas = ['imperio', 'caos', 'xenos'];
 
-function switchNav(targetId, btnElement) {
-    document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    
-    const target = document.getElementById(targetId);
-    if (target) target.classList.add('active');
-    if (btnElement) btnElement.classList.add('active');
-    
-    // SOLUCIÓN: Si el usuario navega a la sección de facciones, forzamos la recarga segura de los datos
-    if (targetId === 'factionsView') {
-        selectAlliance(currentAlliance);
-    }
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Configuración de botones principales al cargar la página de forma blindada
-document.addEventListener('DOMContentLoaded', () => {
-    const listadoBotonesAlianza = document.querySelectorAll('.faction-tabs .tab-button');
-    
-    listadoBotonesAlianza.forEach((button, indice) => {
-        // Aseguramos que cada pestaña tenga su identificador correspondiente por orden físico
-        if (!button.dataset.faction && mapaPestañasOrdenadas[indice]) {
-            button.dataset.faction = mapaPestañasOrdenadas[indice];
+        // REPARACIÓN: Reincorporamos switchNav para arreglar los botones del menú superior
+        function switchNav(targetId, btnElement) {
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            const target = document.getElementById(targetId);
+            if (target) target.classList.add('active');
+            if (btnElement) btnElement.classList.add('active');
+            
+            // Si el usuario navega a las infografías, forzamos la recarga segura de los datos
+            if (targetId === 'factionsView') {
+                selectAlliance(currentAlliance);
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        button.addEventListener('click', (e) => {
-            // SOLUCIÓN AL FALLO 1: Escalamos de forma obligatoria al botón contenedor .tab-button 
-            // Esto evita que el código falle si el usuario hace clic exactamente encima de un emoji o icono
-            const botonActivoReal = e.target.closest('.tab-button');
-            if (botonActivoReal && botonActivoReal.dataset.faction) {
-                selectAlliance(botonActivoReal.dataset.faction);
+        // REPARACIÓN: Agregamos el inicializador para enlazar los clics al cargar el documento
+        document.addEventListener('DOMContentLoaded', () => {
+            const listadoBotonesAlianza = document.querySelectorAll('.faction-tabs .tab-button');
+            
+            listadoBotonesAlianza.forEach((button, indice) => {
+                if (!button.dataset.faction && mapaPestañasOrdenadas[indice]) {
+                    button.dataset.faction = mapaPestañasOrdenadas[indice];
+                }
+
+                button.addEventListener('click', (e) => {
+                    const botonActivoReal = e.target.closest('.tab-button');
+                    if (botonActivoReal && botonActivoReal.dataset.faction) {
+                        selectAlliance(botonActivoReal.dataset.faction);
+                    }
+                });
+            });
+
+            if (typeof dbFacciones !== 'undefined' && dbFacciones.imperio) {
+                selectAlliance('imperio');
             }
         });
-    });
 
-    // Arrancamos los datos en memoria de forma segura
-    if (typeof dbFacciones !== 'undefined' && dbFacciones.imperio) {
-        selectAlliance('imperio');
-    }
-});
-
-function selectAlliance(allianceKey) {
-    if (!dbFacciones || !dbFacciones[allianceKey]) return;
-    
-    currentAlliance = allianceKey;
-    const data = dbFacciones[allianceKey];
-
-    document.querySelectorAll('.faction-tabs .tab-button').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.faction === allianceKey);
-    });
-
-    document.documentElement.style.setProperty('--active-accent', data.accent);
-
-    const introBox = document.getElementById('allianceIntro');
-    if (introBox) {
-        introBox.innerHTML = `
-            <h3>Directiva Estratégica Galáctica</h3>
-            <p>${data.intro}</p>
-        `;
-    }
-
-    const subNav = document.getElementById('subfactionNav');
-    if (subNav) {
-        subNav.innerHTML = '';
-        const subKeys = Object.keys(data.subs);
-        
-        subKeys.forEach((key, index) => {
-            const subData = data.subs[key];
-            const btn = document.createElement('button');
-            btn.className = `subtab-btn ${index === 0 ? 'active' : ''}`;
+        function selectAlliance(allianceKey) {
+            if (!dbFacciones || !dbFacciones[allianceKey]) return;
             
-            // Extrae de forma segura el título sin romper por los paréntesis explicativos
-            const shortTitle = subData.title.split('(')[0].trim();
-            btn.innerText = shortTitle;
-            
-            // Guardamos la clave interna como identificador único e inmune a errores de cadenas de texto
-            btn.dataset.subkey = key; 
-            
-            btn.addEventListener('click', () => renderSubfaction(key));
-            subNav.appendChild(btn);
-        });
+            currentAlliance = allianceKey;
+            const data = dbFacciones[allianceKey];
 
-        renderSubfaction(subKeys[0]);
-    }
-}
+            document.querySelectorAll('.faction-tabs .tab-button').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.faction === allianceKey);
+            });
 
-function renderSubfaction(subKey) {
-    if (!dbFacciones || !dbFacciones[currentAlliance] || !dbFacciones[currentAlliance].subs[subKey]) return;
-    
-    const subData = dbFacciones[currentAlliance].subs[subKey];
-    const allianceData = dbFacciones[currentAlliance];
+            document.documentElement.style.setProperty('--active-accent', data.accent);
 
-    document.querySelectorAll('.subtab-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.subkey === subKey);
-    });
+            const introBox = document.getElementById('allianceIntro');
+            if (introBox) {
+                introBox.innerHTML = `
+                    <h3>Directiva Estratégica Galáctica</h3>
+                    <p>${data.intro}</p>
+                `;
+            }
 
-    const banner = document.getElementById('facBanner');
-    if (banner) banner.className = `visual-banner ${allianceData.bannerClass}`;
-    
-    const facEmblem = document.getElementById('facEmblem');
-    if (facEmblem) facEmblem.innerText = subData.emblem || '🛡️';
-    
-    const facBannerTitle = document.getElementById('facBannerTitle');
-    if (facBannerTitle) facBannerTitle.innerText = subData.title.toUpperCase();
-    
-    const facBannerTag = document.getElementById('facBannerTag');
-    if (facBannerTag) facBannerTag.innerText = "REGISTRO TÁCTICO INDIVIDUAL • INFOGRAFÍA M42";
+            const subNav = document.getElementById('subfactionNav');
+            if (subNav) {
+                subNav.innerHTML = '';
+                const subKeys = Object.keys(data.subs);
+                
+                subKeys.forEach((key, index) => {
+                    const subData = data.subs[key];
+                    const btn = document.createElement('button');
+                    btn.className = `subtab-btn ${index === 0 ? 'active' : ''}`;
+                    
+                    const shortTitle = subData.title.split('(')[0].trim();
+                    btn.innerText = shortTitle;
+                    
+                    btn.dataset.subkey = key; 
+                    btn.addEventListener('click', () => renderSubfaction(key));
+                    subNav.appendChild(btn);
+                });
 
-    const facTitle = document.getElementById('facTitle');
-    if (facTitle) facTitle.innerText = subData.title;
-    
-    const facQuote = document.getElementById('facQuote');
-    if (facQuote) facQuote.innerText = subData.quote ? `"${subData.quote}"` : '';
-
-    const metaGrid = document.getElementById('facMeta');
-    if (metaGrid) {
-        metaGrid.innerHTML = `
-            <div class="fac-meta-item"><span>Mundo / Origen</span><strong>${subData.meta.origen}</strong></div>
-            <div class="fac-meta-item"><span>Nivel de Amenaza</span><strong>${subData.meta.amenaza}</strong></div>
-            <div class="fac-meta-item"><span>Estilo de Combate</span><strong>${subData.meta.estilo}</strong></div>
-            <div class="fac-meta-item"><span>Tecnología Principal</span><strong>${subData.meta.tecnologia}</strong></div>
-        `;
-    }
-
-    const leadersRow = document.getElementById('facLeaders');
-    if (leadersRow && subData.leaders) {
-        // SOLUCIÓN ADICIONAL DE SEGURIDAD: Cambiamos l.title por l.title || l.desc
-        // Esto evita que la subfacción de la Inquisición rompa la carga si encuentra la propiedad desc
-        leadersRow.innerHTML = subData.leaders.map(l => `
-            <div class="leader-chip">
-                <strong>${l.name}</strong>
-                <em>${l.title || l.desc || 'Mando de Operaciones'}</em>
-            </div>
-        `).join('');
-    }
-
-    const historyBox = document.getElementById('facHistory');
-    if (historyBox) {
-        historyBox.innerHTML = `<p>${subData.history}</p>`;
-        
-        if (subData.curiosidad) {
-            historyBox.innerHTML += `
-                <div class="curiosity-banner" style="background: rgba(255,255,255,0.03); border-left: 4px solid var(--active-accent); padding: 15px; margin: 20px 0; border-radius: 0 4px 4px 0;">
-                    <h5 style="color: var(--active-accent); margin: 0 0 5px 0; font-size: 1rem; font-weight: bold; font-family: 'Cinzel', serif;">💡 DATO CURIOSO E IMPACTANTE:</h5>
-                    <p style="margin: 0; color: #ddd; font-style: italic; font-size: 0.95rem; line-height: 1.5; font-family: 'Open Sans', sans-serif;">${subData.curiosidad}</p>
-                </div>
-            `;
+                renderSubfaction(subKeys[0]);
+            }
         }
-    }
 
-    const branchesContainer = document.getElementById('facBranches');
-    if (branchesContainer && subData.branches) {
-        branchesContainer.innerHTML = subData.branches.map(b => `
-            <div class="branch-item"><h5>${b.title}</h5><p>${b.desc}</p></div>
-        `).join('');
-    }
-}
+        function renderSubfaction(subKey) {
+            if (!dbFacciones || !dbFacciones[currentAlliance] || !dbFacciones[currentAlliance].subs[subKey]) return;
+            
+            const subData = dbFacciones[currentAlliance].subs[subKey];
+            const allianceData = dbFacciones[currentAlliance];
+
+            document.querySelectorAll('.subtab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.subkey === subKey);
+            });
+
+            const banner = document.getElementById('facBanner');
+            if (banner) banner.className = `visual-banner ${allianceData.bannerClass}`;
+            
+            const facEmblem = document.getElementById('facEmblem');
+            if (facEmblem) facEmblem.innerText = subData.emblem || '🛡️';
+            
+            const facBannerTitle = document.getElementById('facBannerTitle');
+            if (facBannerTitle) facBannerTitle.innerText = subData.title.toUpperCase();
+            
+            const facBannerTag = document.getElementById('facBannerTag');
+            if (facBannerTag) facBannerTag.innerText = "REGISTRO TÁCTICO INDIVIDUAL • INFOGRAFÍA M42";
+
+            const facTitle = document.getElementById('facTitle');
+            if (facTitle) facTitle.innerText = subData.title;
+            
+            const facQuote = document.getElementById('facQuote');
+            if (facQuote) facQuote.innerText = subData.quote ? `"${subData.quote}"` : '';
+
+            const metaGrid = document.getElementById('facMeta');
+            if (metaGrid) {
+                metaGrid.innerHTML = `
+                    <div class="fac-meta-item"><span>Mundo / Origen</span><strong>${subData.meta.origen}</strong></div>
+                    <div class="fac-meta-item"><span>Nivel de Amenaza</span><strong>${subData.meta.amenaza}</strong></div>
+                    <div class="fac-meta-item"><span>Estilo de Combate</span><strong>${subData.meta.estilo}</strong></div>
+                    <div class="fac-meta-item"><span>Tecnología Principal</span><strong>${subData.meta.tecnologia}</strong></div>
+                `;
+            }
+
+            const leadersRow = document.getElementById('facLeaders');
+            if (leadersRow && subData.leaders) {
+                leadersRow.innerHTML = subData.leaders.map(l => `
+                    <div class="leader-chip">
+                        <strong>${l.name}</strong>
+                        <em>${l.title || l.desc || 'Mando de Operaciones'}</em>
+                    </div>
+                `).join('');
+            }
+
+            const historyBox = document.getElementById('facHistory');
+            if (historyBox) {
+                historyBox.innerHTML = `<p>${subData.history}</p>`;
+                
+                if (subData.curiosidad) {
+                    historyBox.innerHTML += `
+                        <div class="curiosity-banner" style="background: rgba(255,255,255,0.03); border-left: 4px solid var(--active-accent); padding: 15px; margin: 20px 0; border-radius: 0 4px 4px 0;">
+                            <h5 style="color: var(--active-accent); margin: 0 0 5px 0; font-size: 1rem; font-weight: bold; font-family: 'Cinzel', serif;">💡 DATO CURIOSO E IMPACTANTE:</h5>
+                            <p style="margin: 0; color: #ddd; font-style: italic; font-size: 0.95rem; line-height: 1.5; font-family: 'Open Sans', sans-serif;">${subData.curiosidad}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            const branchesContainer = document.getElementById('facBranches');
+            if (branchesContainer && subData.branches) {
+                branchesContainer.innerHTML = subData.branches.map(b => `
+                    <div class="branch-item"><h5>${b.title}</h5><p>${b.desc}</p></div>
+                `).join('');
+            }
+        }
+    </script>
+</body>
+</html>
