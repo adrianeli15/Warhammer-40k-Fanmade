@@ -1164,15 +1164,12 @@
 // =====================================================================================
 // CONTROLADOR DE NAVEGACIÓN E INTERFAZ DINÁMICA DE INFOGRAFÍAS (VERSIÓN AUTO-REPARABLE)
 // =====================================================================================
-// =====================================================================================
-// CONTROLADOR DE NAVEGACIÓN E INTERFAZ DINÁMICA DE INFOGRAFÍAS (VERSIÓN AUTO-REPARABLE)
-// =====================================================================================
 let currentAlliance = 'imperio';
 
 // Mapeo secuencial automático de respaldo en caso de que falten los atributos data-faction en el HTML
 const mapaPestañasOrdenadas = ['imperio', 'caos', 'xenos'];
 
-// Función para cambiar entre las secciones principales de tu barra sticky superior
+// Función para cambiar entre las secciones principales de tu barra superior (Códice, Primarcas, Historia, etc.)
 function switchNav(targetId, btnElement) {
     document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
@@ -1190,11 +1187,11 @@ function switchNav(targetId, btnElement) {
 
 // Gestión e inicialización de eventos al cargar el documento
 document.addEventListener('DOMContentLoaded', () => {
-    // Buscamos todas las pestañas de las grandes alianzas usando la clase CSS exacta de tu diseño
+    // Buscamos todas las pestañas de las grandes alianzas usando la clase de tu diseño (.tab-button)
     const listadoBotonesAlianza = document.querySelectorAll('.faction-tabs .tab-button');
     
     listadoBotonesAlianza.forEach((button, indice) => {
-        // SOLUCIÓN: Si tu maquetación HTML no venía con data-faction, se lo inyectamos dinámicamente según su orden
+        // SOLUCIÓN: Si tu HTML no vino con data-faction, se lo inyectamos dinámicamente según su orden físico
         if (!button.dataset.faction && mapaPestañasOrdenadas[indice]) {
             button.dataset.faction = mapaPestañasOrdenadas[indice];
         }
@@ -1207,7 +1204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Arrancamos de forma segura la primera visualización por defecto al cargar la página
+    // Arrancamos de forma blindada la primera visualización por defecto al cargar la página
     if (typeof dbFacciones !== 'undefined' && dbFacciones.imperio) {
         selectAlliance('imperio');
     }
@@ -1219,12 +1216,12 @@ function selectAlliance(allianceKey) {
     currentAlliance = allianceKey;
     const data = dbFacciones[allianceKey];
 
-    // Marcamos de forma visual cuál pestaña principal de facción está seleccionada
+    // Marcamos visualmente cuál pestaña principal de alianza está seleccionada
     document.querySelectorAll('.faction-tabs .tab-button').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.faction === allianceKey);
     });
 
-    // Establecemos el color de énfasis adaptativo en el archivo CSS
+    // Establecemos el color de énfasis adaptativo en el archivo de estilos
     document.documentElement.style.setProperty('--active-accent', data.accent);
 
     // Pintamos la tarjeta de introducción de la gran alianza seleccionada
@@ -1247,11 +1244,11 @@ function selectAlliance(allianceKey) {
             const btn = document.createElement('button');
             btn.className = `subtab-btn ${index === 0 ? 'active' : ''}`;
             
-            // SOLUCIÓN: Extraemos de forma segura el nombre de la facción omitiendo los paréntesis explicativos sin romper el código
+            // Extraemos de forma segura el nombre de la facción omitiendo los paréntesis explicativos
             const cleanTitle = subData.title.split('(')[0].trim();
             btn.innerText = cleanTitle;
             
-            // Almacenamos la clave del objeto de forma segura en un atributo dataset interno
+            // SOLUCIÓN: Almacenamos la clave del objeto de forma segura en un atributo dataset interno
             btn.dataset.subkey = key; 
             
             btn.addEventListener('click', () => renderSubfaction(key));
@@ -1269,7 +1266,7 @@ function renderSubfaction(subKey) {
     const subData = dbFacciones[currentAlliance].subs[subKey];
     const allianceData = dbFacciones[currentAlliance];
 
-    // Sincronizamos el estado activo de la subpestaña mediante su clave, evitando fallos por caracteres extras
+    // Sincronizamos el estado activo de la subpestaña mediante su clave, evitando fallos por diferencias de texto
     document.querySelectorAll('.subtab-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.subkey === subKey);
     });
