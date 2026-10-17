@@ -1461,20 +1461,21 @@
             }
 
             const branchesContainer = document.getElementById('facBranches');
-    if (branchesContainer && subData.branches) {
-        branchesContainer.innerHTML = subData.branches.map(b => {
-            // SOLUCIÓN QUIRÚRGICA: Reemplaza el cierre del título para que la descripción empiece abajo automáticamente
-            let textoMejorado = b.desc.replaceAll('</b>:', '</b><br style="margin-bottom:4px;">');
-            textoMejorado = textoMejorado.replaceAll('</b>', '</b><br style="margin-bottom:4px;">');
-            
-            return `
-                <div class="branch-item">
-                    <h5 style="color: var(--active-accent); font-family: 'Cinzel', serif; margin-top:0; margin-bottom:15px; font-size:1.15rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">${b.title}</h5>
-                    <p style="margin: 0;">${textoMejorado}</p>
-                </div>
-            `;
-        }).join('');
-    }
+            if (branchesContainer && subData.branches) {
+                branchesContainer.innerHTML = subData.branches.map(b => {
+                    // SOLUCIÓN COMPATIBLE: Rompe la línea justo en el cierre de la negrita en caliente
+                    let textoFormateado = b.desc.replaceAll('</b>:', '</b><br style="display:block; margin-bottom:4px;">');
+                    textoFormateado = textoFormateado.replaceAll('</b>', '</b><br style="display:block; margin-bottom:4px;">');
+                    
+                    return `
+                        <div class="branch-item">
+                            <h5>${b.title}</h5>
+                            <p>${textoFormateado}</p>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
     </script>
 </body>
 </html>
