@@ -97,13 +97,42 @@
             text-shadow: 0 0 15px var(--gold-glow); text-transform: uppercase;
         }
 
-        /* BANNERS VISUALES TEMÁTICOS */
-        .visual-banner {
-            width: 100%; height: 220px; border-radius: 6px; margin: 20px 0;
-            border: 1px solid var(--panel-border); display: flex; align-items: flex-end;
-            box-shadow: inset 0 -90px 60px rgba(0,0,0,0.95);
-            position: relative; overflow: hidden;
-        }
+/* ===================================================================================== */
+/* BLINDAJE DE VISIBILIDAD DE INFOGRAFÍAS (CONTRA EL CANSANCIO VISUAL)                   */
+/* ===================================================================================== */
+
+/* 1. Suavizar el color del texto de las descripciones (Baja el brillo agresivo) */
+.branch-item p {
+    color: #cbd5e1 !important; /* Cambia el blanco puro por un gris platino muy descansado */
+    font-size: 0.95rem !important;
+    line-height: 1.8 !important; /* Dale más espacio vertical para que el ojo no se pierda */
+}
+
+/* 2. Iluminar los títulos de los órganos en oro para que resalten como índices */
+.branch-item p b {
+    color: #cda851 !important; /* El tono dorado de tu barra superior */
+    font-size: 1rem !important;
+    display: inline-block;
+    margin-top: 14px; /* Separa un órgano del anterior para darle aire visual */
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(205, 168, 81, 0.2); /* Sutil brillo místico */
+}
+
+/* 3. Ajustar el primer órgano para que no se pegue al título de la caja */
+.branch-item p b:first-of-type {
+    margin-top: 5px;
+}
+
+/* 4. Darle un fondo más profundo, azulado y elegante a los paneles */
+.branch-item {
+    background: rgba(7, 11, 16, 0.85) !important; /* Un tono gótico profundo antifatiga */
+    border: 1px solid #151e2d !important;
+    border-left: 4px solid var(--active-accent) !important;
+    padding: 24px !important;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
 
         .banner-imperial { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #000000 100%); border-left: 6px solid var(--gold); }
         .banner-emperor { background: radial-gradient(circle at 50% 30%, #78350f 0%, #451a03 40%, #020406 90%); border-left: 6px solid var(--gold); }
