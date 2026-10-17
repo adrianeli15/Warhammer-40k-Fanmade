@@ -229,21 +229,22 @@
 </head>
 <body>
 
-    <!-- BARRA SUPERIOR DE NAVEGACIÓN STICKY -->
-    <header class="top-navbar">
-        <div class="brand-logo" onclick="switchNav('homeView', document.getElementById('btnHome'))">
-            ⚒️ WARHAMMER 40,000
-        </div>
-        <nav class="nav-menu">
-            <button class="nav-btn active" onclick="switchNav('homeView', this)">Inicio & Códice Magna</button>
-            <button class="nav-btn" onclick="switchNav('emperorView', this)">El Emperador</button>
-            <button class="nav-btn" onclick="switchNav('primarchsView', this)">Los 20 Primarcas</button>
-            <button class="nav-btn" onclick="switchNav('factionsView', this)">Facciones de la Galaxia</button>
-            <button class="nav-btn" onclick="switchNav('historyView', this)">Saga Histórica</button>
-        </nav>
-    </header>
+ <!-- BARRA SUPERIOR DE NAVEGACIÓN STICKY (VERSIÓN CORREGIDA Y BLINDADA) -->
+ <header class="top-navbar">
+    <div class="brand-logo" onclick="switchNav('homeView', document.getElementById('btnHome'))">
+        ⚒️ WARHAMMER 40,000
+    </div>
+    <nav class="nav-menu">
+        <!-- SOLUCIÓN: Agregamos id="btnHome" para que el logo funcione al hacerle clic -->
+        <button id="btnHome" class="nav-btn active" onclick="switchNav('homeView', this)">Inicio & Códice Magna</button>
+        <button class="nav-btn" onclick="switchNav('emperorView', this)">El Emperador</button>
+        <button class="nav-btn" onclick="switchNav('primarchsView', this)">Los 20 Primarcas</button>
+        <button class="nav-btn" onclick="switchNav('factionsView', this)">Facciones de la Galaxia</button>
+        <button class="nav-btn" onclick="switchNav('historyView', this)">Saga Histórica</button>
+    </nav>
+</header>
 
-    <div class="main-container">
+<div class="main-container">
 
         <!-- INICIO & VÍDEO & CÓDICE MAGNA AMPLIADO PARA PRINCIPIANTES -->
         <section id="homeView" class="view-section active">
