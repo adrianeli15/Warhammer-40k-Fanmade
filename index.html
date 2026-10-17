@@ -1171,19 +1171,27 @@ function switchNav(targetId, btnElement) {
     if (target) target.classList.add('active');
     if (btnElement) btnElement.classList.add('active');
     
+    // SOLUCIÓN: Si el usuario navega a la sección de facciones, forzamos la recarga segura de los datos
+    if (targetId === 'factionsView') {
+        selectAlliance(currentAlliance);
+    }
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Configuración de botones principales al cargar la página
+// Configuración de botones principales al cargar la página de forma blindada
 document.addEventListener('DOMContentLoaded', () => {
     const listadoBotonesAlianza = document.querySelectorAll('.faction-tabs .tab-button');
     
     listadoBotonesAlianza.forEach((button, indice) => {
+        // Aseguramos que cada pestaña tenga su identificador correspondiente por orden físico
         if (!button.dataset.faction && mapaPestañasOrdenadas[indice]) {
             button.dataset.faction = mapaPestañasOrdenadas[indice];
         }
 
         button.addEventListener('click', (e) => {
+            // SOLUCIÓN AL FALLO 1: Escalamos de forma obligatoria al botón contenedor .tab-button 
+            // Esto evita que el código falle si el usuario hace clic exactamente encima de un emoji o icono
             const botonActivoReal = e.target.closest('.tab-button');
             if (botonActivoReal && botonActivoReal.dataset.faction) {
                 selectAlliance(botonActivoReal.dataset.faction);
@@ -1191,6 +1199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Arrancamos los datos en memoria de forma segura
     if (typeof dbFacciones !== 'undefined' && dbFacciones.imperio) {
         selectAlliance('imperio');
     }
@@ -1281,6 +1290,8 @@ function renderSubfaction(subKey) {
 
     const leadersRow = document.getElementById('facLeaders');
     if (leadersRow && subData.leaders) {
+        // SOLUCIÓN ADICIONAL DE SEGURIDAD: Cambiamos l.title por l.title || l.desc
+        // Esto evita que la subfacción de la Inquisición rompa la carga si encuentra la propiedad desc
         leadersRow.innerHTML = subData.leaders.map(l => `
             <div class="leader-chip">
                 <strong>${l.name}</strong>
@@ -1293,7 +1304,6 @@ function renderSubfaction(subKey) {
     if (historyBox) {
         historyBox.innerHTML = `<p>${subData.history}</p>`;
         
-        // Renderizado acoplado de la propiedad curiosidad sin romper el DOM existente
         if (subData.curiosidad) {
             historyBox.innerHTML += `
                 <div class="curiosity-banner" style="background: rgba(255,255,255,0.03); border-left: 4px solid var(--active-accent); padding: 15px; margin: 20px 0; border-radius: 0 4px 4px 0;">
