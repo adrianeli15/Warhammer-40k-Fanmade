@@ -1164,28 +1164,37 @@
 // =====================================================================================
 // CONTROLADOR DE NAVEGACIÓN E INTERFAZ DINÁMICA DE INFOGRAFÍAS (VERSIÓN AUTO-REPARABLE)
 // =====================================================================================
+// =====================================================================================
+// CONTROLADOR DE NAVEGACIÓN E INTERFAZ DINÁMICA DE INFOGRAFÍAS (VERSIÓN AUTO-REPARABLE)
+// =====================================================================================
 let currentAlliance = 'imperio';
 
 // Mapeo secuencial automático de respaldo en caso de que falten los atributos data-faction en el HTML
 const mapaPestañasOrdenadas = ['imperio', 'caos', 'xenos'];
 
+// Función para cambiar entre las secciones principales de tu barra sticky superior
 function switchNav(targetId, btnElement) {
     document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
     
     const target = document.getElementById(targetId);
-    if(target) target.classList.add('active');
+    if(target) {
+        target.classList.add('active');
+    } else {
+        console.error("No se encontró la sección con id: " + targetId);
+    }
     if(btnElement) btnElement.classList.add('active');
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Gestión e inicialización de eventos al cargar el documento
 document.addEventListener('DOMContentLoaded', () => {
-    // Buscamos todas las pestañas de las grandes alianzas de tu interfaz
+    // Buscamos todas las pestañas de las grandes alianzas usando la clase CSS exacta de tu diseño
     const listadoBotonesAlianza = document.querySelectorAll('.faction-tabs .tab-button');
     
     listadoBotonesAlianza.forEach((button, indice) => {
-        // Si tu maquetación HTML original no venía con la propiedad data-faction, se la inyectamos dinámicamente aquí
+        // SOLUCIÓN: Si tu maquetación HTML no venía con data-faction, se lo inyectamos dinámicamente según su orden
         if (!button.dataset.faction && mapaPestañasOrdenadas[indice]) {
             button.dataset.faction = mapaPestañasOrdenadas[indice];
         }
@@ -1198,7 +1207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Arrancamos de forma blindada la primera visualización por defecto
+    // Arrancamos de forma segura la primera visualización por defecto al cargar la página
     if (typeof dbFacciones !== 'undefined' && dbFacciones.imperio) {
         selectAlliance('imperio');
     }
@@ -1210,12 +1219,12 @@ function selectAlliance(allianceKey) {
     currentAlliance = allianceKey;
     const data = dbFacciones[allianceKey];
 
-    // Marcamos de forma visual cuál pestaña principal está seleccionada
+    // Marcamos de forma visual cuál pestaña principal de facción está seleccionada
     document.querySelectorAll('.faction-tabs .tab-button').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.faction === allianceKey);
     });
 
-    // Establecemos el color de énfasis adaptativo (Hexadecimal)
+    // Establecemos el color de énfasis adaptativo en el archivo CSS
     document.documentElement.style.setProperty('--active-accent', data.accent);
 
     // Pintamos la tarjeta de introducción de la gran alianza seleccionada
@@ -1238,7 +1247,7 @@ function selectAlliance(allianceKey) {
             const btn = document.createElement('button');
             btn.className = `subtab-btn ${index === 0 ? 'active' : ''}`;
             
-            // Extraemos de forma segura el nombre de la facción omitiendo los paréntesis explicativos
+            // SOLUCIÓN: Extraemos de forma segura el nombre de la facción omitiendo los paréntesis explicativos sin romper el código
             const cleanTitle = subData.title.split('(')[0].trim();
             btn.innerText = cleanTitle;
             
@@ -1284,7 +1293,7 @@ function renderSubfaction(subKey) {
     const facQuote = document.getElementById('facQuote');
     if(facQuote) facQuote.innerText = subData.quote ? `"${subData.quote}"` : '';
 
-    // Construimos la cuadrícula de metadatos del perfil de combate (Meta Grid)
+    // Construimos la cuadrícula de metadatos del perfil de combate usando tus clases CSS exactas (fac-meta-item)
     const metaGrid = document.getElementById('facMeta');
     if(metaGrid) {
         metaGrid.innerHTML = `
@@ -1295,7 +1304,7 @@ function renderSubfaction(subKey) {
         `;
     }
 
-    // Desplegamos los componentes de las fichas de comandantes
+    // Desplegamos los componentes de las fichas de comandantes usando tu clase CSS (leader-chip)
     const leadersRow = document.getElementById('facLeaders');
     if(leadersRow && subData.leaders) {
         leadersRow.innerHTML = subData.leaders.map(l => `
@@ -1311,6 +1320,7 @@ function renderSubfaction(subKey) {
     if(historyBox) {
         historyBox.innerHTML = `<p>${subData.history}</p>`;
         
+        // Si la facción cuenta con propiedad curiosidad, la dibuja automáticamente con el estilo integrado
         if (subData.curiosidad) {
             historyBox.innerHTML += `
                 <div class="curiosity-banner" style="background: rgba(255,255,255,0.03); border-left: 4px solid var(--active-accent); padding: 15px; margin: 20px 0; border-radius: 0 4px 4px 0;">
@@ -1321,7 +1331,7 @@ function renderSubfaction(subKey) {
         }
     }
 
-    // Renderizamos los bloques de subdivisiones y doctrinas de guerra
+    // Renderizamos los bloques de subdivisiones y doctrinas de guerra usando tu clase CSS (branch-item)
     const branchesContainer = document.getElementById('facBranches');
     if(branchesContainer && subData.branches) {
         branchesContainer.innerHTML = subData.branches.map(b => `
