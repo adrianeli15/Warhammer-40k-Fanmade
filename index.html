@@ -254,6 +254,18 @@
         .timeline-era { color: var(--gold); font-size: 0.88rem; font-weight: bold; }
         .timeline-title { color: #f8fafc; font-size: 1.25rem; margin: 5px 0 10px 0; border-bottom: 1px solid var(--panel-border); padding-bottom: 5px; }
         .timeline-body p { margin-bottom: 8px; color: #cbd5e1; font-size: 0.95rem; }
+        .faction-branches-list {
+            display: flex !important;
+            flex-direction: column !important; /* Alinea las cajas una debajo de la otra */
+            gap: 25px !important; /* Espacio elegante de separación entre las dos listas */
+            width: 100% !important;
+        }
+
+        /* 2. Asegurar que cada caja de órgano se estire horizontalmente por completo */
+        .branch-item {
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
     </style>
 </head>
 <body>
