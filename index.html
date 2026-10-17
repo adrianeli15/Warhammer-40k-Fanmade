@@ -759,154 +759,307 @@
                 intro: "El Imperium de la Humanidad abarca un millón de mundos estelares bajo un régimen teocrático implacable y militarista.",
                 subs: {
                     astartes: {
-                title: "Adeptus Astartes (Space Marines)",
-                emblem: "🛡️",
-                quote: "Ellos serán mis guerreros supremos, hombres que se entregan sin conocer el miedo.",
-                meta: { origen: "Terra / Varios Mundos Tumba", amenaza: "Crítica / Alta", estilo: "Asalto Rápido & Choque", tecnologia: "Armadura Energética & Bolter" },
-                leaders: [
-                    { name: "Roboute Guilliman", title: "Lord Comandante e Hijo del Emperador" },
-                    { name: "Lion El'Jonson", title: "Primarca de los Ángeles Oscuros" },
-                    { name: "Marneus Calgar", title: "Señor del Capítulo de los Ultramarines" }
-                ],
-                history: "Super-soldados modificados genéticamente con 19 órganos adicionales (como un segundo corazón y tres pulmones) y protegidos por armaduras servoasistidas. Son la fuerza de élite definitiva del Imperio, enviados únicamente a misiones suicidas o batallas de escala apocalíptica donde los humanos normales no tienen oportunidad de sobrevivir.",
-                curiosidad: "Pueden escupir ácido cegador gracias a una de sus mutaciones glandulares y memorizar mapas enteros con solo comerse el cerebro de un enemigo muerto.",
-                branches: [
-                    { title: "Capítulos de Primera Fundación", desc: "Los 9 ejércitos originales que se mantuvieron leales en la Herejía: Ultramarines (estrategas), Blood Angels (vampiros espaciales), Dark Angels (caballeros con secretos), Space Wolves (guerreros vikingos), Imperial Fists (expertos en asedios), Salamanders (herreros humanitarios), Raven Guard (sigilo), Iron Hands (cíborgs fríos), White Scars (ataques en moto velocidad)." },
-                    { title: "Capítulos Sucesores y Primaris", desc: "Facciones nacidas de la división de las legiones originales, como los Black Templars (cruzados fanáticos) y los nuevos Marines Primaris, soldados mejorados genéticamente con mayor fuerza creados en secreto por el archimagos Belisarius Cawl." }
-                ]
+                        title: "Adeptus Astartes (Space Marines)",
+                        emblem: "🛡️",
+                        quote: "Un Marine Espacial no nace, se forja en el calvario de la carne. Son mis herramientas para purgar las estrellas; el arma de guerra definitiva de la humanidad.",
+                        meta: { 
+                            origen: "Laboratorios de Bio-Ingeniería / Fortaleza Monasterio", 
+                            amenaza: "Máxima Eficiencia Marcial Humana", 
+                            estilo: "Anatomía Modificada, Guerra Absoluta & Resistencia Sobrehumana", 
+                            tecnologia: "Cirugía Genética, Implantes Químicos, Caparazón Negro & Interfaz Cíborg" 
+                        },
+                        leaders: [
+                            { name: "La Semilla Genética", title: "El código de ADN maestro que reconfigura las células humanas" },
+                            { name: "Los Cirujanos Apotecarios", title: "Médicos militares encargados de implantar los órganos vivos" }
+                        ],
+                        history: "Los Adeptus Astartes representan el arma de guerra definitiva de la humanidad. No son meros soldados con mejor equipo, sino superhombres reconstruidos mediante una ciencia biológica prohibida para ejecutar la voluntad del Imperio en frentes apocalípticos. Las palabras del mismísimo Emperador al crearlos sellaron su destino eterno: <i>'Ellos serán mis guerreros supremos, hombres que se entregan sin conocer el miedo. Serán inmunes a las plagas y al decaimiento, y ninguna herida mortal los detendrá en su sagrada cruzada...'</i>. El candidato (un joven adolescente elegido por su fuerza en mundos letales) es sometido a cirugías extremas sin anestesia, tratamientos químicos de mutación celular y lavado de cerebro hipnótico. Sus emociones mundanas (el miedo, la piedad, la duda y el deseo sexual) son erradicadas de su cerebro, sustituyéndolas por una mentalidad analítica obsesionada únicamente con la táctica, la balística y la matanza de los enemigos del Imperio.",
+                        curiosidad: "El paso final de la transformación es el implante del 'Caparazón Negro': una biomalla que se introduce fundida debajo de la piel y se endurece. Al cicatrizar, se conecta directamente a sus nervios mediante puertos de acceso externos, permitiendo que el Marine enchufe su sistema nervioso al hardware de su servoarmadura, controlando el blindaje pesado con la misma velocidad y sensibilidad que sus propios brazos orgánicos.",
+                        branches: [
+                            { 
+                                title: "Los 19 Órganos Artificiales de la Carne", 
+                                desc: "• <b>1. Segundo Corazón (El Replicador):</b> Aumenta la presión sanguínea de forma masiva en combate o se activa de inmediato si el corazón principal del Marine es destruido por un disparo.<br>" +
+                                      "• <b>2. Ossmodula (Huesos de Acero):</b> Glándula que altera las hormonas para absorber cerámicos de la comida, fusionando las costillas en una coraza sólida y endureciendo el esqueleto.<br>" +
+                                      "• <b>3. Biscopea (Músculo Monstruoso):</b> Órgano implantado en el pecho que dispara el crecimiento muscular a niveles sobrehumanos, permitiendo doblar barras de hierro con las manos.<br>" +
+                                      "• <b>4. Hemastamen (Sangre Enriquecida):</b> Monitorea la sangre y altera su composición química para que transporte diez veces más oxígeno y nutrientes a los tejidos modificados.<br>" +
+                                      "• <b>5. Órgano de Larraman (Cicatrización Instantánea):</b> Libera células que forman un tejido de coágulo instantáneo sobre las heridas de combate, sellando cortes profundos en segundos.<br>" +
+                                      "• <b>6. Nodo Cataleptico (El Insonne):</b> Se implanta en la base del cerebro. Permite al Marine apagar partes de su cerebro de forma alterna para dormir mientras sigue caminando y disparando.<br>" +
+                                      "• <b>7. Preomnor (Estómago Inmunológico):</b> Un pre-estómago que analiza químicamente todo lo que el Marine ingiere, permitiéndole comer carne podrida, plantas venenosas o chatarra para obtener energía.<br>" +
+                                      "• <b>8. Omophagea (Absorción de Recuerdos):</b> Conectado al cerebro y al estómago. Le permite al Marine memorizar los mapas, idiomas e intenciones del enemigo con el simple hecho de comerse su cerebro muerto.<br>" +
+                                      "• <b>9. Pulmón de Multi-acción (Tercer Pulmón):</b> Un pulmón extra que les permite respirar gases letales, cloro, humo denso o sobrevivir bajo el agua absorbiendo el oxígeno residual.<br>" +
+                                      "• <b>10. Ojo Occulobe (Visión de Depredador):</b> Altera la retina del ojo para otorgar una visión nocturna perfecta, además de permitirles ver en el espectro infrarrojo y ultravioleta.<br>" +
+                                      "• <b>11. Oído Lyman (Filtro Acústico):</b> Modifica el oído interno. Les otorga un equilibrio perfecto y la capacidad de filtrar ruidos ensordecedores de explosiones sin perder audición.<br>" +
+                                      "• <b>12. Membrana Sus-An (Animación Suspendida):</b> Permite al Marine entrar en un estado de coma voluntario para sobrevivir durante años a heridas letales o a la falta de oxígeno en el espacio.<br>" +
+                                      "• <b>13. Melanocroma (Filtro de Radiación):</b> Órgano que analiza los niveles de radiación solar y altera el color de la piel del Marine (volviéndola negra o grisácea) para protegerlo de rayos gamma.<br>" +
+                                      "• <b>14. Riñón Oolítico (El Purificador):</b> Un sistema de filtrado secundario ultra-veloz que limpia la sangre de toxinas, venenos gaseosos o drogas químicas enemigas en minutos.<br>" +
+                                      "• <b>15. Neuroglotis (Rastreador de Sabor):</b> Otorga un sentido del gusto sobrenatural. El Marine puede rastrear a un enemigo o identificar un veneno en el aire simplemente lamiendo el suelo.<br>" +
+                                      "• <b>16. Mucranoides (Escudo Térmico):</b> Glándula que altera el sudor del Marine, secretando una capa cerosa sobre su piel que lo protege de temperaturas congelantes o del calor extremo de los lanzallamas.<br>" +
+                                      "• <b>17. Glándula Betcher (Saliva Ácida):</b> Transforma las glándulas salivales del Marine. Puede escupir un ácido altamente corrosivo capaz de cegar enemigos o corroer los barrotes de hierro de una celda.<br>" +
+                                      "• <b>18. Progenoides (Las Glándulas Semilla):</b> El órgano más sagrado. Dos glándulas (una en el cuello y otra en el pecho) que absorben el ADN de los demás implantes. Al madurar, son extraídas por los Apotecarios para cultivar los órganos de futuros Marines.<br>" +
+                                      "• <b>19. El Caparazón Negro (La Interfaz Cíborg):</b> La biomalla final inyectada debajo de la piel. Se endurece y se conecta directamente a sus nervios, permitiéndole enchufar su sistema nervioso a los sistemas lógicos de su servoarmadura."
+                            },
+                            { 
+                                title: "La Modificación Primaris (Los 3 Órganos Adicionales del tecnosacerdote Belisarius Cawl)", 
+                                desc: "Para los nuevos Marines Primaris, el Archimago Belisarius Cawl rompió las barreras tradicionales e implementó tres implantes definitivos que se suman a los 19 clásicos:<br>" +
+                                      "• <b>20. Tendones de Acero (Sinew Coils):</b> Cables de duracero que se trenzan con los músculos del Marine, disparando su fuerza física hasta permitirle aplastar cráneos con las manos desnudas.<br>" +
+                                      "• <b>21. El Amplificador (Magnificat):</b> Una pequeña glándula cerebral que sobrealimenta a todos los demás órganos de la lista, haciendo que el guerrero crezca más y gane más masa muscular y ósea.<br>" +
+                                      "• <b>22. El Tendón de Belisarius (Belisarian Furnace):</b> Un reactor químico acoplado a los corazones. Si el Marine sufre daño masivo, inyecta una sobredosis masiva de adrenalina y analgésicos en caliente para ignorar la muerte y seguir matando." 
+                            }
+                        ]
                     },
                     guardia: {
-                title: "Astra Militarum (Guardia Imperial)",
-                emblem: "🎖️",
-                quote: "El martillo del Emperador, compuesto por incontables billones de soldados mortales.",
-                meta: { origen: "Incontables Mundos Imperiales", amenaza: "Estratégica Masiva", estilo: "Guerra de Desgaste & Artillería", tecnologia: "Lasgun & Tanques Leman Russ" },
-                leaders: [
-                    { name: "Ursula Creed", title: "Lord Castellan de Cadia" },
-                    { name: "Lord Solar Leontus", title: "Comandante en Jefe del Segmentum Solar" }
-                ],
-                history: "La auténtica espina dorsal del Imperio. A diferencia de los Marines, la Guardia está hecha de miles de millones de hombres y mujeres normales reclutados a la fuerza de miles de planetas. Sobreviven gracias a tácticas de desgaste masivo, un mar interminable de tanques pesados Leman Russ y una de las artillerías más destructivas de la galaxia.",
-                curiosidad: "Su arma estándar, el Lasgun, es llamada 'linterna' por la comunidad porque de forma individual apenas rasguña a los alienígenas pesados, pero el fuego coordinado de 10,000 lasguns puede vaporizar un tanque.",
-                branches: [
-                    { title: "Regimientos Emblemáticos", desc: "Tropas de Choque de Cadia (soldados perfectos), los Death Korps de Krieg (fanáticos con máscaras de gas que buscan el martirio), los Guerreros de la Jungla de Catachán (versiones espaciales de Rambo) y la Legión de Acero de Armagedón (infantería mecanizada)." },
-                    { title: "Apoyo Blindado y Abhumanos", desc: "Líneas masivas de artillería Basilisk, tanques colosales Baneblade y mutantes gigantescos como los Ogryns (fuerza bruta infantil) y Ratlings (francotiradores pequeños)." }
-                ]
+                        title: "Astra Militarum (Guardia Imperial)",
+                        emblem: "🎖️",
+                        quote: "Si un Marine Espacial es un bisturí de precisión, la Guardia Imperial es el martillo demoledor del Emperador. No defendemos las estrellas con superhombres, sino con billones de almas ordinarias dispuestas a morir sosteniendo la línea.",
+                        meta: { 
+                            origen: "Incontables Mundos Imperiales (Mundos Colmena, Mundos Forja, Planetas Salvajes y Feudales)", 
+                            amenaza: "Fuerza de Despliegue Masivo Galáctico / La Espina Dorsal del Imperio", 
+                            estilo: "Guerra de Desgaste Absoluta, Oleadas Humanas, Picadora de Carne & Cortinas de Fuego", 
+                            tecnologia: "Rifles Láser Estándar (Lasgun), Artillería de Fisión Pesada, Motores Diésel de Combustión Externa & Blindaje de Cerámitis Industrial" 
+                        },
+                        leaders: [
+                            { name: "El Diezmo de Carne", title: "El reclutamiento masivo y obligatorio del 10% de la población de cada planeta imperial" },
+                            { name: "Los Comisarios Imperiales", title: "Oficiales políticos encargados de ejecutar en el acto a cualquier soldado que muestre miedo" }
+                        ],
+                        history: "El Astra Militarum, conocido comúnmente como la Guardia Imperial, es la fuerza militar regular más colosal, gigantesca e interminable de la galaxia. A diferencia de los Adeptus Astartes, la Guardia no cuenta con modificaciones genéticas ni órganos artificiales; está compuesta enteramente por billones de hombres y mujeres normales arrancados de sus hogares para ser arrojados a las trincheras más sangrientas del universo. Su doctrina de combate se basa puramente en la escala masiva y el sacrificio calculado: donde un enemigo destruye un batallón de 10,000 guardias, el Imperio simplemente envía 10 batallones más por detrás. Sostienen el Imperio a base de pura carne de cañón, trincheras interminables, líneas de tanques pesados diésel y un despliegue de artillería pesada tan masivo que sus bombardeos coordinados pueden alterar el clima y agrietar la biósfera de los mundos. Combatir monstruos espaciales de tres metros portando un simple uniforme de tela y un rifle láser es la prueba máxima del valor humano.",
+                        curiosidad: "El rifle estándar de la Guardia, el Lasgun, es apodado 'la linterna' por los veteranos y los fans debido a que un disparo individual apenas rasguña el caparazón de un alienígena pesado o la armadura de un demonio. Sin embargo, la doctrina imperial dicta que el fuego coordinado y simultáneo de 10,000 'linternas' láser puede vaporizar un tanque pesado o derretir un rascacielos entero en segundos.",
+                        branches: [
+                            { 
+                                title: "Las Doctrinas y Regimientos de Choque Más Famosos", 
+                                desc: "• <b>Tropas de Choque de Cadia (La Disciplina de Hierro):</b> Soldados considerados el estándar perfecto de la Guardia. Criados en un mundo fortaleza rodeado por el Caos, aprenden a desarmar un rifle láser antes de aprender a leer. Su lema eterno es: '¡Cadia resistió antes que la carne se rompiera!'.<br>" +
+                                      "• <b>Death Korps de Krieg (Los Buscadores del Martirio):</b> Regimientos siniestros vestidos con abrigos pesados y máscaras de gas permanentes. Criados en un mundo atómico estéril, sufren un lavado de cerebro que les borra el instinto de supervivencia; no ven el valor en sus vidas y su único deseo es morir en misiones suicidas de asedio para pagar los pecados de sus ancestros.<br>" +
+                                      "• <b>Guerreros de la Jungla de Catachán (Fuerza Bruta Humana):</b> Humanos nacidos en un planeta letal lleno de plantas carnívoras y monstruos venenosos. Desarrollan una musculatura colosal que rivaliza con un marine, desprecian la armadura y la disciplina formal, y son expertos en guerrillas letales utilizando machetes gigantes.<br>" +
+                                      "• <b>Legión de Acero de Armagedón (Infantería Mecanizada):</b> Divisiones de soldados de asalto urbano que operan completamente a bordo de tanques de transporte blindados Chimera, especializados en la guerra mecanizada y en combatir plagas en entornos industriales altamente contaminados." 
+                            },
+                            { 
+                                title: "La Maquinaria de Destrucción Masiva de la Guardia", 
+                                desc: "• <b>Divisiones de Tanques Leman Russ:</b> El blindado insignia de la Guardia. Un monstruo de tracción por orugas propulsado por un motor diésel ruidoso que puede funcionar con cualquier combustible líquido. Su cañón de batalla principal dispara proyectiles explosivos que aplastan infantería pesada de un impacto.<br>" +
+                                      "• <b>Artillería Autopropulsada Basilisk:</b> Cañones colosales montados sobre chasis blindados encargados de la doctrina de 'Tierra Arrasada'. Disparan proyectiles de fisiones desde kilómetros de distancia, saturando el campo de batalla de forma continua hasta dejar el suelo convertido en barro atómico.<br>" +
+                                      "• <b>El Superpesado Baneblade:</b> Una fortaleza andante sobre orugas que cuenta con 11 cañones diferentes y un blindaje de tres capas de cerámitis. Un solo Baneblade puede aplastar divisiones enteras de tanques ligeros y sostener un frente completo por sí mismo.<br>" +
+                                      "• <b>Divisiones de Apoyo Abhumano (Ogryns):</b> Humanos mutados genéticamente por la gravedad de mundos mineros. Tienen la fuerza física de un rinoceronte, la resistencia para absorber ráfagas de metralla en el pecho y la mente infantil de un niño pequeño; son usados como escuadrones de choque cuerpo a cuerpo y escudos de carne vivientes." 
+                            }
+                        ]
                     },
                     mechanicus: {
-                title: "Adeptus Mechanicus (Marte)",
-                emblem: "⚙️",
-                quote: "No hay verdad en la carne, solo traición. No hay fuerza en la carne, solo debilidad.",
-                meta: { origen: "Mundo Forja de Marte", amenaza: "Tecnológica Suprema", estilo: "Fuego Analítico & Ciber-asaltos", tecnologia: "Armamento Rad, Volkite & PCE" },
-                leaders: [
-                    { name: "Belisarius Cawl", title: "Archimago Dominus y Científico Supremo" },
-                    { name: "Fabricante General", title: "Líder del Sacerdocio de Marte y Alto Señor" }
-                ],
-                history: "Un imperio científico dentro del Imperio. Adoran al 'Dios Máquina' (Omnissiah) y odian la carne biológica, cambiándola progresivamente por cables, metal y circuitos. Monopolizan toda la tecnología de la galaxia, desde reparar un rifle láser hasta construir cruceros de batalla espaciales. No inventan nada nuevo: buscan reliquias perdidas del pasado.",
-                curiosidad: "Consideran que las máquinas tienen alma, por lo que antes de encender un tanque o una tostadora deben rezar oraciones sagradas, ungir el motor con aceites sagrados e incienso.",
-                branches: [
-                    { title: "Skitarii y Legiones Cíborg", desc: "Soldados rasos cibernéticos cuyas emociones son apagadas remotamente por sus comandantes, además de Sicarian Ruststalkers y robots de combate Kastelan." },
-                    { title: "Legiones del Collegia Titanica", desc: "Pilotos de los Titanes, colosos bípedos del tamaño de rascacielos con catedrales en sus espaldas capaces de borrar continentes enteros con armas de plasma." }
-                ]
+                        title: "Adeptus Mechanicus (Marte)",
+                        emblem: "⚙️",
+                        quote: "No hay verdad en la carne, solo traición. No hay fuerza en la carne, solo debilidad. No hay constancia en la carne, solo decaimiento. Alabado sea el Omnissiah.",
+                        meta: { 
+                            origen: "Mundo Forja de Marte y Sectores Forja Aliados de la Galaxia", 
+                            amenaza: "Tecnológica Suprema / Monopolio Científico Absoluto", 
+                            estilo: "Líneas de Fuego Analíticas, Saturación Radiactiva & Ciber-asaltos Lógicos", 
+                            tecnologia: "Armamento de Radiación (Rad), Energía Volkite, Motores de Fisión & Computadoras de Silicio" 
+                        },
+                        leaders: [
+                            { name: "Belisarius Cawl", title: "Archimago Dominus, Científico Supremo, Innovador Hereje y Creador Primaris" },
+                            { name: "El Fabricante General", title: "Líder Supremo del Sacerdocio de Marte y miembro permanente de los Altos Señores" }
+                        ],
+                        history: "El Adeptus Mechanicus es un imperio tecnológico y religioso semicíborg dentro del propio Imperio de la Humanidad. Adoran al 'Dios Máquina' (el Omnissiah) y consideran que la carne biológica es un error evolutivo, pecaminoso, débil y corruptible. Los Tech-Priests (Tecno-sacerdotes) de Marte dedican sus milenarias vidas a amputar quirúrgicamente sus propios brazos, piernas, ojos y órganos vitales para reemplazarlos por prótesis de metal, pistones hidráulicos, lentes infrarrojos, engranajes y computadoras de silicio. Tienen el monopolio absoluto de la ciencia en el universo: nadie más sabe reparar un simple rifle láser o construir un crucero de batalla estelar. Tienen estrictamente prohibido investigar cosas nuevas o desarrollar Inteligencia Artificial por miedo a repetir el apocalipsis de las máquinas del pasado; su única misión es la 'Búsqueda del Conocimiento', recolectando manuales y planos perdidos de la antigüedad conocidos como PCE.",
+                        curiosidad: "Creen firmemente que las máquinas tienen alma propia. Por ello, antes de encender el motor de un tanque pesado o poner a funcionar una tostadora industrial, un Tecno-sacerdote debe rezar oraciones binarias en código sagrado, quemar incienso místico sobre los circuitos y ungir los engranajes mecánicos con aceites lubricantes bendecidos.",
+                        branches: [
+                            { 
+                                title: "El Sacerdocio de Marte y las Legiones Cíborg Skitarii", 
+                                desc: "• <b>Tech-Priests (Tecno-sacerdotes):</b> Los ingenieros y científicos de la facción. Dependiendo de su rango, sus cuerpos están tan modificados que ya no parecen humanos, luciendo como masas flotantes de cables mecánicos, servobrazos hidráulicos de tres metros y sensores ópticos múltiples.<br>" +
+                                      "• <b>Soldados Skitarii:</b> La infantería cíborg del Dios Máquina. Son humanos recolectados a la fuerza cuyas piernas han sido amputadas por metal para marchar sin cansarse, y cuyos centros cerebrales de la emoción y el dolor han sido extirpados para ser controlados remotamente como antenas lógicas.<br>" +
+                                      "• <b>Sicarian Ruststalkers:</b> Asesinos metálicos de asalto ágiles cuyas extremidades son cuchillas delgadas. Portan armas sónicas que vibran en la frecuencia exacta del blindaje enemigo, ignorando el metal y rebanando la carne interior.<br>" +
+                                      "• <b>Robots Kastelan:</b> Autómatas gigantescos acorazados de la edad dorada que no piensan por sí mismos; operan de forma estricta mediante tarjetas perforadas sagradas que sus comandantes les insertan a mano en la espalda." 
+                            },
+                            { 
+                                title: "El Collegia Titanica (Los Dioses de la Guerra Bípedos)", 
+                                desc: "El Mechanicus despliega los ingenios de destrucción terrestre más colosales del universo, andadores de escala masiva venerados como catedrales andantes:<br>" +
+                                      "• <b>Titanes clase Warhound y Reaver:</b> Andadores ligeros y medianos rápidos utilizados para flanquear y explorar las líneas del frente, armados con mega-cañones de plasma e imanes de fisión térmica.<br>" +
+                                      "• <b>Titanes clase Warlord:</b> Monstruos de metal blindado del tamaño de rascacielos. Llevan reactores de fusión nuclear en su pecho y sus cañones de asedio tienen la potencia de fuego para evaporar un ejército o una ciudad imperial completa de un disparo.<br>" +
+                                      "• <b>Titanes clase Imperator:</b> Las armas de tierra definitivas. Son colosos del tamaño de montañas que llevan fortificaciones y templos góticos reales construidos sobre sus hombros, con guarniciones de cientos de soldados disparando desde arriba mientras el Titán aplasta búnkeres enteros con sus pezuñas mecánicas." 
+                            }
+                        ]
                     },
                     ministorum: {
-                title: "Adeptus Ministorum (Eclesiarquía)",
-                emblem: "📜",
-                quote: "El Emperador es el único Dios verdadero de la Humanidad.",
-                meta: { origen: "Ophelia VII / Terra", amenaza: "Dogmática Fanática", estilo: "Arenga Religiosa & Purgas", tecnologia: "Cálices Sagrados & Reliquias" },
-                leaders: [
-                    { name: "El Eclesiarca", title: "Cabeza de la Iglesia Imperial y Alto Señor" }
-                ],
-                history: "La gigantesca iglesia católica-espacial del Imperio. Gobiernan mediante el terror religioso, el fanatismo y el dogma. Persiguen cualquier herejía, mutación o libre pensamiento, asegurándose de que cada humano gaste su corta vida rezando al Emperador y trabajando hasta morir en las fábricas.",
-                curiosidad: "Aunque el Emperador odiaba las religiones y quería un imperio científico, la Eclesiarquía lo convirtió en Dios tras su caída en el Trono Dorado.",
-                branches: [
-                    { title: "Cuerpos de Fe Civiles y Militares", desc: "Predicadores de combate que marchan al frente con sierras mecánicas, misioneros galácticos y flagelantes que se azotan a sí mismos para ganar el perdón divino." }
-                ]
+                        title: "Adeptus Ministorum (Eclesiarquía)",
+                        emblem: "📜",
+                        quote: "El Emperador es el único Dios verdadero de la Humanidad, y en su adoración fanática radica nuestra única salvación galáctica. El pensamiento libre es el primer paso hacia la condena eterna.",
+                        meta: { 
+                            origen: "Mundo Catedral de Ophelia VII / Palacio Eclesiástico de Terra", 
+                            amenaza: "Dogmática Fanática Absoluta / Control Social Total", 
+                            estilo: "Arengas Religiosas Masivas, Tribunales de Purga, Tortura Psicológica & Inmolación en la Hoguera", 
+                            tecnologia: "Reliquias Óseas Sagradas, Estandartes Psíquicos de Fe, Quemadores de Incienso Neurotóxico & Carros de Castigo" 
+                        },
+                        leaders: [
+                            { name: "El Eclesiarca Supremo", title: "Cabeza Absoluta de la Iglesia Imperial, Guía Espiritual de la Humanidad y miembro permanente de los Altos Señores" }
+                        ],
+                        history: "El Adeptus Ministorum, conocido universalmente como la Eclesiarquía, es la gigantesca y todopoderosa iglesia de Estado que rige la fe dogmática del Imperio. A pesar de que el Emperador en vida abominaba de los cultos, prohibió estrictamente las religiones y castigó la idolatría defendiendo un racionalismo ateo estricto, tras su encierro milenario en el Trono Dorado su memoria fue distorsionada de forma irreversible por el Sacerdocio hasta convertirlo en un Dios viviente. La Eclesiarquía gobierna las mentes de incontables billones de seres humanos mediante el terror religioso, la paranoia colectiva y el dogma implacable. Administra miles de sistemas estelares convertidos en iglesias de escala planetaria (Mundos Catedral) donde cualquier atisbo de duda, curiosidad científica o libre pensamiento es castigado de forma inmediata con la tortura o la muerte en la hoguera, asegurándose de que la población gaste su corta y miserable vida rezando, pagando diezmos eclesiásticos y trabajando hasta morir en las fábricas.",
+                        curiosidad: "Administran el temido 'Diezmo de Sangre': un impuesto obligatorio mediante el cual las iglesias locales de todos los planetas imperiales confiscan reliquias antiguas o exigen que los gobiernos entreguen a miles de sus propios ciudadanos como mano de obra esclava para construir catedrales góticas del tamaño de montañas.",
+                        branches: [
+                            { 
+                                title: "La Estructura del Clero y el Control de Almas", 
+                                desc: "• <b>El Santo Sacerdocio:</b> Una red omnipresente de cardenales, diáconos y obispos corruptos que manejan los hilos políticos de planetas enteros, controlando los medios de comunicación y la educación para mantener a la población en la ignorancia medieval.<br>" +
+                                      "• <b>Misioneros Galácticos:</b> Exploradores religiosos enviados a los límites de la galaxia en naves eclesiásticas acorazadas con el único fin de convertir a las poblaciones humanas aisladas a la fuerza, bajo la amenaza directa de exterminio total si se niegan a arrodillarse ante el Credo Imperial." 
+                            },
+                            { 
+                                title: "Cuerpos de Fe Civiles y Hordas de Arrepentidos", 
+                                desc: "Cuando la Iglesia va a la guerra, no solo despliega soldados, sino mareas interminables de civiles fanáticos que buscan el martirio absoluto:<br>" +
+                                      "• <b>Predicadores de Combate:</b> Monjes dementes que marchan en primera línea de las batallas agitando crucifijos dorados, arengando a los soldados imperiales mediante altavoces integrados en sus pechos y despedazando alienígenas con espadas sierra pesadas.<br>" +
+                                      "• <b>Flagelantes y Arrepentidos:</b> Criminales o ciudadanos enloquecidos por la culpa religiosa que se mutilan a sí mismos y se lanzan completamente desarmados contra las líneas enemigas con explosivos atados al cuerpo, creyendo que el dolor físico es el único camino para que el Emperador perdone sus pecados.<br>" +
+                                      "• <b>Frateris Militia:</b> Ejércitos informales compuestos por billones de fieles armados con herramientas de labranza, antorchas y rifles primitivos que avanzan en oleadas suicidas impulsados por el puro fervor eclesiástico." 
+                            }
+                        ]
                     },
                     sororitas: {
-                title: "Adepta Sororitas (Hermanas de Batalla)",
-                emblem: "⚜️",
-                quote: "El Emperador protege a los puros de fe y quema al herético.",
-                meta: { origen: "Conventos de Terra & Ophelia VII", amenaza: "Fanatismo Armado", estilo: "Purga Ígnea & Fe Viva", tecnologia: "Lanzallamas, Bolters & Armadura de Energía" },
-                leaders: [
-                    { name: "Morvenn Vahl", title: "Abadesa Suprema de las Sororitas" },
-                    { name: "Santa Celestine", title: "Mártir Viviente y Ángel Resucitado" }
-                ],
-                history: "El ejército de monjas guerreras de la Iglesia. Debido a una ley antigua que prohíbe a la Eclesiarquía tener 'hombres bajo las armas', crearon este cuerpo militar exclusivamente femenino. Son fanáticas extremas armadas con servoarmaduras y rifles bólter que van a la guerra cantando himnos sagrados, capaces de manifestar milagros reales en el campo de batalla por su fe pura.",
-                curiosidad: "Su arma favorita es el lanzallamas pesado, ya que consideran que el fuego es el único elemento lo suficientemente puro como para limpiar los pecados del herético y del alienígena.",
-                branches: [
-                    { title: "Órdenes Militantes Principales", desc: "La Orden de Nuestra Señora Mártir (armadura negra y capas rojas), la Orden de la Rosa Sangrienta (asalto cuerpo a cuerpo violento) y la Orden del Cáliz de Ébano." }
-                ]
+                        title: "Adepta Sororitas (Hermanas de Batalla)",
+                        emblem: "⚜️",
+                        quote: "El Emperador protege a los puros de fe, quema al herético en su propia inmundicia y purga las estrellas con fuego sagrado e implacable. La duda es una mancha que solo la ceniza puede limpiar.",
+                        meta: { 
+                            origen: "Conventos Mayores de Terra (Sanctum Sanctorum) & Ophelia VII (Convento Prioris)", 
+                            amenaza: "Fanatismo Armado Absoluto / Fuerza de Choque Religiosa Eclesiástica", 
+                            estilo: "Purga Ígnea Metódica, Cargas de Fe Suicidas, Piedad Inflexible & Asalto de Corta Distancia", 
+                            tecnologia: "Servoarmaduras de la Fe, Rifles Bólter Sagrados, Cañones de Fusión (Melta) & Motores de Castigo Quirúrgico" 
+                        },
+                        leaders: [
+                            { name: "Morvenn Vahl", title: "Abadesa Suprema de las Adepta Sororitas y miembro del Consejo de los Altos Señores de Terra" },
+                            { name: "Santa Celestine", title: "La Mártir Viviente, Ángel Resucitado de la Disformidad y Faro del Poder del Emperador" }
+                        ],
+                        history: "Las Adepta Sororitas, conocidas popularmente como las Hermanas de Batalla, constituyen el brazo militar exclusivo y definitivo de la Iglesia Imperial. Su creación se remonta a un astuto vacío legal histórico: tras una sangrienta época de tiranía y guerras civiles intestinas, el Alto Consejo de Terra dictó un decreto taxativo que prohibía estrictamente a la Eclesiarquía mantener a cualquier 'hombre bajo las armas'. Para saltarse la ley sin desarmarse, el sacerdocio fundó este cuerpo militar de élite compuesto única y exclusivamente por monjas guerreras. Son fanáticas doctrinales criadas desde niñas en el odio absoluto al alienígena, al mutante y al traidor. Visten servoarmaduras pesadas de cerámita selladas herméticamente y portan bólteres bendecidos con oraciones góticas, marchando al combate entonando cánticos eclesiásticos que infunden un terror psicológico pavoroso en sus enemigos. Su fe psíquica colectiva es tan masiva que son capaces de manifestar milagros biológicos y físicos reales en el campo de batalla, como cerrar heridas de metralla al instante o invocar pilares de luz divina.",
+                        curiosidad: "Su dogma militar sagrado venera una santísima trinidad de armamento destructivo de corta distancia: el Bólter, el Lanzallamas y el Fusil Fusión. Consideran de forma literal que el fuego pesado es el único elemento purificador del cosmos capaz de limpiar los pecados, la brujería y la corrupción moral, por lo que prefieren quemar vivos a sus prisioneros antes que usar celdas.",
+                        branches: [
+                            { 
+                                title: "Las Órdenes Militantes Principales de las Sororitas", 
+                                desc: "• <b>Orden de Nuestra Señora Mártir:</b> Monjas de armadura negra, cascos blancos y capas rojas, famosas a nivel galáctico por buscar activamente las misiones más suicidas para honrar el sacrificio de sus mártires fundacionales.<br>" +
+                                      "• <b>Orden de la Rosa Sangrienta:</b> División de asalto cuerpo a cuerpo extremadamente violenta; consumidas por una furia religiosa implacable, utilizan espadas sierra y drogas estimulantes para destazar infanterías a corta distancia.<br>" +
+                                      "• <b>Orden del Cáliz de Ébano:</b> La orden militante más antigua e inflexible del Imperio, encargada de custodiar de forma literal los manuales y rituales secretos de las primeras santas de la galaxia.<br>" +
+                                      "• <b>Orden del Corazón Valiente:</b> Guerreras ascéticas famosas por su resistencia al dolor físico y mental, capaces de sostener posiciones de asedio imposibles sin retroceder un solo paso." 
+                            },
+                            { 
+                                title: "Cuerpos de Castigo y Dispositivos de Tortura Teocrática", 
+                                desc: "Las Sororitas no solo despliegan monjas puras, sino que administran los métodos de castigo y expiación más crueles de la Iglesia Imperial:<br>" +
+                                      "• <b>Hermanas Arrepentidas (Repentias):</b> Sororitas que cometieron una falla táctica o dudaron de su fe; son despojadas de sus armaduras y enviadas descalzas a la batalla portando espadas masivas a dos manos para buscar su redención mediante la muerte violenta.<br>" +
+                                      "• <b>Motores de Castigo (Penitent Engines):</b> Máquinas andantes de tortura donde los heréticos y pecadores más graves son encadenados vivos y expuestos al frente en una matriz cibernética. El andador inyecta químicos de dolor y agonía constante en sus sistemas nerviosos, obligándolos a correr descontrolados para despedazar enemigos con sierras gigantes antes de que sus cuerpos sean destruidos por las balas." 
+                            }
+                        ]
                     },
                     custodes: {
-                title: "Adeptus Custodes (La Guardia Dorada)",
-                emblem: "🏛️",
-                quote: "Somos la guardia personal del Emperador; nuestra vigilancia nunca cesa.",
-                meta: { origen: "Palacio Imperial de Terra", amenaza: "Absoluta / Singular", estilo: "Combate Élite Marcial", tecnologia: "Lanzas de Custodio & Armadura Auramita" },
-                leaders: [
-                    { name: "Trajann Valoris", title: "Capitán-General de los Diez Mil" },
-                    { name: "Constantin Valdor", title: "Primer Capitán-General (Histórico / Era de la Cruzada)" }
-                ],
-                history: "Los Diez Mil. No son Marines Espaciales; son una creación muy superior. Cada Custodio fue modificado individualmente a nivel genético, molecular y alquímico por el propio Emperador para ser su guardia de corps, consejero, filósofo y protector del Palacio Imperial. Un solo Custodio equivale a un ejército completo y porta una armadura de oro puro indestructible (auramita). Su lealtad es absoluta e incorruptible.",
-                curiosidad: "Pasaron 10,000 años sin salir del Palacio de la Tierra debido a la vergüenza y el luto de haber permitido que el Emperador fuera herido por Horus, hasta que Guilliman regresó y les ordenó volver a las estrellas.",
-                branches: [
-                    { title: "Compañías de Escudo Especializadas", desc: "Aquilan Shield (guardaespaldas de personas importantes para el destino de la galaxia), Shadowkeepers (carceleros de los peores monstruos y artefactos prohibidos debajo del palacio), Dread Host (la fuerza de castigo masivo enviada a masacrar amenazas críticas) y Solar Watch (defensores del sistema solar)." },
-                    { title: "Divisiones Internas del Palacio", desc: "Compañías de Custodios en armadura de Exterminador Allarus, motocicletas de combate flotantes Dawneagle y los venerables Dreadnoughts Contemptor, donde los custodios caídos siguen peleando encerrados en sarcófagos mecánicos eternos." }
-                ]
+                        title: "Adeptus Custodes (La Guardia Dorada)",
+                        emblem: "🏛️",
+                        quote: "Somos la guardia personal del Emperador de la Humanidad; nuestra vigilancia nunca cesa, nuestro oro nunca se empaña, nuestra espada nunca duda y nuestra lealtad trasciende los milenios.",
+                        meta: { 
+                            origen: "Palacio Imperial Subterráneo de Terra (El Nexo de la Humanidad)", 
+                            amenaza: "Absoluta / Guerreros Perfectos Incorruptibles / Fuerza Singular Existencial", 
+                            estilo: "Combate Élite Marcial Individual, Maestría en Armas de Energía & Coordinación Filosófica", 
+                            tecnologia: "Armaduras de Auramita Maciza, Lanzas Guardianas con Bólter Integrado & Escudos de Plasma Indestructibles" 
+                        },
+                        leaders: [
+                            { name: "Trajann Valoris", title: "Capitán-General de los Diez Mil y Protector Supremo del Trono Dorado" },
+                            { name: "Constantin Valdor", title: "Primer Capitán-General Histórico, Compañero de Armas y Confidente del Emperador" }
+                        ],
+                        history: "Los Adeptus Custodes, conocidos en toda la galaxia como 'Los Diez Mil', representan la cumbre absoluta de la ingeniería biológica de la humanidad. Es un error común confundirlos con los Marines Espaciales; los Custodes son una creación infinitamente superior y refinada. Mientras los marines se fabrican de manera estandarizada implantando órganos genéricos en masa, cada Custodio es una obra de arte molecular única, esculpida a nivel genético y alquímico por el propio Emperador utilizando su propia esencia. Son gigantes inmortales diseñados no solo para la destrucción bélica, sino para ser eruditos de la lógica, filósofos, poetas y confidentes del soberano. Un solo Custodio posee una velocidad de reacción neuronal comparable a una computadora cuántica y una fuerza física capaz de aniquilar ejércitos enteros de hombres mortales por sí mismo. Su lealtad a la figura del Emperador es absoluta, matemática e incorruptible: en diez mil años de guerras constantes, torturas mentales e infiltraciones demoníacas, ni un solo miembro de los Diez Mil ha traicionado jamás a su creador ni ha caído bajo las garras de la Disformidad.",
+                        curiosidad: "Tras la caída del Emperador en el Trono Dorado, pasaron diez mil años sin salir del Palacio Imperial de Terra cubiertos con capas de tela color azabache. Se despojaron de sus vestiduras rojas tradicionales debido a una profunda vergüenza colectiva y un luto eterno, autocondenándose a vigilar las catacumbas de la Tierra hasta que el Primarca Roboute Guilliman despertó de su letargo y les ordenó volver a marchar hacia las estrellas.",
+                        branches: [
+                            { 
+                                title: "Las Compañías de Escudo del Palacio Imperial", 
+                                desc: "• <b>Aquilan Shield (Escudo de Aquila):</b> Unidades destinadas a salir del planeta Terra como guardaespaldas de civiles, gobernantes, generales o soldados mortales comunes cuya supervivencia a corto plazo es calculada como crítica para el destino futuro del Imperio.<br>" +
+                                      "• <b>Shadowkeepers (Guardianes de las Sombras):</b> Carceleros siniestros y silenciosos encargados de patrullar las Celdas Oscuras subterráneas de Terra, donde custodian y contienen de forma perpetua a los monstruos espaciales más horripilantes y a los artefactos tecnológicos de la edad de oro prohibidos por su poder destructivo.<br>" +
+                                      "• <b>Dread Host (La Hueste del Pavor):</b> El brazo ejecutor y de castigo masivo de los Custodes; son enviados a bordo de naves doradas a masacrar sistemas estelares rebeldes enteros con una violencia matemática, inmediata y aplastante para infundir un terror absoluto en los traidores.<br>" +
+                                      "• <b>Solar Watch (La Vigilancia Solar):</b> Patrullas de interceptación rápida que vigilan de forma militar los caminos espaciales, lunas y fortalezas del Sistema Solar, actuando como la primera línea de defensa de la Tierra." 
+                            },
+                            { 
+                                title: "Las Divisiones Internas de la Guardia de Oro", 
+                                desc: "• <b>Exterminadores Allarus:</b> Colosos acorazados con armaduras masivas modificadas para resistir impactos directos de artillería pesada, armados con hachas de energía molecular que caen mediante teletransportación directa en el corazón de las bases enemigas.<br>" +
+                                      "• <b>Pretores Vertus (Jinetes del Cielo):</b> Unidades de asalto veloz que pilotan las legendarias motocicletas de combate flotantes Dawneagle, armadas con cañones de salva de misiles interceptores capaces de destrozar cazas espaciales de un impacto.<br>" +
+                                      "• <b>Dreadnoughts Contemptor-Achillus:</b> Custodios cuyos cuerpos orgánicos fueron mutilados hasta quedar insalvables, pero cuyas mentes inmortales se negaron a morir, siendo encerrados para siempre en sarcófagos cibernéticos andantes de oro puro para seguir aplastando búnkeres por la eternidad." 
+                            }
+                        ]
                     },
                     silencio: {
-                title: "Hermanas del Silencio (Anathema Psykana)",
-                emblem: "🤫",
-                quote: "En nuestro silencio, el poder de la disformidad se desvanece.",
-                meta: { origen: "Ciudadela Sombría de Terra", amenaza: "Anti-Psíquica Absoluta", estilo: "Caza de Brujos & Anulación", tecnologia: "Espadas Mandoble & Aura Nula" },
-                leaders: [
-                    { name: "Jenetia Krole", title: "Comandante Histórica de la Guardia Silenciosa" },
-                    { name: "Aleya", title: "Centurión de la Era Indomitus" }
-                ],
-                history: "Guerreras de élite nacidas con una mutación genética extremadamente rara: no tienen alma ni conexión con el espacio psíquico. Son 'Intocables' o 'Parias'. Su mera presencia física bloquea por completo los poderes psíquicos de los magos y demonios, causándoles un dolor insoportable y provocando un pánico irracional en cualquiera que se acerque a ellas. Son las aliadas perfectas de los Adeptus Custodes.",
-                curiosidad: "Hicieron un voto de silencio absoluto y se comunican únicamente mediante un lenguaje de señas militar ultra-rápido conocido como el Sello de Pensamiento mientras decapitan brujos con espadas gigantes.",
-                branches: [
-                    { title: "Cuadrillas Nulas", desc: "Cazadoras de psíquicos renegados y escoltas tácticas de las temidas Naves Negras, encargadas de capturar humanos mágicos por toda la galaxia para alimentar el Trono Dorado." },
-                    { title: "Cuadros de Asalto de Vigilancia", desc: "Unidades de infantería de choque armadas con lanzallamas pesados y espadas mandoble de ejecución para limpiar nidos de cultistas psíquicos." }
-                ]
+                        title: "Hermanas del Silencio (Anathema Psykana)",
+                        emblem: "🤫",
+                        quote: "En nuestro silencio absoluto, el eco de la disformidad se desvanece, las mentiras de las brujas se quiebran y el falso poder de los demonios se reduce a cenizas.",
+                        meta: { 
+                            origen: "Ciudadela Sombría de Terra / Convento de las Almas Nulas", 
+                            amenaza: "Anti-Psíquica Absoluta / Erradicación de Brujos y Aberraciones", 
+                            estilo: "Caza de Hechiceros, Anulación Mística de Campo & Ejecuciones Quirúrgicas a Mandoble", 
+                            tecnologia: "Espadas Mandoble Executioner de Filo Molecular, Aura Nula Amplificada & Armaduras de Escamas Anti-Psiónicas" 
+                        },
+                        leaders: [
+                            { name: "Jenetia Krole", title: "Comandante Suprema Histórica de la Guardia Silenciosa y Compañera del Emperador" },
+                            { name: "Centurión Aleya", title: "Líder de Campo de la Anathema Psykana en la Era Indomitus y aliada de los Custodes" }
+                        ],
+                        history: "Las Hermanas del Silencio son una orden de guerreras de élite nacidas con una anomalía genética extremadamente rara e inquietante conocida como el 'Gen Paria'. No proyectan absolutamente ningún reflejo o rastro en las corrientes psíquicas de la Disformidad; carecen por completo de alma espiritual. Debido a este vacío existencial, son llamadas 'Intocables'. Su mera presencia física distorsiona la realidad metafísica de su entorno: actúan como un agujero negro psíquico que bloquea de golpe los hechizos de los magos de batalla, corta los canales de invocación de los cultos satánicos y drena la energía vital de las entidades infernales, causándoles un tormento biológico y psíquico insoportable. Incluso para los seres humanos normales que no tienen poderes psíquicos, acercarse a una Hermana del Silencio provoca una oleada involuntaria de náuseas físicas, asco instintivo y un pánico psicológico irracional de origen desconocido. Son las aliadas perfectas e indispensables de los Adeptus Custodes en la primera línea defensiva de la Tierra.",
+                        curiosidad: "Al ingresar formalmente a la orden, realizan un voto de silencio místico absoluto que jamás rompen. En el fragor de los asaltos urbanos y los abordajes espaciales, se comunican de manera fluida y fluida utilizando un lenguaje de señas militar avanzado conocido como el Sello de Pensamiento, coordinando tácticas complejas en completo silencio mientras decapitan brujos.",
+                        branches: [
+                            { 
+                                title: "Las Doctrinas y Cuadrillas Nudas de la Inquisición", 
+                                desc: "• <b>Buscadoras de Almas (Witch Seekers):</b> Unidades de asalto frontal especializadas en purgar nidos de cultos mágicos; marchan portando lanzallamas pesados que proyectan fuego bendecido que consume la materia física y las ilusiones psíquicas al mismo tiempo.<br>" +
+                                      "• <b>Cazadoras de Brujas (Vigilators):</b> Espadachinas de élite que dominan el arte del sigilo táctico y la esgrima pesada, portando las monumentales espadas mandoble Executioner, armas de energía molecular capaces de rebanar un búnker de acero o partir a un brujo por la mitad de un tajo.<br>" +
+                                      "• <b>Buscadoras del Velo (Seekers):</b> Investigadoras encubiertas encargadas de rastrear las firmas de energía psíquica ilegal en los niveles residenciales más profundos de los mundos colmena imperiales antes de iniciar las redadas militares." 
+                            },
+                            { 
+                                title: "Las Divisiones de Escolta y Operaciones de las Naves Negras", 
+                                desc: "• <b>Escoltas de la Anathema Psykana:</b> La guarnición armada encargada de custodiar las temidas Naves Negras que recorren la galaxia entera recolectando el tributo obligatorio de millones de psíquicos humanos capturados para alimentar el Trono Dorado.<br>" +
+                                      "• <b>Cuadros Executores del Trono:</b> Unidades blindadas pesadas equipadas con vehículos de transporte Rhino sellados con placas de plomo místico y rejas radiactivas, diseñadas para transportar cargamentos de monstruos disformes encadenados sin que su magia afecte a la tripulación." 
+                            }
+                        ]
+                    },
+                    inquisicion: {
+                        title: "La Inquisición Imperial",
+                        emblem: "👁️",
+                        quote: "La inocencia no demuestra nada; sospecha de todos, desconfía de tus propios ojos y purga el universo antes de que el pecado eche raíces en el alma humana.",
+                        meta: { 
+                            origen: "Clasificado / Red de Fortalezas Inquisitoriales del Alto Consejo de Terra", 
+                            amenaza: "Omnipresente Interna / Autoridad Jurídica y Militar Absoluta", 
+                            estilo: "Operaciones Encubiertas, Contraespionaje, Interrogatorio Bajo Tortura & Purgas Masivas Planetarias", 
+                            tecnologia: "Armamento Arqueo-tecnológico Clasificado, Psicobólteres, Rosette de Autoridad Suprema & Dispositivos de Exterminatus" 
+                        },
+                        leaders: [
+                            { name: "Katarinya Greyfax", title: "Inquisidora de Élite del Ordo Hereticus, Azote de Psíquicos y Cazadora de Brujas" },
+                            { name: "Torquemada Coteaz", title: "Alto Inquisidor del Ordo Malleus, Protector del Sector Formosa y Martillo de Demonios" },
+                            { name: "Inquisidor Gregor Eisenhorn", title: "Agente Encubierto del Ordo Xenos, Autor del Códice de Anulación e Investigador de Herejías" }
+                        ],
+                        history: "La Inquisición Imperial constituye la organización policial secreta y judicial más brutal, implacable y omnipresente de la galaxia. Sus agentes, investidos con el rango de Inquisidor, operan por completo fuera y por encima de las leyes ordinarias, respondiendo únicamente ante la figura del Dios-Emperador. Poseen la potestad legal absoluta de requisar ejércitos enteros de la Guardia Imperial, destituir a gobernadores planetarios, ejecutar a generales rebeldes o purgar a cardenales de la iglesia si detectan el menor indicio de infiltración alienígena, adoración satánica al Caos o disidencia política. Un Inquisidor actúa de forma simultánea como investigador, juez, jurado y verdugo. Si determinan que un planeta ha caído de forma irreversible bajo el control de plagas biológicas, demonios o mutaciones masivas, tienen la autoridad autónoma de decretar un Exterminatus: un bombardeo orbital definitivo mediante torpedos ciclónicos o bombas víricas que disuelven toda la biomasa viva en minutos, convirtiendo continentes enteros en ceniza estéril y borrando el mundo de los mapas estelares.",
+                        curiosidad: "Portan un sello heráldico metálico conocido como la 'Rosette Inquisitorial'. Mostrar este emblema sagrado equivale a que el mismísimo Emperador esté presente en el lugar; cualquier intento de falsificarlo, ignorarlo o desobedecer la orden de un Inquisidor se castiga de forma sumaria con la tortura física y la ejecución inmediata de linajes familiares completos.",
+                        branches: [
+                            { 
+                                title: "Los Tres Grandes Ordos Mayores de la Caza", 
+                                desc: "• <b>Ordo Hereticus (Cazadores de Brujas):</b> El brazo interno encargado de perseguir mutantes aberrantes, psíquicos sin registrar, cultos subversivos y traidores políticos dentro del Imperio. Son los aliados tradicionales de las Hermanas de Batalla.<br>" +
+                                      "• <b>Ordo Malleus (Cazadores de Demonios):</b> División ultrasecreta especializada en combatir las brechas infernales de la Disformidad y disolver sectas apócrifas de adoración al Caos. Dirigen de forma clandestina al capítulo de marines Grey Knights (Caballeros Grises).<br>" +
+                                      "• <b>Ordo Xenos (Cazadores de Alienígenas):</b> Expertos dedicados a monitorizar, estudiar y aniquilar las conspiraciones e invasiones de razas extraterrestres infiltradas en mundos humanos. Operan estrechamente junto a los marines Deathwatch." 
+                            },
+                            { 
+                                title: "Las Divisiones Menores y Fuerzas Secundarias de Control", 
+                                desc: "• <b>Ordo Chronos:</b> Oficina secreta encargada de investigar las anomalías del espacio-tiempo causadas por los viajes disformes, deteniendo sectas que intentan alterar el pasado de Terra.<br>" +
+                                      "• <b>Ordo Scriptorum:</b> Especialistas dedicados a censurar la historia oficial del Imperio, reescribiendo registros, quemando libros antiguos y borrando el nombre de planetas enteros de las bibliotecas para mantener a la población en la ignorancia.<br>" +
+                                      "• <b>Los Acólitos de la Cámara:</b> Escuadrones de operaciones encubiertas compuestos por asesinos, mercenarios, eruditos y hackers cibernéticos que actúan como los ojos y manos de un Inquisidor en misiones de infiltración urbana." 
+                            }
+                        ]
+                    },
+                    assassinorum: {
+                        title: "Officio Assassinorum",
+                        emblem: "🗡️",
+                        quote: "Un tiro limpio, una muerte estratégica; la sombra perpetua es nuestra aliada y la frialdad absoluta de la muerte es nuestro único y sagrado oficio cósmico.",
+                        meta: { 
+                            origen: "Templos Subterráneos Clasificados y Ocultos de Terra (Ubicaciones Secretas)", 
+                            amenaza: "Crítica Selectiva / Arma de Decapitación Política y Militar Definitiva", 
+                            estilo: "Infiltración Extrema, Envenenamiento Quirúrgico, Guerra Psicológica Selectiva & Sabotaje de Redes", 
+                            tecnologia: "Nanotecnología Ósea, Trajes Sintéticos de Polimorfina, Espadas de Fase C'tan & Rifles de Francotiro Éxodo" 
+                        },
+                        leaders: [
+                            { name: "El Gran Maestro de los Asesinos", title: "Líder Supremo de la Organización, Custodio de los Templos Secretos y miembro permanente del Consejo de los Altos Señores de Terra" }
+                        ],
+                        history: "El Officio Assassinorum es la organización de ejecutores encubiertos más mortífera, hermética y clasificada de la galaxia. No despliegan flotas de guerra visibles ni marchan al frente bajo el estruendo de los tambores; en su lugar, entrenan a niños huérfanos seleccionados mediante pruebas inhumanas de supervivencia para transformarlos en armas vivientes capaces de decapitar el liderazgo de un imperio alienígena completo o una rebelión humana con una precisión quirúrgica escalofriante. El proceso de entrenamiento moldea sus cuerpos con bioingeniería, nanotecnología avanzada y un condicionamiento mental implacable que borra cualquier rastro de remordimiento. Operan bajo una premisa matemática infalible: una única bala bien colocada en la frente de un dictador, un general traidor o un caudillo xenos puede detener instantáneamente una guerra civil o una invasión planetaria, salvando miles de millones de créditos y flotas enteras del Imperio antes de que se desate una masacre abierta.",
+                        curiosidad: "Sus cuerpos están tan alterados a nivel químico, celular y anatómico que un asesino es capaz de derretir y dislocar voluntariamente su propia estructura ósea para deslizarse a través de las tuberías de ventilación estrechas de una fortaleza blindada, o de absorber toxinas y químicos del aire para sintetizar venenos mortales indetectables directamente en sus glándulas salivales.",
+                        branches: [
+                            { 
+                                title: "Los Cuatro Grandes Templos de Ejecución Física", 
+                                desc: "• <b>Templo Vindicare (Francotiradores Infalibles):</b> Tiradores de élite quirúrgica equipados con rifles de fase capaces de atravesar escudos de energía; pueden pasar semanas inmóviles en un planeta helado o sin respirar en el vacío del espacio, ralentizando sus corazones a un latido por minuto para realizar un único disparo perfecto a kilómetros de distancia.<br>" +
+                                      "• <b>Templo Eversor (Berserkers Químicos):</b> Asesinos psicópatas hiper-modificados genéticamente que pasan sus vidas congelados en campos de éxtasis. Son liberados en cápsulas de asalto orbital como bombas humanas vivientes; inyectados con cócteles de drogas de furia salvaje, adrenalina pura y venenos químicos, masacran batallones enteros a corta distancia con garras biológicas y pistolas de agujas ácidas.<br>" +
+                                      "• <b>Templo Callidus (Infiltradores de Forma):</b> Espías letales que utilizan una droga mutagénica llamada Polimorfina para alterar instantáneamente su cara, peso, estatura e incluso su estructura celular, permitiéndoles imitar a gobernantes imperiales o replicar la fisonomía de un alienígena Eldar. Portan espadas de fase C'tan que atraviesan la materia física.<br>" +
+                                      "• <b>Templo Culexus (Asesinos Anti-Psíquicos):</b> Agentes nacidos con el Gen Paria (sin reflejo psíquico ni alma). Visten cascos masivos Animus Speculum que canalizan su vacío espiritual, convirtiéndose en el terror absoluto de los magos y demonios. Su mera cercanía física drena la magia y pudre el cerebro de los psíquicos." 
+                            },
+                            { 
+                                title: "Los Templos Ocultos de Sabotaje e Infiltración Lógica", 
+                                desc: "• <b>Templo Vanus (Asesinos de la Información):</b> Expertos cibernéticos y analistas lógicos que no tocan físicamente a su objetivo; manipulan los satélites orbitales, sabotean los sistemas de soporte vital de las bases o alteran las bases de datos de artillería enemigas para provocar que el objetivo muera en un 'accidente técnico' imprevisto.<br>" +
+                                      "• <b>Templo Venenum (Maestros de las Toxinas):</b> Científicos de venenos indetectables capaces de desarrollar toxinas moleculares personalizadas para el ADN de una víctima en específico; pueden envenenar suministros de agua continentales enteros o infectar el aire de una sala de conferencias para asesinar a una junta militar rebelde completa en segundos." 
+                            }
+                        ]
+                    }
+                }
             },
-            inquisicion: {
-                title: "La Inquisición Imperial",
-                emblem: "👁️",
-                quote: "La inocencia no demuestra nada; sospecha de todos.",
-                meta: { origen: "Secreto / Alto Consejo de Terra", amenaza: "Omnipresente Interna", estilo: "Operaciones Encubiertas, Espionaje & Purgas", tecnologia: "Equipamiento Clasificado, Rosette & Psico-armas" },
-                leaders: [
-                    { name: "Katarinya Greyfax", title: "Inquisidora del Ordo Hereticus" },
-                    { name: "Torquemada Coteaz", title: "Alto Inquisidor del Ordo Malleus" },
-                    { name: "Inquisidor Eisenhorn", title: "Agente encubierto del Ordo Xenos" }
-                ],
-                history: "La policía secreta definitiva del Imperio. Operan completamente fuera y por encima de las leyes ordinarias. Tienen la autoridad absoluta para ejecutar a gobernantes planetarios, generales o poblaciones enteras si sospechan de corrupción alienígena, demoníaca o traición política. Si un planeta está completamente corrupto e insalvable, un Inquisidor puede ordenar un Exterminatus: la destrucción total del planeta desde el espacio.",
-                curiosidad: "Muestran un sello metálico llamado 'Rosette' que les otorga el derecho de hablar en nombre del mismísimo Emperador; falsificarlo o desobedecerlo se paga con la muerte inmediata de linajes enteros.",
-                branches: [
-                    { title: "Ordo Hereticus (Cazadores de Brujas)", desc: "Dedicados a perseguir mutantes, psíquicos ilegales y la corrupción dentro del propio Imperio de la Humanidad. Aliados de las Hermanas de Batalla." },
-                    { title: "Ordo Malleus (Cazadores de Demonios)", desc: "Encargados de limpiar los cultos satánicos de la Disformidad y contener las brechas del Caos. Comandan secretamente al capítulo de Marines Espaciales Grey Knights (Caballeros Grises)." },
-                    { title: "Ordo Xenos (Cazadores de Alienígenas)", desc: "Especialistas en detectar, estudiar y erradicar conspiraciones de razas alienígenas infiltradas en el Imperio. Trabajan junto al capítulo de marines Deathwatch." }
-                ]
-            },
-            assassinorum: {
-                title: "Officio Assassinorum",
-                emblem: "🗡️",
-                quote: "Un tiro, una muerte; la sombra es nuestra aliada y la muerte nuestro oficio.",
-                meta: { origen: "Templos Secretos de Terra", amenaza: "Crítica Selectiva", estilo: "Eliminación Quirúrgica & Asesinato", tecnologia: "Nanotecnología, Polimorfina & Rifles Éxodo" },
-                leaders: [
-                    { name: "Gran Maestro del Officio", title: "Líder Supremo y miembro de los Altos Señores de Terra" }
-                ],
-                history: "La organización de asesinos más letal y secreta del universo. No despliegan ejércitos; entrenan a agentes desde su niñez para infiltrarse en las fortalezas más seguras del enemigo y decapitar el liderazgo de imperios alienígenas o rebeldes humanos con una precisión quirúrgica perfecta. Una sola bala bien colocada por ellos puede salvar sectores estelares completos de una guerra abierta.",
-                curiosidad: "Sus agentes están tan modificados que algunos pueden cambiar su estructura ósea para imitar la apariencia de un alienígena, o absorber los químicos del aire para fabricar venenos mortales en su propia saliva.",
-                branches: [
-                    { title: "Templo Vindicare (Francotiradores)", desc: "Tiradores de élite capaces de esperar semanas sin moverse un solo milímetro para realizar un disparo perfecto a kilómetros de distancia." },
-                    { title: "Templo Eversor (Psicópatas de Choque)", desc: "Asesinos inyectados con drogas de furia salvaje. Son liberados en cápsulas como bombas vivientes para despedazar ejércitos enteros a corta distancia." },
-                    { title: "Templo Callidus (Infiltradores de Forma)", desc: "Especialistas en espionaje y cambio de forma absoluto gracias al uso de la droga Polimorfina y espadas de fase C'tan." },
-                    { title: "Templo Culexus (Asesinos Anti-Psíquicos)", desc: "Agentes Parias (sin alma) especializados en aterrorizar y destrozar el cerebro de los magos, brujos y demonios." },
-                    { title: "Templos Vanus e Venenum", desc: "Expertos en sabotaje de datos, manipulación de información de satélites (Vanus) y envenenamientos masivos indetectables (Venenum)." }
-                ]
-            }
-        }
-    },
-
     caos: {
         accent: "#dc2626",
         bannerClass: "banner-chaos",
