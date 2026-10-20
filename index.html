@@ -98,40 +98,106 @@
         }
 
 /* ===================================================================================== */
-/* BLINDAJE DE VISIBILIDAD DE INFOGRAFÍAS (CONTRA EL CANSANCIO VISUAL)                   */
+/* BLINDAJE DE VISIBILIDAD E INTERFAZ ADAPTATIVA (PC Y TELÉFONOS CELULARES)              */
 /* ===================================================================================== */
 
-/* 1. Suavizar el color del texto de las descripciones (Baja el brillo agresivo) */
-.branch-item p {
-    color: #cbd5e1 !important; /* Cambia el blanco puro por un gris platino muy descansado */
+/* 1. Suavizar el color del texto de las descripciones para evitar la fatiga visual */
+.branch-item p, .timeline-body p, .fac-history p, .primarch-card p {
+    color: #cbd5e1 !important; /* Un gris platino sumamente descansado */
     font-size: 0.95rem !important;
-    line-height: 1.8 !important; /* Dale más espacio vertical para que el ojo no se pierda */
+    line-height: 1.8 !important; /* Más separación vertical entre renglones */
 }
 
-/* 2. Iluminar los títulos de los órganos en oro para que resalten como índices */
+/* 2. Iluminar los títulos de los órganos en oro para guiar la mirada como un índice */
 .branch-item p b {
-    color: #cda851 !important; /* El tono dorado de tu barra superior */
+    color: #cda851 !important; /* El tono dorado de tu tema imperial */
     font-size: 1rem !important;
     display: inline-block;
-    margin-top: 14px; /* Separa un órgano del anterior para darle aire visual */
+    margin-top: 14px; /* Separa un elemento del anterior para darle aire visual */
     letter-spacing: 0.5px;
-    text-shadow: 0 0 8px rgba(205, 168, 81, 0.2); /* Sutil brillo místico */
+    text-shadow: 0 0 8px rgba(205, 168, 81, 0.2);
 }
 
-/* 3. Ajustar el primer órgano para que no se pegue al título de la caja */
+/* 3. Ajustar el primer elemento para que no se pegue al título superior de la caja */
 .branch-item p b:first-of-type {
     margin-top: 5px;
 }
 
-/* 4. Darle un fondo más profundo, azulado y elegante a los paneles */
+/* 4. Forzar el alineamiento horizontal: un bloque debajo del otro a pantalla completa */
+.faction-branches-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 25px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 5. Paneles adaptativos que rompen renglón y no se desbordan en pantallas móviles */
 .branch-item {
-    background: rgba(7, 11, 16, 0.85) !important; /* Un tono gótico profundo antifatiga */
+    background: rgba(7, 11, 16, 0.85) !important; /* Tono gótico antifatiga */
     border: 1px solid #151e2d !important;
     border-left: 4px solid var(--active-accent) !important;
-    padding: 24px !important;
+    padding: 20px !important; /* Espaciado interno optimizado para pantallas delgadas */
     border-radius: 6px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    word-wrap: break-word !important; /* Fuerza a que los textos largos rompan renglón */
 }
+
+/* 6. Media Query: Reglas automáticas que se activan únicamente al entrar desde un Celular */
+@media (max-width: 768px) {
+    /* Desarma las cuadrículas fijas de PC y las acomoda en listas verticales fluidas */
+    .welcome-grid, .fac-meta-grid, .emperor-grid, .primarchs-grid {
+        grid-template-columns: 1fr !important; 
+        gap: 15px !important;
+    }
+    /* Convierte las pestañas de las alianzas en un menú de botones verticales */
+    .faction-tabs {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+    }
+    /* Achica los títulos gigantescos para que quepan en el ancho físico del teléfono */
+    .hero-overlay-text h1 {
+        font-size: 1.6rem !important;
+    }
+    .visual-banner {
+        height: 130px !important; /* Optimiza el espacio de los banners en pantallas cortas */
+    }
+    .visual-banner-title {
+        font-size: 1.1rem !important;
+        padding: 15px !important;
+    }
+    /* Rediseña la barra sticky superior para que los botones quepan alineados */
+    .top-navbar {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 12px 10px !important;
+        gap: 8px !important;
+    }
+    .nav-menu {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        height: auto !important;
+        width: 100% !important;
+    }
+    .nav-btn {
+        height: 32px !important;
+        padding: 0 10px !important;
+        font-size: 0.72rem !important;
+        border-bottom: 2px solid transparent !important;
+    }
+    .main-container {
+        margin: 15px auto !important; /* Reduce márgenes externos en smartphones */
+    }
+    .faction-content-card {
+        padding: 15px !important; /* Más área de pantalla útil para leer */
+    }
+}
+
 
 
         .banner-imperial { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #000000 100%); border-left: 6px solid var(--gold); }
@@ -1287,7 +1353,7 @@
             },
             slaanesh: {
                 title: "Slaanesh (El Príncipe del Exceso)",
-                emblem: "👁️‍ canalla",
+                emblem: "👁️‍",
                 quote: "Nada es suficiente; busquemos sensaciones más extremas.",
                 meta: { origen: "Palacio del Placer (Disformidad)", amenaza: "Sensorial / Corrupción Mental", estilo: "Velocidad Letal, Sadismo & Ataques Sónicos", tecnologia: "Cañones Sónicos, Drogas de Combate & Elixires Mentales" },
                 leaders: [
